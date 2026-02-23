@@ -1,0 +1,1 @@
+Questo l'ho visto in spec-kit di GitHub, vediamo se possiamo usarlo.

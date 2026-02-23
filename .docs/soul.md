@@ -1,0 +1,1 @@
+Non so cosa ci va normalmente, non ricordo se fosse su Claude Code o altro.

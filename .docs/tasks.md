@@ -1,0 +1,1 @@
+Da capire come gestirli, se gestirli così o su carta.
