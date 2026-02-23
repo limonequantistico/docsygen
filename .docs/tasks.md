@@ -1,1 +1,1 @@
-Da capire come gestirli, se gestirli così o su carta.
+Da capire come gestirli, se gestirli così o su carta. Oppure direttamente nelle singole feature.

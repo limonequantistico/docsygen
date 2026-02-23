@@ -37,7 +37,8 @@ A brief brandscript describing the core parts of the brand according to Donald M
 - No need to pad the text if there's no content worth adding (if there are only 2 features, there's no need to write 7)
 - Use Context7 for any needed deeper research.
 
-**Output:** `.docs/seed-document.md`
+**Output:** 
+`.docs/seed-document.md`
 
 **RAW NOTES:**
-@./seed-notes.md
+`@.docs/idea.md`

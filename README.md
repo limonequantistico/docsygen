@@ -1,4 +1,4 @@
-## 1. Ideazione(documento per me) {[X] Done}
+## 1. Ideazione(documento per me) `.docs/idea.md`
 
 Questa serie di procedure non va presa come una parte necessariamente separata o sequenziale. Vogliono portare ad un prodotto, quindi possono anche funzionare in ordine sparso.
 
@@ -7,14 +7,14 @@ Questa serie di procedure non va presa come una parte necessariamente separata o
 3. Divisione tra toggles e Note sparse, a cui verranno aggiunte le future note;
    Esempio pratico: Modular Dashboard.
 
-## 2. Documento SEED (documento per AI) `seed-document.md` {[X] Done}
+## 2. Documento SEED (documento per AI) `.docs/seed-document.md`
 
 Rappresenta il file di riferimento, dove vivono tutte le informazioni principali. Riutilizzabile per gli altri steps.
 
 - Creazione [Prompt]
 - Estensione [Prompt]
 
-## 3. Procedure UX `prototypes/` {[X] Done}
+## 3. Procedure UX `.docs/assets/imgs/prototypes/`
 
 - Wireframes/Prototipo
   - a mano
@@ -22,12 +22,12 @@ Rappresenta il file di riferimento, dove vivono tutte le informazioni principali
     - Prompt [Claude, V0, Figma Make, Stitch]
 - Verifica wireframes [Prompt]
 
-## 4. Definizione Tech Stack `tech-stack.md` {[X] Done}
+## 4. Definizione Tech Stack `.docs/tech-stack.md`
 
 - Prompt Stack Nuovo
 - Prompt aggiornamento Stack
 
-## 5. Procedure UI `design-system.md` {[ ] Done}
+## 5. Procedure UI `.docs/design-system.md`
 
 - Prompt Design System (design-system.md)
 - Update Prompt
