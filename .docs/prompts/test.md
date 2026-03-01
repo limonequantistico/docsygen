@@ -3,3 +3,4 @@ Oppure li rendo più standardizzati, e al massimo le informazioni aggiuntive le 
 
 Sì penso mi convenga così. Workflows al posto di questa cartella prompts. Ma non ora che devo fare altro prima.
 
+In realtà mi conviene mantenere questo progetto con i prompt aggiornati, per poi usarli nei workflows. Ma comunque vediamo man mano perché idealmente vuole diventare una libreria sta roba.

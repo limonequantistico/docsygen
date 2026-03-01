@@ -31,6 +31,7 @@ A brief brandscript describing the core parts of the brand according to Donald M
 **RULES:**
 
 - Be concise: each section max 5-6 lines
+- If a section is not necessary for the project, skip it (if the project is very small, it's not necessary to include all sections)
 - Use clear language, avoid jargon where possible
 - If information is missing, put \[TBD\] instead of making things up
 - Don't repeat information
@@ -41,4 +42,4 @@ A brief brandscript describing the core parts of the brand according to Donald M
 `.docs/seed-document.md`
 
 **RAW NOTES:**
-`@.docs/idea.md`
+Raw notes can be found either in `@.docs/idea.md`, or if the file is empty or not present, on the rest of the prompt. Let the user know if you didn't find neither.
