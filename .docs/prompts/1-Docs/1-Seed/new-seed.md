@@ -36,7 +36,7 @@ A brief brandscript describing the core parts of the brand according to Donald M
 - If information is missing, put \[TBD\] instead of making things up
 - Don't repeat information
 - No need to pad the text if there's no content worth adding (if there are only 2 features, there's no need to write 7)
-- Use Context7 for any needed deeper research.
+- The document is both for me to remember the project's direction and motivations, and for LLM's to be aware of the context of the project. Keep in mind a use for LLMs.
 
 **Output:** 
 `.docs/seed-document.md`

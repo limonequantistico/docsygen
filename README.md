@@ -94,3 +94,33 @@ Comunque ogni funzionalità diventerà una cartella con all'interno tutto quello
 - [ ] Fare una descrizione più sequenziale di quello che deve fare la libreria, tipo "Questa libreria serve per implementare lo spech-driven development, in modo tale che l'AI possa capire meglio cosa fare e come farlo, e l'utente riesca ad orientarsi facilmente in cosa si sta facendo, come ecc"
 - [ ] Posso sia renderla una libreria da subito che usare workflows e rules per simulare la libreria. In ogni caso ci sarà un lavoro iterativo per capire come farla funzionare al meglio. Quindi forse per ora conviene impostare tutto su Antigravity.
 - [ ] Potrei forse gestire prima le fasi, per solo dopo fargli creare i task delle singole fasi, per poi affrontare i task individualmente. Potrei anche indicargli più o meno le dimensioni dei task, in modo da evitare che vada troppo avanti a caso.
+- [ ] Init project con i file iniziali su cui scrivere ed init della repo github
+- [ ] Design style selection. With style description like "Modern, minimal, flat design: for products where minimalism and simplicity are key" or "Material, dark, modern: for products where a more traditional and refined look is desired" or "Editorial design, light" for editorial experiences. Inspired by [This article](https://tilda.education/en/web-design-styles#know)
+
+
+
+Può diventare una semplice app CLI stile conversazione a risposta multipla degli RPG, in cui ti guida all'inizializzazione di un progetto tramite la documentazione e ti aiuta a tenere la documentazione aggiornata.
+
+Tra gli steps terrei a mente anche il fargli costruire i componenti iniziali, dicendogli quali servono sulla base dell'applicazione che viene creata. Molto utile a:
+- centralizzare gli stili 
+- minimizzare le modifiche per cambiare design se necessario
+- semplificare la creazione di nuovi componenti sulla base di quelli esistenti
+- evitare di perdersi componenti qua e là che abbiano stile diverso, quando l'app si ingrandisce è facile che l'AI si perda il modo in cui deve fare una determinata cosa
+- vedere da subito se il design che pensa l'AI sia di tuo gradimento
+
+Questa è la cosa credo fondamentale che ho capito dalla prova su Cantina Pulaio, che mi ha forse fatto perdere tanto tempo e tokens, perché se hai i componenti pronti è un po' come fare un puzzle, un lego, e semplifichi anche la vita agli agenti.
+
+Quindi provando a ricapitolare, il flusso potrebbe essere:
+
+First screen con logo -> 
+Init, update o refactor project docs -> 
+idea.md per iniziare, init git ecc. -> 
+creazione seed ->
+UX ->
+Tech stack ->
+UI ->
+Components e variabili globali ->
+parte operativa (todos, tasks) ->
+test
+
+Per ora questa è la struttura che mi immagino, in versione conversazione con numeretti come su Cursor a volte o come detto come negli RPG.

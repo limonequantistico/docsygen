@@ -13,4 +13,4 @@ AT THE END, provide a short "Changelog" summarizing:
 - Any conflicts/decisions to be made
 
 CURRENT SEED DOCUMENT: `@.docs/seed-document.md`
-Get new notes from `@.docs/seed-notes.md` or from the rest of the prompt. Let the user know if you didn't find any. Empty the seed-notes.md file after the update.
+Get new notes from `@.docs/new-seed-notes.md` or from the rest of the prompt. Let the user know if you didn't find any. Empty the seed-notes.md file after the update.
