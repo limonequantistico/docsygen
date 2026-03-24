@@ -1,4 +1,4 @@
-I have some scattered notes about a project idea. Create a SHORT summary document in markdown format (max 2-3 pages) following this structure:
+I have some scattered notes about a project idea. Create a short summary document in markdown format (max 2-3 pages) following this structure:
 
 **# [Project Name]** _(if not provided, suggest 3)_
 

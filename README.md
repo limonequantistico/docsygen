@@ -1,3 +1,5 @@
+Per il momento questo progetto racchiude i prompt da usare nelle fasi iniziali di un progetto.
+
 # Fase di documentazione iniziale
 
 ## 1. Ideazione(documento per me) `.docs/idea.md`
@@ -33,6 +35,18 @@ Rappresenta il file di riferimento, dove vivono tutte le informazioni principali
 
 - Prompt Design System (design-system.md)
 - Update Prompt
+
+---
+
+**Componenti Lego**
+Tra gli steps terrei a mente anche il fargli costruire i componenti iniziali, dicendogli quali servono sulla base dell'applicazione che viene creata. Molto utile a:
+- centralizzare gli stili 
+- minimizzare le modifiche per cambiare design se necessario
+- semplificare la creazione di nuovi componenti sulla base di quelli esistenti
+- evitare di perdersi componenti qua e là che abbiano stile diverso, quando l'app si ingrandisce è facile che l'AI si perda il modo in cui deve fare una determinata cosa
+- vedere da subito se il design che pensa l'AI sia di tuo gradimento
+
+Questa è la cosa credo fondamentale che ho capito dalla prova su Cantina Pulaio, che mi ha forse fatto perdere tanto tempo e tokens, perché se hai i componenti pronti è un po' come fare un puzzle, un lego, e semplifichi anche la vita agli agenti.
 
 ---
 
@@ -91,7 +105,7 @@ Comunque ogni funzionalità diventerà una cartella con all'interno tutto quello
 
 - [ ] Provare a scrivere flusso della libreria
 - [ ] Valutare se ci sono flussi interessanti da integrare nella fase di documentazione interna: [Mermaid](https://mermaid.live/edit#pako:eNpVjTFvgzAUhP-K9aZWIhGywQYPlRrSZonUDpkKGaxgMGqwkTFKU-C_16Sq2t70TnffvRFOppTAoTqby0kJ69BhW2jk9Zhnyja9a0V_RKvVw7STDrVGy-uENnc7g3pluq7R9f13f7OUUDbul5pETjX6ff6Oshv_ouWEtvledM50x7_J4WIm9JQ3r8rP_0-UlZ56zivBK7E6CYsyYY8QQG2bErizgwyglbYVi4VxgQtwSrayAO7PUlZiOLsCCj17rBP6zZj2h7RmqBX46XPv3dCVwsltI2orfitSl9JmZtAOeELJbQP4CB_ACWZryiJCKE5JjKMkgCtwStZRmqaU4YTRNIrJHMDn7Wm4TlgcemEaMhbiGM9fgt117g)
-- [ ] Fare una descrizione più sequenziale di quello che deve fare la libreria, tipo "Questa libreria serve per implementare lo spech-driven development, in modo tale che l'AI possa capire meglio cosa fare e come farlo, e l'utente riesca ad orientarsi facilmente in cosa si sta facendo, come ecc"
+- [ ] Fare una descrizione più sequenziale di quello che deve fare la libreria, tipo "Questa libreria serve per implementare lo spec-driven development, in modo tale che l'AI possa capire meglio cosa fare e come farlo, e l'utente riesca ad orientarsi facilmente in cosa si sta facendo, come ecc"
 - [ ] Posso sia renderla una libreria da subito che usare workflows e rules per simulare la libreria. In ogni caso ci sarà un lavoro iterativo per capire come farla funzionare al meglio. Quindi forse per ora conviene impostare tutto su Antigravity.
 - [ ] Potrei forse gestire prima le fasi, per solo dopo fargli creare i task delle singole fasi, per poi affrontare i task individualmente. Potrei anche indicargli più o meno le dimensioni dei task, in modo da evitare che vada troppo avanti a caso.
 - [ ] Init project con i file iniziali su cui scrivere ed init della repo github
@@ -100,15 +114,6 @@ Comunque ogni funzionalità diventerà una cartella con all'interno tutto quello
 
 
 Può diventare una semplice app CLI stile conversazione a risposta multipla degli RPG, in cui ti guida all'inizializzazione di un progetto tramite la documentazione e ti aiuta a tenere la documentazione aggiornata.
-
-Tra gli steps terrei a mente anche il fargli costruire i componenti iniziali, dicendogli quali servono sulla base dell'applicazione che viene creata. Molto utile a:
-- centralizzare gli stili 
-- minimizzare le modifiche per cambiare design se necessario
-- semplificare la creazione di nuovi componenti sulla base di quelli esistenti
-- evitare di perdersi componenti qua e là che abbiano stile diverso, quando l'app si ingrandisce è facile che l'AI si perda il modo in cui deve fare una determinata cosa
-- vedere da subito se il design che pensa l'AI sia di tuo gradimento
-
-Questa è la cosa credo fondamentale che ho capito dalla prova su Cantina Pulaio, che mi ha forse fatto perdere tanto tempo e tokens, perché se hai i componenti pronti è un po' come fare un puzzle, un lego, e semplifichi anche la vita agli agenti.
 
 Quindi provando a ricapitolare, il flusso potrebbe essere:
 
@@ -124,3 +129,16 @@ parte operativa (todos, tasks) ->
 test
 
 Per ora questa è la struttura che mi immagino, in versione conversazione con numeretti come su Cursor a volte o come detto come negli RPG.
+
+- Deve essere semplice e richiedere pochi tokens il cambiare stile grafico.
+- Do an accessibility and contrast audit for w3c and wcag 2.1 standards.
+
+- Bellezza
+- Prestazioni
+  - Ottimizzazione
+- Sicurezza
+- Compliance (tasse, regole varie)
+
+- Anche la fase di ideazione è importante, quando non sei sicuro che direzione dare al progetto magari.
+
+- Sarebbe interessante se potesse leggere tutte le ultime modifiche fatte, sia dalle chat che dai commit
