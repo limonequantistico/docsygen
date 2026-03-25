@@ -4,8 +4,7 @@ I have new notes to integrate in my seed document.
 1. Read the current seed document
 2. Integrate the new thoughts into the appropriate sections
 3. Keep the existing structure (don't add new sections randomly)
-4. If something contradicts the current document, propose the change but
-   flag it with [CONFLICT] so I can decide
+4. If something contradicts the current document, propose the change but flag it with [CONFLICT] so I can decide
 
 AT THE END, provide a short "Changelog" summarizing:
 - What was added

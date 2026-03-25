@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/luigipiferi/CodingProjects/docsygen log --oneline -20)",
+      "Bash(cp /Users/luigipiferi/CodingProjects/docsygen/.docs/prompts/1-Docs/2-UX/new-prototype.md /Users/luigipiferi/CodingProjects/docsygen/.claude/commands/prototype.md)",
+      "Bash(cp /Users/luigipiferi/CodingProjects/docsygen/.docs/prompts/1-Docs/2-UX/verify-prototype.md /Users/luigipiferi/CodingProjects/docsygen/.claude/commands/prototype-verify.md)",
+      "Bash(cp /Users/luigipiferi/CodingProjects/docsygen/.docs/prompts/1-Docs/3-Stack/new-stack.md /Users/luigipiferi/CodingProjects/docsygen/.claude/commands/stack.md)",
+      "Bash(cp /Users/luigipiferi/CodingProjects/docsygen/.docs/prompts/1-Docs/3-Stack/update-stack.md /Users/luigipiferi/CodingProjects/docsygen/.claude/commands/stack-update.md)",
+      "Bash(cp /Users/luigipiferi/CodingProjects/docsygen/.docs/prompts/1-Docs/4-UI/new-design.md /Users/luigipiferi/CodingProjects/docsygen/.claude/commands/design.md)"
+    ],
+    "additionalDirectories": [
+      "/Users/luigipiferi/CodingProjects/docsygen"
+    ]
+  }
+}

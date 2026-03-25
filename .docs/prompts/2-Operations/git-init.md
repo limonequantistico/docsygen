@@ -1,1 +1,0 @@
-Non so se possa creare da qua così facilmente con un semplice prompt, posso provare. 
