@@ -23,4 +23,5 @@ Create a ready-to-paste prompt that includes:
 - If the user specifies which design tool they're using, adapt the prompt style to work best with that tool.
 
 **After generating the prompt, remind the user:**
-Once you have the wireframes, drop them in `.docs/assets/imgs/prototypes/` and you can use `/prototype-verify` to analyze them.
+- For UI inspiration, check tools like **Mobbin**, **Dribbble**, and **Behance** to find reference designs for similar interfaces.
+- Once you have the wireframes, drop them in `.docs/assets/imgs/prototypes/` and you can use `/prototype-verify` to analyze them.

@@ -11,7 +11,7 @@ If the file is empty or missing, check if the user included notes in this prompt
 
 **Structure:**
 
-**# [Project Name]** _(if not provided, suggest 3 options with brief reasoning)_
+**# [Project Name]** _(if not provided, use the name of the folder and suggest 3 other options with brief reasoning)_
 
 **## Vision**
 What this project solves, who it's for, and why it matters. 3-4 lines max.
@@ -35,15 +35,6 @@ What this project is NOT and will NOT do. This is as important as features for k
 
 **## Existing Alternatives**
 Top 2-3 competitors or current solutions. For each: what they do well and where they fall short. This directly informs why this project should exist.
-
-**## Project Context**
-Practical constraints that shape every decision downstream:
-- Team size (solo dev, small team, etc.)
-- Timeline pressure (side project, deadline-driven, etc.)
-- Stage (early idea, MVP, production)
-- Any hard technical constraints (must be mobile, must work offline, etc.)
-
-If these aren't in the notes, ask the user — don't assume.
 
 ---
 

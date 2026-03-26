@@ -8,10 +8,10 @@ You are cleaning up the user's backlog — organizing raw notes and archiving co
 **Your task:**
 
 ### 1. Check for completed items
-**Ask the user** how many recent commits to check (e.g., "How many commits should I look at to check for completed items? Or should I skip this and just clean up?"). Then:
-- Look at those commits and the current codebase to see if any backlog items have been completed
-- Move completed items to `.docs/archive/archive.md` with today's date
-- Ask the user to confirm before moving anything — don't assume
+- Commented items in the backlog mean the user has already marked them as done — treat these as completed.
+- Check the latest ~2 commits if necessary (unless the user specifies a different number) and the current codebase to see if any other backlog items have been completed.
+- Move completed items to `.docs/archive/archive.md` with today's date.
+- Don't ask permission to the user to move done items, it is what he just asked you to do. Only ask permission if in doubt of moving something.
 
 ### 2. Clean up the backlog
 - Remove duplicates or items that are clearly the same thing
@@ -29,10 +29,8 @@ You are cleaning up the user's backlog — organizing raw notes and archiving co
 **archive.md format** (chronological log):
 
 ```markdown
-# Archive
-
-- 2026-03-26 [x] ~~completed item~~
-- 2026-03-25 [x] ~~another completed item~~
+- YYYY-MM-DD HH:mm [x] ~~completed item~~
+- YYYY-MM-DD HH:mm [x] ~~another completed item~~
 ```
 
 **RULES:**
