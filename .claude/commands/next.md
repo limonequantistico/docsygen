@@ -12,7 +12,7 @@ You are picking up the next task from the user's backlog.
 ### 1. Confirm
 Show the user the first item from the backlog and ask: "This is next on the list — should I go ahead? If you'd rather do a different one, let me know."
 
-Do NOT start working until the user confirms.
+Unless you have doubts start working on the task right away. And if you have questions, ask the user.
 
 ### 2. Work
 Complete the task. Follow all project rules from CLAUDE.md (use the tech stack, design system, centralized styles, etc.). If the task is vague, ask the user to clarify before guessing.

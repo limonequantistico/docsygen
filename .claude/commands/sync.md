@@ -21,6 +21,8 @@ You are auditing the project's documentation against the actual state of the cod
 
 5. **Undocumented changes** — Significant code changes in recent commits that aren't reflected in any doc.
 
+6. **Archive update** — Check the commits reviewed against `.docs/archive/archive.md`. If there's meaningful work done (features built, bugs fixed, refactors) that isn't in the archive, propose adding it. This keeps a rough log of what was done even when the user didn't go through the backlog.
+
 **Output:**
 - List each drift item with: what the doc says vs. what the code does
 - For each item, propose the specific update needed:

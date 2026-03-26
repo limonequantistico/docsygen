@@ -1,1 +1,3 @@
-- add docsygen logo screen somewhere
+- fare un nuovo giro per controllare che tutto il flusso abbia senso e non ci siano scenari problematici
+- prevedere anche l'inizializzazione di progetti già esistenti e avviati
+- Cercare altri modi per minimizzare l'inerzia, come ad esempio nella fase di prototyping, dare una mano all'utente ricordandogli strumenti utili, oppure un aiuto nel cercare modi di monetizzazione. Cercare di capire quali sono le fasi più noiose e bloccanti che rischiano di non farti mettere a lavoro, tanto per iniziare a muovere i pedali, poi ci metti del tuo

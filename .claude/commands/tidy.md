@@ -8,7 +8,7 @@ You are cleaning up the user's backlog — organizing raw notes and archiving co
 **Your task:**
 
 ### 1. Check for completed items
-Ask the user how many recent commits to check (e.g., "How many commits should I look at to check for completed items? Or should I skip this and just clean up?"). Then:
+**Ask the user** how many recent commits to check (e.g., "How many commits should I look at to check for completed items? Or should I skip this and just clean up?"). Then:
 - Look at those commits and the current codebase to see if any backlog items have been completed
 - Move completed items to `.docs/archive/archive.md` with today's date
 - Ask the user to confirm before moving anything — don't assume
@@ -21,8 +21,6 @@ Ask the user how many recent commits to check (e.g., "How many commits should I 
 **backlog.md format** (keep it flat and simple):
 
 ```markdown
-# Backlog
-
 - raw idea or note
 - another thought
 - fix that thing on the settings page
@@ -33,8 +31,8 @@ Ask the user how many recent commits to check (e.g., "How many commits should I 
 ```markdown
 # Archive
 
-- [x] ~~completed item~~ — 2026-03-26
-- [x] ~~another completed item~~ — 2026-03-25
+- 2026-03-26 [x] ~~completed item~~
+- 2026-03-25 [x] ~~another completed item~~
 ```
 
 **RULES:**
