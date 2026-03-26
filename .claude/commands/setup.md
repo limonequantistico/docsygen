@@ -1,4 +1,4 @@
-You are wiring the project's design system and docs into the actual codebase. This is the bridge between documentation and code.
+You are wiring the project's design system and docs into the actual codebase. This is the bridge between design documentation and code.
 
 **Custom instructions from user:** $ARGUMENTS
 

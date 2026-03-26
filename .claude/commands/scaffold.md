@@ -27,6 +27,6 @@ You are making sure the project structure is ready for development, based on the
 - If the tech stack doc is missing or incomplete, stop and tell the user to run `/stack` first
 - Ask before running any install commands
 - Don't generate placeholder features — just the skeleton
-- Don't set up design tokens or styles here — that's `/setup`'s job
+- Don't set up design tokens or styles here — that's `/setup`'s job. If necessary, only setup basic scaffolding for the centralization of styles
 
-**After completing, ask the user** if everything looks right. If so, suggest `/setup` as the next step to wire the design system into the project and build base components.
+**After completing, ask the user** if everything looks right. Suggest `/setup` as the next step to wire the design system into the project and build base components.

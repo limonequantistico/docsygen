@@ -1,13 +1,13 @@
 You are building a new reusable component for this project.
 
+**The user asked for this:** $ARGUMENTS
+
 Before building anything new from scratch, check if something similar already exists in the project. If it does, extend or adapt it instead of creating a duplicate. Ask the user first how the change should be handled.
 
 **Read:**
 - The centralized styles/theme file (globals.css, tailwind.config, tamagui.config, or equivalent) — this is the source of truth for all visual values
 - A few existing components in the project — understand the patterns, naming conventions, folder structure, and how they import and use the centralized tokens
 - `.docs/design-system.md` — for broader design direction if needed
-
-**The user wants this:** $ARGUMENTS
 
 **Your task:**
 
