@@ -30,3 +30,5 @@ Review the project's UI/UX implementation against established best practices and
 - Keep it concise. Per-screen feedback in 2-3 lines max ideally.
 
 **After the analysis, ask the user** if they want to act on any of the findings, and suggest concrete next steps.
+
+**Logging:** When this command completes successfully, append a dated entry to `.docs/archive/archive.md`: `- YYYY-MM-DD ran /ux-review — [brief summary of findings]`. Create the file if it doesn't exist.

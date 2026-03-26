@@ -42,3 +42,5 @@ Create a `.docs/design-system.md` file — a tech-agnostic design reference that
 A complete `.docs/design-system.md` file.
 
 **After completing, ask the user** if they're happy with the result. Suggest `/scaffold` as the next step to validate or create the project structure, followed by `/setup` to translate these tokens into code.
+
+**Logging:** When this command completes successfully, append a dated entry to `.docs/archive/archive.md`: `- YYYY-MM-DD ran /design — [brief description of the design direction chosen]`. Create the file if it doesn't exist.

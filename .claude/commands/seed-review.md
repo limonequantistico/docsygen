@@ -30,3 +30,5 @@ Analyze the seed document critically. Go through each point:
   - **Rethink** → fundamentals are shaky, suggest going back to `/seed` with better input
 
 Always ask the user if they agree with the recommendation before suggesting the next command. Never chain commands automatically.
+
+**Logging:** When this command completes successfully, append a dated entry to `.docs/archive/archive.md`: `- YYYY-MM-DD ran /seed-review — [recommendation: Proceed/Revise/Rethink]`. Create the file if it doesn't exist.

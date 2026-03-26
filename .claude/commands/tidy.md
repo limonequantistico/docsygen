@@ -9,9 +9,10 @@ You are cleaning up the user's backlog — organizing raw notes and archiving co
 
 ### 1. Check for completed items
 - Commented items in the backlog mean the user has already marked them as done — treat these as completed.
-- Check the latest ~2 commits if necessary (unless the user specifies a different number) and the current codebase to see if any other backlog items have been completed.
+- Check the latest ~3 commits if necessary (unless the user specifies a different number) and the current codebase to see if any other backlog items have already been completed.
 - Move completed items to `.docs/archive/archive.md` with today's date.
 - Don't ask permission to the user to move done items, it is what he just asked you to do. Only ask permission if in doubt of moving something.
+- If you don't see anything clearly changed, tell the user, but first check latest commits and edits.
 
 ### 2. Clean up the backlog
 - Remove duplicates or items that are clearly the same thing
@@ -29,15 +30,15 @@ You are cleaning up the user's backlog — organizing raw notes and archiving co
 **archive.md format** (chronological log):
 
 ```markdown
-- YYYY-MM-DD HH:mm [x] ~~completed item~~
-- YYYY-MM-DD HH:mm [x] ~~another completed item~~
+- YYYY-MM-DD HH:mm [x] completed item
+- YYYY-MM-DD HH:mm [x] another completed item
 ```
 
 **RULES:**
 - Backlog stays clean — no archive, no categories, no tags, no priorities
 - Archive is a separate file that only `/tidy` writes to — it doesn't need to be read often
 - Don't add items from the seed, docs, or code — this is only for what the user writes
-- If backlog.md or archive.md don't exist yet, create them
+- If archive.md doesn't exist yet, create it
 - If there's nothing to clean up or archive, say so and move on
 
 **After completing, show the user** a quick summary: how many items archived, how many still pending.

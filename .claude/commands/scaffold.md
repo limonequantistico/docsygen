@@ -30,3 +30,5 @@ You are making sure the project structure is ready for development, based on the
 - Don't set up design tokens or styles here — that's `/setup`'s job. If necessary, only setup basic scaffolding for the centralization of styles
 
 **After completing, ask the user** if everything looks right. Suggest `/setup` as the next step to wire the design system into the project and build base components.
+
+**Logging:** When this command completes successfully, append a dated entry to `.docs/archive/archive.md`: `- YYYY-MM-DD ran /scaffold — [brief description of what was created or validated]`. Create the file if it doesn't exist.

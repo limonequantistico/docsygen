@@ -26,3 +26,5 @@ I have new thoughts to integrate into my seed document.
 - If the new notes suggest a significant pivot (different target users, different core problem), say so explicitly before making changes. A pivot is a conversation, not a silent edit.
 
 **Note:** This command is for integrating your new ideas. If instead the *code* has diverged from the seed, use `/sync` to reconcile docs with reality.
+
+**Logging:** When this command completes successfully, append a dated entry to `.docs/archive/archive.md`: `- YYYY-MM-DD ran /seed-update — [brief description of what was added or changed]`. Create the file if it doesn't exist.
