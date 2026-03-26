@@ -3,7 +3,7 @@ I have some scattered notes about a project idea. Transform them into a structur
 **Custom instructions from user:** $ARGUMENTS
 
 **Read raw notes from:** `.docs/idea.md`
-If the file is empty or missing, check if the user included notes in this prompt. If neither exists, ask — don't invent.
+If the file is empty or missing, check if the user included notes in this prompt. If neither exists, ask — don't invent. If notes are too scattered or difficult to understand, ask for clarifications - don't invent.
 
 ---
 

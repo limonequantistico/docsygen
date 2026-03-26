@@ -1,13 +1,13 @@
 You are helping me define the technical stack for a new project.
 
+**Custom instructions from user:** $ARGUMENTS
+
 **Read:**
 - `.docs/seed-document.md` — project goals, target users, features, constraints
 - `.docs/assets/imgs/prototypes/` — if wireframes exist, check for technical implications (real-time features, drag-and-drop, file uploads, maps, etc.)
 
 **User preferences:**
 If I have stated preferences (framework, language, libraries), respect them and build around them. Don't argue for alternatives unless there's a clear compatibility issue or some major gain. If I haven't stated preferences, recommend based on the seed.
-
-$ARGUMENTS
 
 **Your task:**
 Create a `.docs/tech-stack.md` file documenting all technical decisions for this project.

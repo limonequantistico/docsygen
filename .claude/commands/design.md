@@ -5,7 +5,7 @@ You are helping me define a design system for a new project. Focus on the projec
 **Read:**
 - `.docs/seed-document.md` — project vision, target users, key features
 - `.docs/assets/imgs/prototypes/` — if wireframes exist, extract UX patterns and structure (ignore current visual style, they're structural references only)
-- `.docs/assets/imgs/references/` — if reference screenshots from other apps exist, use them as visual inspiration
+- `.docs/assets/imgs/references/` — if reference screenshots from other apps exist, use them as visual inspiration (even here mainly focus on the UX)
 
 **Your task:**
 Create a `.docs/design-system.md` file — a tech-agnostic design reference that a UI/UX designer could read fluently. No code, no framework specifics. Pure design decisions.
@@ -31,7 +31,7 @@ Create a `.docs/design-system.md` file — a tech-agnostic design reference that
    - Based on WCAG 2.1 standards
 
 **Guidelines:**
-- This is the first iteration — it will likely evolve as the project takes shape. Focus on getting a solid starting point, not a final answer.
+- This is the first iteration — it will likely evolve as the project takes shape. Focus on getting a solid starting point.
 - Base the design on target users and brand direction from the seed, not on the prototype visuals
 - Be opinionated but justify choices based on the project needs
 - Be specific: hex codes, px values, font names — not vague descriptions
@@ -41,4 +41,4 @@ Create a `.docs/design-system.md` file — a tech-agnostic design reference that
 **Output:**
 A complete `.docs/design-system.md` file.
 
-**After completing, ask the user** if they're happy with the result. If so, suggest `/scaffold` as the next step to validate or create the project structure, followed by `/setup` to translate these tokens into code.
+**After completing, ask the user** if they're happy with the result. Suggest `/scaffold` as the next step to validate or create the project structure, followed by `/setup` to translate these tokens into code.
