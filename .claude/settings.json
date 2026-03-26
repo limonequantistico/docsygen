@@ -9,7 +9,8 @@
       "Bash(cp /Users/luigipiferi/CodingProjects/docsygen/.docs/prompts/1-Docs/4-UI/new-design.md /Users/luigipiferi/CodingProjects/docsygen/.claude/commands/design.md)"
     ],
     "additionalDirectories": [
-      "/Users/luigipiferi/CodingProjects/docsygen"
+      "/Users/luigipiferi/CodingProjects/docsygen",
+      "/Users/luigipiferi/CodingProjects/docsygen/.claude/commands"
     ]
   }
 }

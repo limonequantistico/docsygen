@@ -1,20 +1,26 @@
-Generate a detailed prompt that the user can paste into an external design tool (Google Stitch, Figma AI, or similar) to create wireframes/prototypes.
+Generate a detailed prompt that the user can paste into an external design tool (Google Stitch, Figma AI, V0, or similar) to create wireframes/prototypes.
+
+**Custom instructions from user:** $ARGUMENTS
 
 **Read:** `.docs/seed-document.md`
-Also check if `.docs/assets/imgs/prototypes/` contains any previous iterations to build upon.
+Also check if `.docs/prototype-notes.md` exists with feedback from a previous prototype round.
 
 **Your task:**
 Create a ready-to-paste prompt that includes:
 
-1. **App overview** — One paragraph summary of what the app does and who it's for
-2. **Screen list** — Every screen the app needs, with a one-line description of its purpose
-3. **Core user flows** — Step-by-step paths through the app (e.g., "new user signs up → sees onboarding → lands on dashboard")
-4. **Per-screen details** — For each screen: what elements it contains, what content to show (use realistic placeholder data, not lorem ipsum), what actions are available
-5. **UX constraints** — Any specific requirements from the seed (accessibility needs, mobile-first, offline support, etc.)
+1. **App type and platform** — Web app, mobile app, desktop, or responsive. Extract this from the seed's Project Context or ask if unclear.
+2. **App overview** — One paragraph: what it does, who it's for, and the core problem it solves.
+3. **Screen list** — Every screen the MVP needs, with a one-line description of its purpose. Don't include screens for features marked as non-goals.
+4. **Core user flows** — Step-by-step paths through the app (e.g., "new user signs up → onboarding → dashboard"). Number them by priority — the most important flow first.
+5. **Per-screen details** — For each screen: key elements, realistic placeholder content (real-sounding names and plausible data, not lorem ipsum), and available actions.
+6. **UX constraints** — Requirements from the seed that affect layout: accessibility needs, mobile-first, offline support, specific interaction patterns (drag-and-drop, real-time updates, etc.).
 
 **RULES:**
-- Focus purely on UX and structure, not visual style — that comes later in /design
-- Use realistic content that reflects the actual use case (real-sounding names, plausible data)
-- Keep it practical — only include screens the MVP actually needs
-- Format it as a single block of text that can be pasted directly into a design tool
-- If the seed is too vague to define screens confidently, say what's missing instead of guessing
+- Focus purely on UX and structure, not visual style — that comes later in `/design`
+- Keep it practical — only screens the MVP needs. If the seed lists 7 features, the prototype doesn't need all 7 — focus on the core flow.
+- Use clear, well-structured formatting. The user will paste this into a design tool and may need to adapt it slightly for the specific tool.
+- If the seed is too vague to define screens confidently (e.g., core features are [TBD], no clear primary user), say what's missing and suggest running `/seed-update` or `/seed-review` first.
+- If the user specifies which design tool they're using, adapt the prompt style to work best with that tool.
+
+**After generating the prompt, remind the user:**
+Once you have the wireframes, drop them in `.docs/assets/imgs/prototypes/` and you can use `/prototype-verify` to analyze them.

@@ -1,22 +1,32 @@
-You are setting up the initial project structure for a stack where the user doesn't have a pre-made template.
+You are making sure the project structure is ready for development, based on the tech stack.
+
+**Custom instructions from user:** $ARGUMENTS
 
 **Read:**
 - `.docs/seed-document.md` — what the project does
 - `.docs/tech-stack.md` — what technologies to use
-- `.docs/design-system.md` — design tokens and patterns (if exists)
+- Scan the current project structure to see what already exists
 
-**Your task:**
-Generate the initial project scaffolding:
+**Your task depends on what's already there:**
 
-1. **Project init** — Run the appropriate init commands for the declared stack (e.g., `cargo init`, `dotnet new`, `npm init`, framework CLIs)
-2. **Folder structure** — Create a sensible directory layout matching the stack conventions
-3. **Config files** — Set up linting, formatting, git hooks, CI basics as specified in the tech stack
-4. **Design tokens** — If a design system doc exists, set up the global styles file (CSS variables, theme config, etc.)
-5. **Minimal boilerplate** — One working "hello world" screen/endpoint that proves the stack works end to end
+### If a project structure already exists (template or manual setup):
+1. **Validate** — Check that the folder structure matches the tech stack conventions
+2. **Dependencies** — Verify all libraries and packages from the tech stack doc are installed and at the right versions. Flag anything missing.
+3. **Config files** — Check that linting, formatting, and dev tooling specified in the tech stack are properly configured
+4. **Report** — List what's correct, what's missing, and what needs fixing. Ask before making changes.
+
+### If no project structure exists:
+1. **Project init** — Run the appropriate init commands for the declared stack (e.g., `cargo init`, `dotnet new`, `npx create-next-app`, framework CLIs). Use Context7's MCP to look up current init commands if unsure.
+2. **Folder structure** — Create a sensible directory layout matching the stack's conventions
+3. **Config files** — Linting, formatting, and any dev tooling specified in the tech stack
+4. **Minimal boilerplate** — One working "hello world" screen/endpoint that proves the stack works end to end
 
 **RULES:**
 - Follow the tech stack doc exactly — don't add tools or libraries not listed there
-- Keep it minimal — just enough to start building features, no over-engineering
+- Keep it minimal — just enough to start building, no over-engineering
 - If the tech stack doc is missing or incomplete, stop and tell the user to run `/stack` first
 - Ask before running any install commands
 - Don't generate placeholder features — just the skeleton
+- Don't set up design tokens or styles here — that's `/setup`'s job
+
+**After completing, ask the user** if everything looks right. If so, suggest `/setup` as the next step to wire the design system into the project and build base components.

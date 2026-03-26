@@ -148,9 +148,40 @@ Includo l'estratto della conversazione che ha portato a queste decisioni, perch�
 
 ### Flusso finale concordato
 
+```mermaid
+graph TD
+    subgraph "Phase 1 — Think"
+        A[".docs/idea.md"] --> B["/seed"]
+        B --> C["/seed-review"]
+        C -->|revise| D["/seed-update"]
+        D --> C
+    end
+
+    subgraph "Phase 2 — Shape"
+        C -->|proceed| E["/prototype"]
+        E -->|paste in design tool| F["Create wireframes externally"]
+        F --> G["/prototype-verify"]
+        G -->|revision needed| E
+        G -->|solid| H["/stack"]
+        H --> I["/design"]
+    end
+
+    subgraph "Phase 3 — Build"
+        I --> J["/scaffold"]
+        J --> K["/setup"]
+        K --> L{Start working}
+        L --> M["/component"]
+        L --> N["/next"]
+        L --> O["/resume"]
+    end
+
+    subgraph "Phase 4 — Maintain"
+        L --> P["/tidy"]
+        L --> Q["/sync"]
+    end
+
+    R[".docs/backlog.md"] -.->|"anytime"| N
+    R -.->|"anytime"| P
 ```
-Phase 1 — Think:    /seed → /seed-review
-Phase 2 — Shape:    /prototype → /prototype-verify → /stack → /design
-Phase 3 — Build:    /scaffold (optional) → /resume
-Phase 4 — Maintain: /sync
-```
+
+Ricorda all'utente di generare i componenti in anticipo quando possibile, così da gestire la maggior parte della composizione come se avesse dei lego a disposizione. Utile sia per centralizzare gli stili che per semplificare la composizione e l'eventuale modifica.

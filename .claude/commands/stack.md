@@ -1,53 +1,40 @@
 You are helping me define the technical stack for a new project.
 
-**Context:**
-Read `.docs/seed-document.md` to understand:
-- Project goals and scope
-- Target users and their context (mobile/desktop, tech savviness, etc.)
-- Key features and functionality requirements
-- Scale expectations (MVP vs production-ready)
-- Timeline and team size
+**Read:**
+- `.docs/seed-document.md` — project goals, target users, features, constraints
+- `.docs/assets/imgs/prototypes/` — if wireframes exist, check for technical implications (real-time features, drag-and-drop, file uploads, maps, etc.)
+
+**User preferences:**
+If I have stated preferences (framework, language, libraries), respect them and build around them. Don't argue for alternatives unless there's a clear compatibility issue or some major gain. If I haven't stated preferences, recommend based on the seed.
+
+$ARGUMENTS
 
 **Your task:**
-Create a `.docs/tech-stack.md` file that documents all technical decisions for this project.
+Create a `.docs/tech-stack.md` file documenting all technical decisions for this project.
 
 **Guidelines:**
 
-1. **Recommend appropriate technologies** based on:
-
-- Project requirements from seed doc
-- Modern best practices (2025-2026)
-- Developer experience and productivity
-- My stated preferences (if any) listed below
+1. **Start from what's decided** — If I've specified a framework or language, don't justify it. Focus on the surrounding choices: what complements it best.
 
 2. **Be specific:**
+   - Exact packages/libraries, not categories (e.g., "shadcn/ui + Radix UI primitives" not "component library")
+   - Version numbers where relevant
+   - Use up-to-date information: look up latest stable versions and current best practices. Remember to use Context7's MCP if necessary.
 
-- Include version numbers where relevant
-- Specify exact packages/libraries, not just categories (Example: "shadcn/ui + Radix UI primitives" not just "component library")
-
-3. **Justify key choices:**
-
-- Why this technology over alternatives?
-- Why this styling approach?
-- How does it serve the project goals?
+3. **Justify only what's not obvious:**
+   - Why this database over that one? Why this auth provider?
+   - Skip justifications for standard choices (e.g., don't explain why TypeScript)
 
 4. **Consider the full stack:**
-
-- Don't assume frontend-only unless seed doc specifies
-- Think about auth, database, deployment if needed
-- Consider development workflow (local dev, testing, CI/CD)
+   - Don't assume frontend-only unless the seed says so
+   - Auth, database, deployment, hosting — if the project needs them, include them
+   - Development workflow: linting, formatting, testing framework
 
 5. **Keep it practical:**
-
-- Focus on what we need now, not every possible tool
-- Prefer established, well-documented technologies
-- Highlight any significant risks or vendor lock-in with these choices
-- If the project is expected to grow or is not small, consider potential costs and pricing plans with scalability in mind
-
-6. **Include documentation links:**
-
-- Official docs for each major technology
-- This will be a reference during development
+   - What we need now, not what we might need later
+   - Prefer established, well-documented technologies
+   - Flag vendor lock-in risks and significant cost implications for scaling
+   - If the project is small/MVP, don't over-engineer
 
 **Output:**
-A complete `.docs/tech-stack.md` file following the structure provided. Explain your choices, don't just list options.
+A complete `.docs/tech-stack.md` file. Organize by layer (frontend, backend, infrastructure, dev tools). Explain choices, don't just list them.

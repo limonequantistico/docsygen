@@ -1,5 +1,7 @@
 I have some scattered notes about a project idea. Transform them into a structured seed document that serves as the single reference point for this project — both for me and for any AI that works on it.
 
+**Custom instructions from user:** $ARGUMENTS
+
 **Read raw notes from:** `.docs/idea.md`
 If the file is empty or missing, check if the user included notes in this prompt. If neither exists, ask — don't invent.
 
