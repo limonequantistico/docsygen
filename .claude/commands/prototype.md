@@ -26,4 +26,4 @@ Create a ready-to-paste prompt that includes:
 - For UI inspiration, check tools like **Mobbin**, **Dribbble**, and **Behance** to find reference designs for similar interfaces to insert in `.docs/assets/imgs/references`.
 - Once you have the wireframes, drop them in `.docs/assets/imgs/prototypes/` and you can use `/prototype-verify` to analyze them.
 
-**Logging:** When this command completes successfully, append a dated entry to `.docs/archive/archive.md`: `- YYYY-MM-DD ran /prototype — [brief description of what was generated]`. Create the file if it doesn't exist.
+**Logging:** When this command completes successfully, append a dated entry to `.docs/archive.md`: `- YYYY-MM-DD ran /prototype — [brief description of what was generated]`. Create the file if it doesn't exist.

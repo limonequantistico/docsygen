@@ -52,4 +52,4 @@ Then, for each approved component:
 
 **After completing, ask the user** to check the showcase and verify the components. If everything looks good, suggest `/resume` to get a fresh assessment of where to go next.
 
-**Logging:** When this command completes successfully, append a dated entry to `.docs/archive/archive.md`: `- YYYY-MM-DD ran /setup — [brief description of what was wired up]`. Create the file if it doesn't exist.
+**Logging:** When this command completes successfully, append a dated entry to `.docs/archive.md`: `- YYYY-MM-DD ran /setup — [brief description of what was wired up]`. Create the file if it doesn't exist.

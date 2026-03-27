@@ -15,7 +15,7 @@ Unless you have doubts start working on the task right away. And if you have que
 Complete the task. Follow all project rules from CLAUDE.md (use the tech stack, design system, centralized styles, etc.). If the task is vague, ask the user to clarify before guessing.
 
 ### 3. Verify
-When done, show the user what was done and ask if they're satisfied. If yes, move the item from the backlog to `.docs/archive/archive.md` with today's date and time.
+When done, show the user what was done and ask if they're satisfied. If yes, move the item from the backlog to `.docs/archive.md` with today's date and time.
 
 **RULES:**
 - One item at a time. Never pick up multiple tasks.

@@ -10,7 +10,7 @@ You are cleaning up the user's backlog — organizing raw notes and archiving co
 ### 1. Check for completed items
 - Commented items in the backlog mean the user has already marked them as done — treat these as completed.
 - Check the latest ~3 commits if necessary (unless the user specifies a different number) and the current codebase to see if any other backlog items have already been completed.
-- Move completed items to `.docs/archive/archive.md` with today's date.
+- Move completed items to `.docs/archive.md` with today's date.
 - Don't ask permission to the user to move done items, it is what he just asked you to do. Only ask permission if in doubt of moving something.
 - If you don't see anything clearly changed, tell the user, but first check latest commits and edits.
 
