@@ -48,4 +48,4 @@ Top 2-3 competitors or current solutions. For each: what they do well and where 
 - This document will be read by AI agents as context before every task. Write it so that an LLM reading it understands the project's direction, scope, and constraints without needing anything else.
 - If the raw notes are too vague to produce a useful seed (less than ~3 concrete ideas), don't force it. Instead, list what you understood and ask targeted questions to fill the gaps.
 
-**Logging:** When this command completes successfully, append a dated entry to `.docs/archive.md`: `- YYYY-MM-DD ran /seed — [brief description of what was produced or decided]`. Create the file if it doesn't exist.
+**Logging:** When this command completes successfully, append a dated entry to `.docs/changelog.md`: `- YYYY-MM-DD ran /seed — [brief description of what was produced or decided]`. Create the file if it doesn't exist.

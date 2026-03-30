@@ -29,14 +29,14 @@ Start coding. Use your own templates when you have them, or scaffold from scratc
 ### Phase 4 — Maintain
 Keep docs honest without tracking every small change.
 
-13. `/tidy` — Clean up the backlog, archive completed items
+13. `/tidy` — Clean up the backlog, add completed items to changelog
 14. `/sync` — Reconcile docs with reality on demand. Also handles updates to design system and tech stack docs.
 15. `/ux-review` — UI/UX quality check based on best practices and UX principles
 
 ---
 
 **Tips:**
-- Dump ideas and tasks in `.docs/backlog.md` anytime. Pin it in the IDE to keep it visible. Use `/next` to work through them in order, `/tidy` to clean up and archive.
+- Dump ideas and tasks in `.docs/backlog.md` anytime. Pin it in the IDE to keep it visible. Use `/next` to work through them in order, `/tidy` to clean up and add to changelog.
 - Before building something directly into a feature, consider if it should be a reusable component first (`/component`).
 - For small updates to the design system or tech stack, just tell the agent directly — no command needed. Use `/sync` to catch drift after bigger changes.
 
