@@ -2,7 +2,7 @@ Generate a detailed prompt that the user can paste into an external design tool 
 
 **Custom instructions from user:** $ARGUMENTS
 
-**Read:** `.docs/seed-document.md`
+**Read:** `.docs/seed.md`
 Also check if `.docs/prototype-notes.md` exists with feedback from a previous prototype round.
 
 **Your task:**

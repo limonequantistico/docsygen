@@ -3,7 +3,7 @@ You are making sure the project structure is ready for development, based on the
 **Custom instructions from user:** $ARGUMENTS
 
 **Read:**
-- `.docs/seed-document.md` — what the project does
+- `.docs/seed.md` — what the project does
 - `.docs/tech-stack.md` — what technologies to use
 - Scan the current project structure to see what already exists
 

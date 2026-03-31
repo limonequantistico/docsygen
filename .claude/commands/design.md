@@ -3,7 +3,7 @@ You are helping me define a design system for a new project. Focus on the projec
 **Custom instructions from user:** $ARGUMENTS
 
 **Read:**
-- `.docs/seed-document.md` — project vision, target users, key features
+- `.docs/seed.md` — project vision, target users, key features
 - `.docs/assets/imgs/prototypes/` — if wireframes exist, extract UX patterns and structure (ignore current visual style, they're structural references only)
 - `.docs/assets/imgs/references/` — if reference screenshots from other apps exist, use them as visual inspiration (even here mainly focus on the UX)
 

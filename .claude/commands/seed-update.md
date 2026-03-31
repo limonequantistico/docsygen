@@ -3,7 +3,7 @@ I have new thoughts to integrate into my seed document.
 **Custom instructions from user:** $ARGUMENTS
 
 **Read:**
-- Current seed: `.docs/seed-document.md`
+- Current seed: `.docs/seed.md`
 - New notes: check `.docs/idea.md` for new additions, or the rest of this prompt. If neither has content, ask — don't guess.
 
 **Your task:**

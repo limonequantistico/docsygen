@@ -2,7 +2,7 @@ You are reviewing a seed document to stress-test it before the user invests time
 
 **Custom instructions from user:** $ARGUMENTS
 
-**Read:** `.docs/seed-document.md`
+**Read:** `.docs/seed.md`
 
 **Your task:**
 Analyze the seed document critically. Go through each point:

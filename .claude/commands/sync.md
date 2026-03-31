@@ -3,7 +3,7 @@ You are auditing the project's documentation against the actual state of the cod
 **Custom instructions from user:** $ARGUMENTS
 
 **Read:**
-- `.docs/seed-document.md` — the project's stated direction
+- `.docs/seed.md` — the project's stated direction
 - `.docs/tech-stack.md` — the declared tech choices (if exists)
 - `.docs/design-system.md` — the declared design tokens (if exists)
 - `.docs/changelog.md` — check the last entry date to understand how long it's been since the last sync or meaningful command run. Use this to calibrate how far back in git history to look: a few days means a handful of commits, a few weeks means a broader scan. If the changelog is empty or missing, fall back to asking the user.

@@ -7,7 +7,7 @@ If the file is empty or missing, check if the user included notes in this prompt
 
 ---
 
-**Output file:** `.docs/seed-document.md`
+**Output file:** `.docs/seed.md`
 
 **Structure:**
 

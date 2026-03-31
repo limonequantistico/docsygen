@@ -3,7 +3,7 @@ You are helping me define the technical stack for a new project.
 **Custom instructions from user:** $ARGUMENTS
 
 **Read:**
-- `.docs/seed-document.md` — project goals, target users, features, constraints
+- `.docs/seed.md` — project goals, target users, features, constraints
 - `.docs/assets/imgs/prototypes/` — if wireframes exist, check for technical implications (real-time features, drag-and-drop, file uploads, maps, etc.)
 
 **User preferences:**

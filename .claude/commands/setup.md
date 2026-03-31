@@ -5,7 +5,7 @@ You are wiring the project's design system and docs into the actual codebase. Th
 **Read:**
 - `.docs/design-system.md` — the visual decisions (tokens, colors, typography, spacing)
 - `.docs/tech-stack.md` — how styles should be implemented (Tailwind, CSS variables, Tamagui themes, etc.)
-- `.docs/seed-document.md` — project features and scope
+- `.docs/seed.md` — project features and scope
 - `.docs/assets/imgs/prototypes/` — wireframes, to understand which UI elements are needed
 - Scan the current project structure to understand where files should go
 
