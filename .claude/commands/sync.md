@@ -37,4 +37,4 @@ You are auditing the project's documentation against the actual state of the cod
 - Only flag meaningful drift, not nitpicks
 - If everything is in sync, say so and move on — don't invent problems
 
-**Logging:** When this command completes successfully, append a dated entry to `.docs/changelog.md`: `- YYYY-MM-DD ran /sync — [brief description of drift found or "all in sync"]`. Create the file if it doesn't exist.
+**Logging:** When this command completes successfully, append a dated entry to `.docs/changelog.md`: `- YYYY-MM-DD HH:mm ran /sync — [brief description of drift found or "all in sync"]`. Create the file if it doesn't exist.

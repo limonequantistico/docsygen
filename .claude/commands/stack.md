@@ -39,4 +39,4 @@ Create a `.docs/tech-stack.md` file documenting all technical decisions for this
 **Output:**
 A complete `.docs/tech-stack.md` file. Organize by layer (frontend, backend, infrastructure, dev tools). Explain choices, don't just list them.
 
-**Logging:** When this command completes successfully, append a dated entry to `.docs/changelog.md`: `- YYYY-MM-DD ran /stack — [brief description of what was decided]`. Create the file if it doesn't exist.
+**Logging:** When this command completes successfully, append a dated entry to `.docs/changelog.md`: `- YYYY-MM-DD HH:mm ran /stack — [brief description of what was decided]`. Create the file if it doesn't exist.
