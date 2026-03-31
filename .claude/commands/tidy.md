@@ -27,18 +27,18 @@ You are cleaning up the user's backlog — organizing raw notes and archiving co
 - fix that thing on the settings page
 ```
 
-**changelog.md format** (chronological log):
+**changelog.md format** (flat chronological log — versions are handled by `/version`):
 
 ```markdown
 - YYYY-MM-DD HH:mm [x] completed item
-- YYYY-MM-DD HH:mm [x] another completed item
+- YYYY-MM-DD HH:mm /command — what it did
 ```
 
 **RULES:**
 - Backlog stays clean — no changelog, no categories, no tags, no priorities
-- Changelog is a separate file that only `/tidy` writes to — it doesn't need to be read often
 - Don't add items from the seed, docs, or code — this is only for what the user writes
 - If changelog.md doesn't exist yet, create it
 - If there's nothing to clean up or add to changelog, say so and move on
+- Don't add version headers or separators — that's `/version`'s job
 
-**After completing, show the user** a quick summary: how many items added to changelog, how many still pending.
+**After completing, show the user** a quick summary: how many items added to changelog, how many still pending. If there's a good amount of unversioned work in the changelog, suggest running `/version`.
