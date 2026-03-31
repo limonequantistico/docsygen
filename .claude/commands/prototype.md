@@ -22,6 +22,8 @@ Create a ready-to-paste prompt that includes:
 - If the seed is too vague to define screens confidently (e.g., core features are [TBD], no clear primary user), say what's missing and suggest running `/seed-update` or `/seed-review` first.
 - If the user specifies which design tool they're using, adapt the prompt style to work best with that tool.
 
+**Output file:** Write the complete ready-to-paste prompt to `.docs/prototype-prompt.md` (overwrite the file each run).
+
 **After generating the prompt, remind the user:**
 - For UI inspiration, check tools like **Mobbin**, **Dribbble**, and **Behance** to find reference designs for similar interfaces to insert in `.docs/assets/imgs/references`.
 - Once you have the wireframes, drop them in `.docs/assets/imgs/prototypes/` and you can use `/prototype-verify` to analyze them.
