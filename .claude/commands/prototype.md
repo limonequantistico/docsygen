@@ -25,7 +25,7 @@ Create a ready-to-paste prompt that includes:
 **Output file:** Write the complete ready-to-paste prompt to `.docs/prototype-prompt.md` (overwrite the file each run).
 
 **After generating the prompt, remind the user:**
-- For UI inspiration, check tools like **Mobbin**, **Dribbble**, and **Behance** to find reference designs for similar interfaces to insert in `.docs/assets/imgs/references`.
+- For UI inspiration, browse [Mobbin](https://mobbin.com/discover/apps/ios/latest), [Dribbble](https://dribbble.com/), or [21st.dev](https://21st.dev/community/components) for reference designs for similar interfaces to insert in `.docs/assets/imgs/references`. Remember that UI is great at reproducing UI elements (at least single components), not that great at creating them from scratch.
 - Once you have the wireframes, drop them in `.docs/assets/imgs/prototypes/` and you can use `/prototype-verify` to analyze them.
 
 **Logging:** When this command completes successfully, append a dated entry to `.docs/changelog.md`: `- YYYY-MM-DD HH:mm ran /prototype — [brief description of what was generated]`. Create the file if it doesn't exist.
