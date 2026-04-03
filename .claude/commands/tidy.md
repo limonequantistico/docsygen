@@ -16,7 +16,7 @@ You are cleaning up the user's backlog — organizing raw notes and archiving co
 
 ### 2. Clean up the backlog
 - Remove duplicates or items that are clearly the same thing
-- Lightly clean up wording if needed, but keep the user's intent — don't over-edit
+- **Never edit, reword, or reformat what the user wrote** — preserve their exact text
 - Don't reorder, prioritize, or categorize items — the user decides what matters
 
 **backlog.md format** (keep it flat and simple):
