@@ -21,6 +21,7 @@ A single sentence someone could use to explain this project to a friend. Think "
 
 **## Target Users**
 2-3 user profiles. For each, include only what's useful for making decisions:
+
 - Who they are (role, context, age range, digital comfort level)
 - Their main frustration with current solutions
 - What they expect from this project

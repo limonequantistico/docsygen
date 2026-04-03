@@ -3,6 +3,7 @@ You are auditing the project's documentation against the actual state of the cod
 **Custom instructions from user:** $ARGUMENTS
 
 **Read:**
+
 - `.docs/seed.md` — the project's stated direction
 - `.docs/tech-stack.md` — the declared tech choices (if exists)
 - `.docs/design-system.md` — the declared design tokens (if exists)
@@ -25,6 +26,7 @@ You are auditing the project's documentation against the actual state of the cod
 6. **Changelog update** — Check commits against `.docs/changelog.md`. If there's meaningful work not in the changelog, propose adding it. Also mention if it looks like a good time to run `/version` to cut a release.
 
 **Output:**
+
 - List each drift item with: what the doc says vs. what the code does
 - For each item, propose the specific update needed:
   - **Doc updates** when the code is right and the doc is outdated (most common)
@@ -32,6 +34,7 @@ You are auditing the project's documentation against the actual state of the cod
 - Ask the user which updates to apply
 
 **RULES:**
+
 - For direction, stack, and undocumented changes: the code is always right. Docs adapt to code.
 - For design and component drift: suggest code fixes too, since scattered styles and duplicate components are bugs, not intentional divergence.
 - Only flag meaningful drift, not nitpicks

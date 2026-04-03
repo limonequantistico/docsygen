@@ -3,21 +3,26 @@ You are picking up the next task from the user's backlog.
 **Custom instructions from user:** $ARGUMENTS
 
 **Read:**
+
 - `.docs/backlog.md` — take the first item from the top of the list
 - The relevant project files needed to complete the task — always check the actual codebase, not just the docs
 
 **Your task:**
 
 ### 1. Confirm
+
 Unless you have doubts start working on the task right away. And if you have questions, ask the user.
 
 ### 2. Work
+
 Complete the task. Follow all project rules from CLAUDE.md (use the tech stack, design system, centralized styles, etc.). If the task is vague, ask the user to clarify before guessing.
 
 ### 3. Verify
+
 When done, show the user what was done and ask if they're satisfied. If yes, move the item from the backlog to `.docs/changelog.md` as `- YYYY-MM-DD HH:mm [x] item description`.
 
 **RULES:**
+
 - One item at a time. Never pick up multiple tasks.
 - If the backlog is empty, tell the user and suggest `/resume` for a fresh assessment.
 - If the task requires a specific docsygen command (e.g., it says "update design system"), suggest that command instead of doing it yourself.

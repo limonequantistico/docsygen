@@ -22,6 +22,7 @@ Analyze the seed document critically. Go through each point:
 7. **[TBD] audit** — List any [TBD] items and flag which ones are blockers for the next phases (prototype, stack, design) vs. which can wait.
 
 **RULES:**
+
 - Be direct and honest, not encouraging. The point is to find weaknesses before they become expensive.
 - Each point should be 2-3 lines max. This is a quick stress-test, not a report.
 - End with a clear recommendation:

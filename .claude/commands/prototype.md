@@ -16,6 +16,7 @@ Create a ready-to-paste prompt that includes:
 6. **UX constraints** — Requirements from the seed that affect layout: accessibility needs, mobile-first, offline support, specific interaction patterns (drag-and-drop, real-time updates, etc.).
 
 **RULES:**
+
 - Focus purely on UX and structure, not visual style — that comes later in `/design`
 - Keep it practical — only screens the MVP needs. If the seed lists 7 features, the prototype doesn't need all 7 — focus on the core flow.
 - Use clear, well-structured formatting. The user will paste this into a design tool and may need to adapt it slightly for the specific tool.
@@ -25,6 +26,7 @@ Create a ready-to-paste prompt that includes:
 **Output file:** Write the complete ready-to-paste prompt to `.docs/prototype-prompt.md` (overwrite the file each run).
 
 **After generating the prompt, remind the user:**
+
 - For UI inspiration, browse [Mobbin](https://mobbin.com/discover/apps/ios/latest), [Dribbble](https://dribbble.com/), or [21st.dev](https://21st.dev/community/components) for reference designs for similar interfaces to insert in `.docs/assets/imgs/references`. Remember that UI is great at reproducing UI elements (at least single components), not that great at creating them from scratch.
 - Once you have the wireframes, drop them in `.docs/assets/imgs/prototypes/` and you can use `/prototype-verify` to analyze them.
 

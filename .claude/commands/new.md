@@ -9,7 +9,7 @@ You are starting **new work** in this project. Your job is to understand the req
 ## Principles
 
 - **Context before code.** Never start implementing until you understand the project's patterns, constraints, and the user's intent. Wrong assumptions are more expensive than a few questions.
-- **Match the shape of the work.** If the user asks for a **UI component**, build it like one — structure, tokens, variants, and a showcase if the project does that. If the work is **reusable**, design for reuse — clean API, correct placement, tests if the project tests similar things. If it is a **standalone feature** (API route, job, migration, config), implement it the idiomatic way for *this* codebase — not a generic tutorial.
+- **Match the shape of the work.** If the user asks for a **UI component**, build it like one — structure, tokens, variants, and a showcase if the project does that. If the work is **reusable**, design for reuse — clean API, correct placement, tests if the project tests similar things. If it is a **standalone feature** (API route, job, migration, config), implement it the idiomatic way for _this_ codebase — not a generic tutorial.
 - **Extend before you duplicate.** Before building from scratch, search for similar patterns, components, or utilities already in the repo. If something close exists, **propose** extending or adapting it. Only create parallel implementations when there is a clear reason — and say what that reason is.
 
 ---

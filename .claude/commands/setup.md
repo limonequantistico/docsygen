@@ -3,6 +3,7 @@ You are wiring the project's design system and docs into the actual codebase. Th
 **Custom instructions from user:** $ARGUMENTS
 
 **Read:**
+
 - `.docs/design-system.md` — the visual decisions (tokens, colors, typography, spacing)
 - `.docs/tech-stack.md` — how styles should be implemented (Tailwind, CSS variables, Tamagui themes, etc.)
 - `.docs/seed.md` — project features and scope
@@ -14,7 +15,9 @@ You are wiring the project's design system and docs into the actual codebase. Th
 ---
 
 ### Phase 1: Centralize styles
+
 Create the global styles/theme file in the format the stack requires:
+
 - **Tailwind** → customize `tailwind.config` with the design system tokens
 - **Tamagui** → create/update `tamagui.config.ts` with themes and tokens
 - **Vanilla CSS** → create `globals.css` with CSS custom properties
@@ -27,13 +30,16 @@ All design tokens from the design system should live in this one place. No hardc
 ---
 
 ### Phase 2: Propose base components
+
 Based on the wireframes and seed features, propose a list of reusable components that should be built before feature work begins:
+
 - Look at the wireframes: what elements appear on multiple screens? (buttons, cards, inputs, navigation, layout shells, etc.)
 - If using a component library (shadcn, MUI, etc.), only list components that need customization or don't exist in the library
 
 **Present the list to the user** with: component name, purpose, and key variants (e.g., Button: primary/secondary/ghost, sm/md/lg). **Do not start building until the user approves the list.**
 
 Then, for each approved component:
+
 - Create the actual component file in the right location for the project structure
 - Each component must pull its values from the centralized styles file — never hardcode colors, spacing, or typography
 - Build it properly: fully styled, all approved variants working, polished. These are the building blocks for the whole app — they should look and feel right.
@@ -44,6 +50,7 @@ Then, for each approved component:
 ---
 
 **RULES:**
+
 - Read the actual project structure before creating anything — don't assume folder conventions
 - If the design system or tech stack doc is missing, stop and tell the user which command to run first
 - Don't over-build. A Button with 3 variants is enough — don't add 15 props for hypothetical use cases

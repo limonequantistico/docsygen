@@ -3,6 +3,7 @@ You are running a UI/UX quality check on the project's current state.
 **Custom instructions from user:** $ARGUMENTS
 
 **Read:**
+
 - Design system: `.docs/design-system.md`
 - The actual codebase — focus on pages, layouts, navigation, and component usage
 
@@ -24,6 +25,7 @@ Review the project's UI/UX implementation against established best practices and
 7. **UI patterns** — Are there standard patterns that would work better for what's built? (e.g., a list that should be a card grid, a multi-step form that should be a wizard, tabs vs. sidebar)
 
 **RULES:**
+
 - Focus on what's built right now, not what's planned
 - Be specific: "the settings page has 12 ungrouped fields — split into sections by category" is useful. "Too cluttered" is not.
 - Prioritize issues by impact on usability, not aesthetics
