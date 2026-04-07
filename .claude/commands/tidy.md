@@ -44,5 +44,6 @@ You are cleaning up the user's backlog — organizing raw notes and archiving co
 - If changelog.md doesn't exist yet, create it
 - If there's nothing to clean up or add to changelog, say so and move on
 - Don't add version headers or separators — that's `/version`'s job
+- The format `YYYY-MM-DD HH:mm` has to indicate the current day and time
 
 **After completing, show the user** a quick summary: how many items added to changelog, how many still pending. If there's a good amount of unversioned work in the changelog, suggest running `/version`.
