@@ -2,6 +2,8 @@ Show the user the docsygen workflow. Don't execute any command, just print this 
 
 ## Docsygen Workflow
 
+Changelog entries (command runs, completed tasks, releases) live in `.docs/changelog.md` and follow **`.docs/changelog-spec.md`**.
+
 ### Phase 1 — Think
 
 Define what you're building and challenge it before investing time.
@@ -15,7 +17,7 @@ Define what you're building and challenge it before investing time.
 
 Design the experience and define the tools. Prototype comes before stack because what you see in wireframes may influence tech choices.
 
-5. `/prototype` — Generate a prompt for external design tools (Stitch, Figma AI, V0 etc.)
+5. `/prototype` — Generate a prompt for external design tools (Stitch, Figma AI, V0, etc.); save wireframes under `.docs/assets/imgs/prototypes/` when ready
 6. `/stack` — Define the tech stack (informed by prototype)
 7. `/design` — Create the design system (visual tokens and decisions)
 
@@ -25,25 +27,33 @@ Start coding. Use your own templates when you have them, or scaffold from scratc
 
 8. `/scaffold` — Validate existing project structure or create one from scratch
 9. `/setup` — Wire design tokens into the codebase and build base components
-10. `/component` — Build a new reusable component following the project's patterns
-11. `/next` — Pick up and execute the first item from the backlog
+10. `/new` — Ad-hoc feature or fix with full project context (use when not pulling from the backlog)
+11. `/next` — Pick up and execute the first item from `.docs/backlog.md`
 12. `/resume` — Fresh situational assessment: where you are, what's next, what's off
+13. `/test` — Testing strategy, critical-path coverage, flakiness guardrails
+14. `/review` — Read-only review of uncommitted changes before commit
 
-### Phase 4 — Maintain
+### Phase 4 — Maintain & harden
 
-Keep docs honest without tracking every small change.
+Keep docs honest, dependencies current, and quality visible.
 
-13. `/tidy` — Clean up the backlog, add completed items to changelog
-14. `/sync` — Reconcile docs with reality on demand. Also handles updates to design system and tech stack docs.
-15. `/ux-review` — UI/UX quality check based on best practices and UX principles
-16. `/version` — Cut a new app version: reviews changes, writes to `versions.json`
+15. `/tidy` — Clean up the backlog, move completed items to the changelog
+16. `/sync` — Reconcile docs with reality (seed, stack, design, components)
+17. `/deps` — Bump dependencies to latest stable versions; align `tech-stack.md`
+18. `/env` — Environment variables, secrets hygiene, production config checklist
+19. `/performance` — Performance and observability (logging, metrics, bottlenecks)
+20. `/a11y` — WCAG-focused accessibility pass on the current UI
+21. `/ux-review` — Broader UI/UX quality check (hierarchy, flow, consistency)
+22. `/version` — Cut a new app version: reviews changes, writes to `versions.json`
+23. `/onboard` — Refresh README / onboarding so another dev can run and contribute
 
 ---
 
 **Tips:**
 
-- Dump ideas and tasks in `.docs/backlog.md` anytime. Pin it in the IDE to keep it visible. Use `/next` to work through them in order, `/tidy` to clean up and add to changelog, `/version` when you're ready to cut a release.
-- Before building something directly into a feature, consider if it should be a reusable component first (`/component`).
-- For small updates to the design system or tech stack, just tell the agent directly — no command needed. Use `/sync` to catch drift after bigger changes.
+- Dump ideas and tasks in `.docs/backlog.md` anytime. Pin it in the IDE. Use `/next` to work through them in order, `/tidy` to archive done items to the changelog, `/version` when cutting a release.
+- Reusable UI can be built via `/new` (or `/next` if the backlog says so); there is no separate `/component` command.
+- For small updates to the design system or tech stack, you can ask the agent directly. Use `/sync` after bigger changes to catch drift.
+- Run `/review` before commits; use `/test`, `/env`, `/performance`, or `/a11y` when those dimensions matter.
 
 Ask the user which step they'd like to start with.

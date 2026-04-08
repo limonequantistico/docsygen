@@ -46,7 +46,7 @@ Top 2-3 competitors or current solutions. For each: what they do well and where 
 - Use clear language, avoid jargon
 - If information is missing, put [TBD] — never make things up
 - Don't pad. 2 features means 2 features, not 7.
-- This document will be read by AI agents as context before every task. Write it so that an LLM reading it understands the project's direction, scope, and constraints without needing anything else.
+- This document will be read by AI agents as context before every task. Write it so that an LLM reading it understands the project's direction, scope, and constraints without needing anything else. Other commands refer to this whole document as **project context** (not a single heading).
 - If the raw notes are too vague to produce a useful seed (less than ~3 concrete ideas), don't force it. Instead, list what you understood and ask targeted questions to fill the gaps.
 
-**Logging:** When this command completes successfully, append a dated entry to `.docs/changelog.md`: `- YYYY-MM-DD HH:mm ran /seed — [brief description of what was produced or decided]`. Create the file if it doesn't exist.
+**Logging:** On success, append to `.docs/changelog.md` per `.docs/changelog-spec.md`: `- YYYY-MM-DD HH:mm ran /seed — [brief description of what was produced or decided]`.

@@ -53,6 +53,8 @@ Use judgment. If you can make a reasonable default choice, make it and mention i
 - **Showcase**: if the project has a storybook, showcase, or demo page, add the new piece there. If none exists, mention it — don't create one without asking.
 - Add or update tests, types, and docs **as you go** — if that is how this repo works.
 
+> **See also** (separate passes, not part of `/new`): `/test` testing strategy · `/env` secrets hygiene · `/deps` dependency bumps · `/performance` observability · `/a11y` accessibility · `/onboard` onboarding docs.
+
 ---
 
 ## Rules

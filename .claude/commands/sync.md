@@ -40,4 +40,4 @@ You are auditing the project's documentation against the actual state of the cod
 - Only flag meaningful drift, not nitpicks
 - If everything is in sync, say so and move on — don't invent problems
 
-**Logging:** Append to `.docs/changelog.md`: `- YYYY-MM-DD HH:mm /sync — [≤10 words]`. Create the file with a `# Changelog` header if it doesn't exist.
+**Logging:** Append to `.docs/changelog.md` per `.docs/changelog-spec.md`: `- YYYY-MM-DD HH:mm /sync — [≤10 words]`.

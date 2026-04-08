@@ -5,16 +5,16 @@ You are cutting a new app version — reviewing what changed since the last rele
 **Read:**
 
 - `.docs/versions.json` — previous versions (if exists)
-- `.docs/changelog.md` — running log of completed work and command runs
+- `.docs/changelog.md` — running log of completed work and command runs (format: `.docs/changelog-spec.md`)
 - Recent git history — commits since the last version's date (or all commits if no versions exist yet)
 
 **Your task:**
 
 ### 1. Gather changes
 
-- Find the date of the last version in `versions.json`. If no versions exist, treat all changelog entries and recent commits as new.
+- Find the date of the last version in `.docs/versions.json`. If no versions exist, treat all changelog entries and recent commits as new.
 - Collect everything that happened since that date:
-  - Entries from `changelog.md`
+  - Entries from `.docs/changelog.md`
   - Meaningful commits from git history (skip merge commits, typo fixes, and other noise)
 - Deduplicate — if a changelog entry and a commit describe the same thing, keep one.
 
@@ -36,7 +36,7 @@ You are cutting a new app version — reviewing what changed since the last rele
 
 ### 4. Write
 
-- Append a new entry to `.docs/versions.json` (create the file if needed). Format:
+- Append a new entry to `.docs/versions.json` (create the file if needed). Path is always `.docs/versions.json`. Format:
 
 ```json
 [
@@ -53,11 +53,11 @@ You are cutting a new app version — reviewing what changed since the last rele
 ```
 
 - Keep the array sorted newest-first.
-- Add a separator line in `changelog.md` after the processed entries: `---  v0.1.0 released`
+- Add a separator line in `.docs/changelog.md` after the processed entries, exactly as defined in `.docs/changelog-spec.md` (e.g. `---  v0.1.0 released`)
 
 **RULES:**
 
 - Never auto-bump — always ask the user to confirm the version.
 - Keep the JSON clean and minimal. No metadata, no commit hashes, no timestamps beyond the date.
 - The title should be 2-4 words capturing the milestone theme (e.g., "Project kickoff", "Auth flow", "Design polish").
-- Don't remove entries from changelog.md — just add the separator line so the next `/version` knows where to start.
+- Don't remove entries from `.docs/changelog.md` — just add the separator line so the next `/version` knows where to start (see `.docs/changelog-spec.md`).

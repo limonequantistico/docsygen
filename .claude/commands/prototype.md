@@ -8,10 +8,10 @@ Also check if `.docs/prototype-notes.md` exists with feedback from a previous pr
 **Your task:**
 Create a ready-to-paste prompt that includes:
 
-1. **App type and platform** — Web app, mobile app, desktop, or responsive. Extract this from the seed's Project Context or ask if unclear.
+1. **App type and platform** — Web app, mobile app, desktop, or responsive. Infer from the **project context** (the seed document as a whole: vision, users, features, constraints — not a single section by that name) or ask if unclear.
 2. **App overview** — One paragraph: what it does, who it's for, and the core problem it solves.
 3. **Screen list** — Every screen the MVP needs, with a one-line description of its purpose. Don't include screens for features marked as non-goals.
-4. **Core user flows** — The main paths the user is going to walk, omit onboarding and auth in this phase since they are obvious and always similar. Number them by priority — the most important flow first.
+4. **Core user flows** — The main paths the user walks. **Deprioritize onboarding and generic login screens** unless the seed marks **auth or onboarding as core MVP** (e.g. B2B SSO, compliance, paid signup). If auth is core, include those flows explicitly. Number by priority — most important first.
 5. **Per-screen details** — For each screen: key elements, realistic placeholder content, and available actions.
 6. **UX constraints** — Requirements from the seed that affect layout: accessibility needs, mobile-first, offline support, specific interaction patterns (drag-and-drop, real-time updates, etc.).
 
@@ -28,6 +28,6 @@ Create a ready-to-paste prompt that includes:
 **After generating the prompt, remind the user:**
 
 - For UI inspiration, browse [Mobbin](https://mobbin.com/discover/apps/ios/latest), [Dribbble](https://dribbble.com/), or [21st.dev](https://21st.dev/community/components) for reference designs for similar interfaces to insert in `.docs/assets/imgs/references`. Remember that UI is great at reproducing UI elements (at least single components), not that great at creating them from scratch.
-- Once you have the wireframes, drop them in `.docs/assets/imgs/prototypes/` and you can use `/prototype-verify` to analyze them.
+- Once you have the wireframes, drop them in `.docs/assets/imgs/prototypes/` — they inform `/stack`, `/design`, and `/setup`.
 
-**Logging:** When this command completes successfully, append a dated entry to `.docs/changelog.md`: `- YYYY-MM-DD HH:mm ran /prototype — [brief description of what was generated]`. Create the file if it doesn't exist.
+**Logging:** On success, append to `.docs/changelog.md` per `.docs/changelog-spec.md`: `- YYYY-MM-DD HH:mm ran /prototype — [brief description of what was generated]`.

@@ -30,4 +30,4 @@ I have new thoughts to integrate into my seed document.
 
 **Note:** This command is for integrating your new ideas. If instead the _code_ has diverged from the seed, use `/sync` to reconcile docs with reality.
 
-**Logging:** When this command completes successfully, append a dated entry to `.docs/changelog.md`: `- YYYY-MM-DD HH:mm ran /seed-update — [brief description of what was added or changed]`. Create the file if it doesn't exist.
+**Logging:** On success, append to `.docs/changelog.md` per `.docs/changelog-spec.md`: `- YYYY-MM-DD HH:mm ran /seed-update — [brief description of what was added or changed]`.

@@ -6,6 +6,7 @@ You are helping the user resume work on this project after a few days away.
 
 - Last ~5 git commits
 - `.docs/backlog.md`
+- `.docs/changelog.md`
 - Git status for uncommitted work
 
 **Output:**

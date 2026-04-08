@@ -7,7 +7,7 @@ You are reviewing a seed document to stress-test it before the user invests time
 **Your task:**
 Analyze the seed document critically. Go through each point:
 
-1. **Scope check** — Given the Project Context, is this realistic? If time was halved, what would you cut first? If Project Context is missing or marked [TBD], flag this — you can't assess scope without it.
+1. **Scope check** — Given the **project context** (the seed document as a whole — vision, features, constraints, not one section title), is this realistic? If time was halved, what would you cut first? If that context is missing or mostly [TBD], flag this — you can't assess scope without it.
 
 2. **Riskiest assumption** — What's the one thing that, if wrong, makes the whole project collapse? Every project has one. Name it clearly.
 
@@ -32,4 +32,4 @@ Analyze the seed document critically. Go through each point:
 
 Always ask the user if they agree with the recommendation before suggesting the next command. Never chain commands automatically.
 
-**Logging:** When this command completes successfully, append a dated entry to `.docs/changelog.md`: `- YYYY-MM-DD HH:mm ran /seed-review — [recommendation: Proceed/Revise/Rethink]`. Create the file if it doesn't exist.
+**Logging:** On success, append to `.docs/changelog.md` per `.docs/changelog-spec.md`: `- YYYY-MM-DD HH:mm ran /seed-review — [recommendation: Proceed/Revise/Rethink]`.
