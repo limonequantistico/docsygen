@@ -1,4 +1,4 @@
-You are cleaning up the user's backlog — organizing raw notes and archiving completed work.
+You are cleaning up the user's backlog by archiving completed work only.
 
 **Custom instructions from user:** $ARGUMENTS
 
@@ -16,11 +16,11 @@ You are cleaning up the user's backlog — organizing raw notes and archiving co
 - Don't ask the user for permission to move done items — they asked you to run this command. Only ask if you're unsure whether an item is really complete.
 - If you don't see anything clearly changed, tell the user, but first check latest commits and edits.
 
-### 2. Clean up the backlog
+### 2. Preserve the backlog exactly
 
-- Remove duplicates or items that are clearly the same thing
-- **Never edit, reword, or reformat what the user wrote** — preserve their exact text
-- Don't reorder, prioritize, or categorize items — the user decides what matters
+- Aside from removing items that are completed and moved to `.docs/changelog.md`, leave `.docs/backlog.md` exactly as is
+- **Never edit, reword, reformat, deduplicate, reorder, prioritize, or categorize what the user wrote**
+- Preserve spacing, structure, and the existing format of any backlog items that remain
 
 **backlog.md format** (keep it flat and simple):
 
@@ -39,7 +39,9 @@ You are cleaning up the user's backlog — organizing raw notes and archiving co
 
 **RULES:**
 
-- Backlog stays clean — no changelog, no categories, no tags, no priorities
+- Backlog changes are limited to removing completed items that are being moved to the changelog
+- Leave every non-completed backlog item exactly as written and in the same order
+- Don't normalize or tidy the backlog format beyond removing completed items
 - Don't add items from the seed, docs, or code — this is only for what the user writes
 - If `.docs/changelog.md` doesn't exist yet, create it per `.docs/changelog-spec.md`
 - If there's nothing to clean up or add to changelog, say so and move on
