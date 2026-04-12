@@ -44,8 +44,9 @@ Keep docs honest, dependencies current, and quality visible.
 19. `/performance` — Performance and observability (logging, metrics, bottlenecks)
 20. `/a11y` — WCAG-focused accessibility pass on the current UI
 21. `/ux-review` — Broader UI/UX quality check (hierarchy, flow, consistency)
-22. `/version` — Cut a new app version: reviews changes, writes to `versions.json`
-23. `/onboard` — Refresh README / onboarding so another dev can run and contribute
+22. `/clean` — Audit modularity, structure, and separation of concerns; refactor on approval
+23. `/version` — Cut a new app version: reviews changes, writes to `versions.json`
+24. `/onboard` — Refresh README / onboarding so another dev can run and contribute
 
 ---
 
