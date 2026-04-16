@@ -30,11 +30,18 @@ You are cleaning up the user's backlog by archiving completed work only.
 - fix that thing on the settings page
 ```
 
-**changelog.md format** (flat chronological log — versions are handled by `/version`):
+**changelog.md format** (canonical grouped log — versions are handled by `/version`; see `.claude/commands/changelog-spec.md`):
 
 ```markdown
-- YYYY-MM-DD HH:mm [x] completed item
-- YYYY-MM-DD HH:mm /command — what it did
+# Changelog
+
+## YYYY-MM-DD
+
+### HH:mm
+  - completed item
+  - `/tidy` — moved N completed backlog items to changelog and left M pending
+
+---  `v0.1.0 released`
 ```
 
 **RULES:**
@@ -43,10 +50,23 @@ You are cleaning up the user's backlog by archiving completed work only.
 - Leave every non-completed backlog item exactly as written and in the same order
 - Don't normalize or tidy the backlog format beyond removing completed items
 - Don't add items from the seed, docs, or code — this is only for what the user writes
-- If `.docs/changelog.md` doesn't exist yet, create it per `.docs/changelog-spec.md`
+- If `.docs/changelog.md` doesn't exist yet, create it per `.claude/commands/changelog-spec.md`
 - If there's nothing to clean up or add to changelog, say so and move on
-- Don't add version separator lines — that's `/version`'s job (see `.docs/changelog-spec.md`)
-- The format `YYYY-MM-DD HH:mm` has to indicate the current day and time, retrieve them to make sure they are right. This is important
-- Place new items in the changelog at the bottom of the list
+- Follow `.claude/commands/changelog-spec.md` exactly for all changelog writes.
+- Don't add version separator lines — that's `/version`'s job (see `.claude/commands/changelog-spec.md`)
+- Retrieve the current local day and time to make sure they are correct. This is important.
+- Completed backlog items should be added as indented plain bullets under the current time block, preserving the user's original wording:
+
+```markdown
+  - completed item
+```
+
+- Wrap commands in backticks, e.g. `` `/tidy` ``.
+- Do not add `[x]` markers to changelog entries.
+- After moving completed items, append a final log entry for the command in the same time block, in this format:
+
+```markdown
+  - `/tidy` — moved 3 completed backlog items to changelog and left 12 pending
+```
 
 **After completing, show the user** a quick summary: how many items added to changelog, how many still pending. If there's a good amount of unversioned work in the changelog, suggest running `/version`.
