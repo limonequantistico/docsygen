@@ -10,11 +10,14 @@ You are cleaning up the user's backlog by archiving completed work only.
 
 ### 1. Check for completed items
 
-- Commented items in the backlog mean the user has already marked them as done — treat these as completed.
-- Check the latest ~3 commits if necessary (unless the user specifies a different number) and the current codebase to see if any other backlog items have already been completed.
+- Default behavior: only treat commented items in the backlog as completed.
+- Commented items in the backlog mean the user has already marked them as done — move those to the changelog.
+- Do **not** inspect recent commits or the current codebase unless the user explicitly asks you to verify other items too in `$ARGUMENTS`.
+- If the user explicitly asks for deeper verification, check the latest ~3 commits by default (unless they specify a different number) and the current codebase to see if any other backlog items have already been completed.
 - Move completed items to `.docs/changelog.md` with today's date.
 - Don't ask the user for permission to move done items — they asked you to run this command. Only ask if you're unsure whether an item is really complete.
-- If you don't see anything clearly changed, tell the user, but first check latest commits and edits.
+- If there are no commented completed items and the user did not explicitly ask for deeper verification, say there's nothing to clean up and stop.
+- If the user did ask for deeper verification and you still don't see anything clearly changed, tell the user after checking commits and edits.
 
 ### 2. Preserve the backlog exactly
 
@@ -50,6 +53,7 @@ You are cleaning up the user's backlog by archiving completed work only.
 - Leave every non-completed backlog item exactly as written and in the same order
 - Don't normalize or tidy the backlog format beyond removing completed items
 - Don't add items from the seed, docs, or code — this is only for what the user writes
+- By default, this command is a backlog cleanup pass, not a repo audit
 - If `.docs/changelog.md` doesn't exist yet, create it per `.claude/commands/changelog-spec.md`
 - If there's nothing to clean up or add to changelog, say so and move on
 - Follow `.claude/commands/changelog-spec.md` exactly for all changelog writes.
