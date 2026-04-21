@@ -32,21 +32,22 @@ Start coding. Use your own templates when you have them, or scaffold from scratc
 12. `/resume` — Fresh situational assessment: where you are, what's next, what's off
 13. `/test` — Testing strategy, critical-path coverage, flakiness guardrails
 14. `/review` — Read-only review of uncommitted changes before commit
+15. `/commit` — Generate a copyable commit message for the latest changes
 
 ### Phase 4 — Maintain & harden
 
 Keep docs honest, dependencies current, and quality visible.
 
-15. `/tidy` — Clean up the backlog, move completed items to the changelog
-16. `/sync` — Reconcile docs with reality (seed, stack, design, components)
-17. `/deps` — Bump dependencies to latest stable versions; align `tech-stack.md`
-18. `/env` — Environment variables, secrets hygiene, production config checklist
-19. `/performance` — Performance and observability (logging, metrics, bottlenecks)
-20. `/a11y` — WCAG-focused accessibility pass on the current UI
-21. `/ux-review` — Broader UI/UX quality check (hierarchy, flow, consistency)
-22. `/clean` — Audit modularity, structure, and separation of concerns; refactor on approval
-23. `/version` — Cut a new app version: reviews changes, writes to `versions.json`
-24. `/onboard` — Refresh README / onboarding so another dev can run and contribute
+16. `/tidy` — Clean up the backlog, move completed items to the changelog
+17. `/sync` — Reconcile docs with reality (seed, stack, design, components)
+18. `/deps` — Bump dependencies to latest stable versions; align `tech-stack.md`
+19. `/env` — Environment variables, secrets hygiene, production config checklist
+20. `/performance` — Performance and observability (logging, metrics, bottlenecks)
+21. `/a11y` — WCAG-focused accessibility pass on the current UI
+22. `/ux-review` — Broader UI/UX quality check (hierarchy, flow, consistency)
+23. `/clean` — Audit modularity, structure, and separation of concerns; refactor on approval
+24. `/version` — Cut a new app version: reviews changes, writes to `versions.json`
+25. `/onboard` — Refresh README / onboarding so another dev can run and contribute
 
 ---
 
