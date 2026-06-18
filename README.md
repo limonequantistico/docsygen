@@ -31,7 +31,7 @@ It's **language-agnostic** — the commands and docs work the same whether the p
 
 ## Install
 
-In the project where you want the workflow, add the marketplace and install the plugin. There are two equivalent ways to run these — pick whichever fits where you are:
+Add the marketplace and install the plugin **once per machine** — it installs at user scope, so the commands then work in **every project** you open with Claude Code on that machine. There are two equivalent ways to run these — pick whichever fits where you are:
 
 **From a terminal** (`claude` CLI — works in every environment):
 
@@ -47,7 +47,9 @@ claude plugin install docsygen@docsygen
 /plugin install docsygen@docsygen
 ```
 
-Either way makes all commands available. Then, **once per project**, scaffold the docs structure by running this in Claude Code:
+> User scope is per machine, not per GitHub account — on another computer, run these once there too. To scope the install to a single project instead (e.g. to share it with a team via committed settings), add `--scope project` to the install command.
+
+Once installed, the commands are available everywhere. The only **per-project** step is scaffolding the docs structure — run this in Claude Code inside each project where you want the workflow:
 
 ```
 /init
