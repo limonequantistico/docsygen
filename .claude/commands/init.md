@@ -135,9 +135,29 @@ The next `/version` run treats entries **below** the latest separator as “sinc
 - This file is **tracked in git** so the team shares the same history.
 ~~~
 
+**7. `CLAUDE.md`** (at the project root, not under `.docs/`) — the project rules docsygen commands assume. Create it only if missing; never overwrite an existing `CLAUDE.md`, since the project may already have its own rules. If one exists, leave it and tell the user to make sure it references the `.docs/` conventions below. Content to write:
+
+~~~markdown
+# Project Rules
+
+- If useful documentation is available, use it. Use Context7's MCP for any needed deeper research.
+- Follow the tech stack defined in `.docs/tech-stack.md`. Don't introduce technologies not listed there.
+- Follow the design system defined in `.docs/design-system.md`. Use global style variables, don't hardcode values.
+- Before starting any task, check `.docs/seed.md` for project context. But docs may be outdated — when they conflict with the actual code, trust the code.
+- Keep tasks small and sequential. Complete one thing fully before moving to the next.
+- Document features as you build them, not after.
+- If a technology or library not in the tech stack would solve a real problem you're facing right now, mention it once. Don't advocate — just flag it and let the user decide.
+
+# Custom Commands
+
+- When executing a command, if the user added extra instructions after the command name, respect them — they override or extend the default behavior.
+- If the user asks for something outside the current command's scope, don't try to handle everything. Suggest the appropriate command instead (run `/help` to see the full list).
+- Chained flows are fine, but stay alert to runaway loops — both build/test retry loops and token-burning exploration loops. If the same failure repeats 4/5 times, stop and ask instead of trying again. If a task is ballooning in scope or token usage past what it should reasonably cost, pause and check in before continuing.
+~~~
+
 ### After scaffolding
 
-- If the project has no `CLAUDE.md`, mention that one is recommended (it carries the project rules docsygen commands assume), but don't create it unprompted — offer to.
+- `CLAUDE.md` is created above. If the project already had one, point out it was left untouched and that it should reference the `.docs/` conventions (`tech-stack.md`, `design-system.md`, `seed.md`).
 - Point the user at `.docs/idea.md` as the starting point, then `/seed`. Suggest `/help` for the full workflow.
 
 **Logging:** On success, append to `.docs/changelog.md` per `.docs/changelog-spec.md`: `- YYYY-MM-DD HH:mm ran /init — [brief description of what was created or skipped]`.

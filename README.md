@@ -55,7 +55,7 @@ Once installed, the commands are available everywhere. The only **per-project** 
 /init
 ```
 
-`/init` creates the baseline `.docs/` skeleton the other commands rely on (`idea.md`, `backlog.md`, `changelog.md`, `changelog-spec.md`, asset folders). It's idempotent — safe to re-run, never overwrites existing work.
+`/init` creates the baseline `.docs/` skeleton the other commands rely on (`idea.md`, `backlog.md`, `changelog.md`, `changelog-spec.md`, asset folders) plus a root `CLAUDE.md` with the project rules. It's idempotent — safe to re-run, never overwrites existing work (an existing `CLAUDE.md` is left untouched).
 
 > New here? Run `/help` for the full guided workflow, then start by dropping notes in `.docs/idea.md`.
 
@@ -146,7 +146,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 | `.docs/tech-stack.md`     | Tools and runtime versions.                                  | `/stack`   |
 | `.docs/design-system.md`  | Visual tokens and UI rules.                                  | `/design`  |
 | `.docs/prds/`             | Product requirement docs.                                    | `/to-prd`  |
-| `CLAUDE.md`               | Project rules agents follow (recommended; not auto-created). | you        |
+| `CLAUDE.md`               | Project rules agents follow.                                 | `/init`    |
 
 ## Conventions
 
