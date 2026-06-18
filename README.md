@@ -23,6 +23,22 @@ Type '/help' to list available commands.
 docsygen >
 ```
 
+```text
+╔══════════════════════════════════════════════════════════════╗
+║  QUICK COMMANDS                                              ║
+╟──────────────────────────────────────────────────────────────╢
+║  Install  ·  once per machine                                ║
+║    claude plugin marketplace add limonequantistico/docsygen  ║
+║    claude plugin install docsygen@docsygen                   ║
+║                                                              ║
+║  Set up a project  ·  inside Claude Code, once per project   ║
+║    /init                                                     ║
+║                                                              ║
+║  Update to the latest  ·  after a new version is published   ║
+║    claude plugin update docsygen@docsygen                    ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
 # Docsygen
 
 **Docsygen** is a **documentation-driven development workflow** for [Claude Code](https://claude.com/claude-code), packaged as a **Claude Code plugin**. It adds ~28 slash commands that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
