@@ -44,3 +44,4 @@ If everything looks clean, say so briefly — don't invent problems.
 - Don't modify any files. This is a read-only review.
 - If there are no uncommitted changes, tell the user and stop.
 - Be direct. If something is fine, don't pad the review with praise.
+- Use Context7's MCP to make sure the code is well written and follows official documentation's standards.
