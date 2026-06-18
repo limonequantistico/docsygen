@@ -4,6 +4,12 @@ Show the user the docsygen workflow. Don't execute any command, just print this 
 
 Changelog entries (command runs, completed tasks, releases) live in `.docs/changelog.md` and follow **`.docs/changelog-spec.md`**.
 
+### Phase 0 — Set up
+
+In a brand-new project, run this once to create the baseline docs structure the other commands rely on.
+
+0. `/init` — Scaffold the `.docs/` skeleton (`idea.md`, `backlog.md`, `changelog.md`, `changelog-spec.md`, asset folders). Idempotent — safe to re-run; never overwrites existing work.
+
 ### Phase 1 — Think
 
 Define what you're building and challenge it before investing time.

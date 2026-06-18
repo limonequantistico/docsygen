@@ -1,0 +1,10 @@
+{
+  "name": "docsygen",
+  "version": "1.0.0",
+  "description": "Documentation-driven development workflow: slash commands for seeding, scaffolding, building, reviewing, and shipping projects in any language (Swift, Android, web, ...).",
+  "author": {
+    "name": "Luigi Piferi",
+    "email": "luigipiferi94@gmail.com"
+  },
+  "commands": ["./.claude/commands/"]
+}
