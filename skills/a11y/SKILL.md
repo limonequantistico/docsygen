@@ -1,0 +1,34 @@
+---
+name: a11y
+description: Run a WCAG-focused accessibility pass on the current UI. Use only when the user explicitly asks for an accessibility/a11y review or runs /a11y.
+---
+
+You are running a focused **accessibility** pass (WCAG-oriented) on the **current** UI implementation. This complements `/ux-review`, which is broader; here the priority is **barriers** for disabled users and compliance-oriented issues.
+
+**Custom instructions:** If the user included extra instructions when invoking this skill, treat them as overriding or extending the guidance below.
+
+**Read:**
+
+- `.docs/design-system.md` — contrast, focus, motion, typography targets if documented
+- `.docs/seed.md` — any a11y requirements called out for the product
+- UI code: pages, layouts, forms, dialogs, navigation, media
+
+**Your task:**
+
+1. **Perceivable** — Color contrast (text, UI components, graphs), non-text content (`alt`, labels, captions), reflow/zoom, motion reduction where applicable.
+
+2. **Operable** — Keyboard navigation order, focus visibility, focus trap in modals, skip links if needed, touch target size for relevant platforms.
+
+3. **Understandable** — Form labels and errors, predictable navigation, language attribute if multi-locale.
+
+4. **Robust** — Semantic HTML vs div soup, heading hierarchy, ARIA only where it fixes a real gap, duplicate interactive controls.
+
+5. **Output** — For each issue: **location** (file or screen), **WCAG criterion** (best-effort, e.g. 1.4.3), **user impact**, **fix**. Prioritize blockers (keyboard traps, missing names) over polish.
+
+**RULES:**
+
+- If the project is not UI-heavy (API-only), say so and limit scope to any public docs sites or admin UIs, or stop.
+- Be specific; avoid “improve accessibility” without a target.
+- Do not claim legal compliance; phrase as “aligned with WCAG 2.1 AA targets” where appropriate.
+
+**Logging:** On success, append to `.docs/changelog.md` per `.docs/changelog-spec.md`: `- YYYY-MM-DD HH:mm ran /a11y — [brief summary]`.

@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 28          Dev Tools ║  [INFO] Version 1.0.0 (Build 492)
+║ 28          Dev Tools ║  [INFO] Version 1.1.0 (Build 492)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.0.0         ║  [OK] Config: /etc/docsygen/config.toml
+║         1.1.0         ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -24,74 +24,92 @@ docsygen >
 ```
 
 ```text
-╔══════════════════════════════════════════════════════════════╗
-║  QUICK COMMANDS                                              ║
-╟──────────────────────────────────────────────────────────────╢
-║  Install  ·  once per machine                                ║
-║    claude plugin marketplace add limonequantistico/docsygen  ║
-║    claude plugin install docsygen@docsygen                   ║
-║                                                              ║
-║  Set up a project  ·  inside Claude Code, once per project   ║
-║    /init                                                     ║
-║                                                              ║
-║  Update to the latest  ·  after a new version is published   ║
-║    claude plugin update docsygen@docsygen                    ║
-╚══════════════════════════════════════════════════════════════╝
+╔════════════════════════════════════════════════════════════════╗
+║  CLAUDE CODE  ·  install once per machine                      ║
+╟────────────────────────────────────────────────────────────────╢
+║  claude plugin marketplace add limonequantistico/docsygen      ║
+║  claude plugin install docsygen@docsygen                       ║
+║                                                                ║
+║  per project   /init                                           ║
+║  update        claude plugin update docsygen@docsygen          ║
+╚════════════════════════════════════════════════════════════════╝
+```
+
+```text
+╔════════════════════════════════════════════════════════════════╗
+║  CODEX  ·  install once per machine                            ║
+╟────────────────────────────────────────────────────────────────╢
+║  git clone https://github.com/limonequantistico/docsygen \     ║
+║      ~/.docsygen                                               ║
+║  ln -s ~/.docsygen/skills ~/.codex/skills/docsygen             ║
+║                                                                ║
+║  per project   /init   (or ask: "initialize docsygen")         ║
+║  update        git -C ~/.docsygen pull                         ║
+╚════════════════════════════════════════════════════════════════╝
 ```
 
 # Docsygen
 
-**Docsygen** is a **documentation-driven development workflow** for [Claude Code](https://claude.com/claude-code), packaged as a **Claude Code plugin**. It adds ~28 slash commands that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
+**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **28 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
 
-It's **language-agnostic** — the commands and docs work the same whether the project is Swift, Android, web, or anything else. Docsygen ships no application code; it's a toolkit of commands plus a `.docs/` convention.
+It's **language-agnostic** — the skills and docs work the same whether the project is Swift, Android, web, or anything else. Docsygen ships no application code; it's a toolkit of skills plus a `.docs/` convention.
+
+Skills are a **cross-agent standard**: the same [`skills/`](skills/) directory is the single source of truth for both agents. On Claude Code it's distributed as a plugin; on Codex you point its skills folder at the same files. One repo, no forks.
 
 ## Install
 
-Add the marketplace and install the plugin **once per machine** — it installs at user scope, so the commands then work in **every project** you open with Claude Code on that machine. There are two equivalent ways to run these — pick whichever fits where you are:
+Pick your agent. Both install **once per machine** (user scope), so the skills then work in **every project** you open on that machine.
 
-**From a terminal** (`claude` CLI — works in every environment):
+### Claude Code
+
+Distributed as a plugin via its own marketplace. From a terminal:
 
 ```
 claude plugin marketplace add limonequantistico/docsygen
 claude plugin install docsygen@docsygen
 ```
 
-**From inside a Claude Code session** (slash commands — needs an interactive session; not available in some surfaces like the IDE panel):
+Or the equivalent slash commands inside an interactive session: `/plugin marketplace add limonequantistico/docsygen` then `/plugin install docsygen@docsygen`.
+
+### Codex
+
+Codex has no plugin marketplace — clone the repo once and symlink Codex's skills folder at it, so updates are a single `git pull`:
 
 ```
-/plugin marketplace add limonequantistico/docsygen
-/plugin install docsygen@docsygen
+git clone https://github.com/limonequantistico/docsygen ~/.docsygen
+ln -s ~/.docsygen/skills ~/.codex/skills/docsygen
 ```
 
-> User scope is per machine, not per GitHub account — on another computer, run these once there too. To scope the install to a single project instead (e.g. to share it with a team via committed settings), add `--scope project` to the install command.
+> Tip: `~/.codex/skills/` is global (all projects). For a single project shared with a team, copy skills into the repo's `.codex/skills/` and commit them instead.
 
-Once installed, the commands are available everywhere. The only **per-project** step is scaffolding the docs structure — run this in Claude Code inside each project where you want the workflow:
+### Per project
+
+Whichever agent you use, the only per-project step is scaffolding the docs structure. In Claude Code, run `/init`; in Codex, run `/init` or just ask it to *"initialize docsygen"*:
 
 ```
 /init
 ```
 
-`/init` creates the baseline `.docs/` skeleton the other commands rely on (`idea.md`, `backlog.md`, `changelog.md`, `changelog-spec.md`, asset folders) plus a root `CLAUDE.md` with the project rules. It's idempotent — safe to re-run, never overwrites existing work (an existing `CLAUDE.md` is left untouched).
+`/init` creates the baseline `.docs/` skeleton the other skills rely on (`idea.md`, `backlog.md`, `changelog.md`, `changelog-spec.md`, asset folders) plus a root `CLAUDE.md` with the project rules. It's idempotent — safe to re-run, never overwrites existing work (an existing `CLAUDE.md` is left untouched).
 
 > New here? Run `/help` for the full guided workflow, then start by dropping notes in `.docs/idea.md`.
 
 ## Update
 
-When a new version of Docsygen is published, pull it the same two ways:
+When a new version of Docsygen is published:
 
 ```
-claude plugin update docsygen@docsygen   # from a terminal
+claude plugin update docsygen@docsygen   # Claude Code (or /plugin update … in a session)
+git -C ~/.docsygen pull                   # Codex (the symlink picks up changes automatically)
 ```
 
-```
-/plugin update docsygen@docsygen          # inside a Claude Code session
-```
-
-Commands update in place — nothing is copied into your project, so they never go stale. Your project's own `.docs/` content is yours and is untouched by updates.
+Skills update in place — nothing is copied into your project, so they never go stale. Your project's own `.docs/` content is yours and is untouched by updates.
 
 ## The workflow
 
-`/help` prints this inside Claude Code. Phases are a guide, not a rule — jump to whatever fits.
+`/help` prints this. Phases are a guide, not a rule — jump to whatever fits.
+
+> **How to invoke:** In Claude Code, type the skill as a slash command (`/seed`). In Codex, either ask for the task in plain language (*"create the seed"*) — skills load by description — or name the skill directly. The `/name` notation below is the canonical reference for both.
 
 ### Phase 0 — Set up
 
@@ -173,15 +191,16 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 
 ## Developing Docsygen itself
 
-This repository **is** the plugin and its marketplace:
+This repository **is** the source of truth, the Claude Code plugin, and its marketplace:
 
-- `.claude-plugin/plugin.json` — manifest. Its `commands` field points at `./.claude/commands/`, so command files live there and this repo dogfoods them as project commands.
+- [`skills/`](skills/) — the 28 skills, one `SKILL.md` per directory. This is the single source both agents use. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the symlink from the install step. This repo also dogfoods them directly.
+- `.claude-plugin/plugin.json` — plugin manifest (name, version). Components in `skills/` are auto-discovered, so there's no path to maintain.
 - `.claude-plugin/marketplace.json` — makes the repo its own marketplace.
 
 To work on it:
 
-- **Add a command:** drop a markdown file in `.claude/commands/`. No manifest change needed — commands are auto-discovered. Add it to `/help` so it's documented.
+- **Add a skill:** create `skills/<name>/SKILL.md` with YAML frontmatter (`name` + `description`). The description controls when the agent reaches for it — gate deliberate steps to explicit invocation (*"Use only when the user explicitly asks … or runs /name"*) so they don't auto-fire. Add it to the `/help` skill so it's documented.
 - **Validate:** `claude plugin validate .`
-- **Ship an update:** bump `version` in `plugin.json`, then push. ⚠️ Updates only reach installed projects when the version changes — pushing commits alone does nothing, because Claude Code caches by version. Users then run `/plugin update docsygen@docsygen`.
+- **Ship an update:** bump `version` in `plugin.json`, then push. ⚠️ On Claude Code, updates only reach installed projects when the version changes — pushing commits alone does nothing, because Claude Code caches by version; users then run `/plugin update docsygen@docsygen`. On Codex, a `git pull` picks up changes immediately (no version bump required).
 
 Repo: [github.com/limonequantistico/docsygen](https://github.com/limonequantistico/docsygen)
