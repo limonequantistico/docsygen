@@ -43,9 +43,30 @@ Don't nitpick style, formatting, naming, or missing comments. Focus only on thin
 
 ### A3 — Report
 
-This output gets read by **you, the user** (so it must be readable) and is often copied and pasted into the original agent for triage (Mode B) (so it must be copyable as one unit). Satisfy both by putting the **entire** review — summary, findings, and bottom line — inside **one fenced code block**, formatted as structured plain text. Don't put any part of the review outside the block; the triaging agent needs the summary and bottom line too.
+The report has **two readers with different needs**, so produce **two versions, in this order**:
 
-Use this structure (plain text reads fine in monospace and pastes cleanly):
+1. **A short scan version for the user** — rendered markdown (real headers/bold), readable at a glance. Not copyable; it doesn't need to be.
+2. **A thorough copyable version for the agent** — one fenced code block with full detail, ready to paste into the original agent for triage (Mode B).
+
+Keep finding numbers and severity tags identical across both versions so they line up.
+
+**Version 1 — Scan (for the user), as normal markdown:**
+
+Lead with one sentence on overall health, then a compact list — one line per finding — and a one-line bottom line. No `What/Why/Fix` breakdown here; that's what Version 2 is for.
+
+```md
+**Review — Mode A (read-only).** Overall: <one-sentence health check>.
+
+- **[1] BUG** · `File.ext:line` — one-line gist of the problem
+- **[2] MINOR** · `File.ext:line` — one-line gist
+- ...
+
+**Bottom line:** which findings actually matter vs. polish.
+```
+
+**Version 2 — Full (for the agent), inside one fenced code block:**
+
+Put the **entire** detailed review — summary, findings with `What/Why/Fix`, bottom line — inside a single block so it pastes as one unit. Don't leave any of it outside the block; the triaging agent needs the summary and bottom line too.
 
 ```
 ══════════════════════════════════════════════
@@ -78,11 +99,11 @@ Which findings actually matter vs. polish, and any recommendation.
 End by confirming the pass was read-only — nothing was modified.
 ```
 
-Rules for the block:
+Rules:
 
 - **Number** the findings and **order by severity**: breaking first, then bugs, then minor. Tag each with `BREAKING`, `BUG`, or `MINOR`.
-- Keep `What / Why / Fix` as separate lines — don't collapse a finding onto one dense line.
-- If everything looks clean, still use the block: write the SUMMARY, then `FINDINGS (0)` with "No issues found.", and a short BOTTOM LINE. Don't invent problems.
+- In Version 2, keep `What / Why / Fix` as separate lines — don't collapse a finding onto one dense line.
+- If everything looks clean, say so in Version 1 in a sentence and skip Version 2 entirely — no empty block, no invented problems.
 
 **Mode A is read-only — don't modify any files.**
 
