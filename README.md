@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 28          Dev Tools ║  [INFO] Version 1.2.2 (Build 492)
+║ 28          Dev Tools ║  [INFO] Version 1.2.3 (Build 492)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.2.2         ║  [OK] Config: /etc/docsygen/config.toml
+║         1.2.3         ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 

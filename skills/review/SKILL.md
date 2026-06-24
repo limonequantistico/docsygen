@@ -43,18 +43,46 @@ Don't nitpick style, formatting, naming, or missing comments. Focus only on thin
 
 ### A3 — Report
 
-This output is often copied and pasted into the original agent for triage (Mode B), so make it **easy to copy as a single block**. Put the findings inside one fenced code block, with each finding numbered so they can be referred back to:
+This output gets read by **you, the user** (so it must be readable) and is often copied and pasted into the original agent for triage (Mode B) (so it must be copyable as one unit). Satisfy both by putting the **entire** review — summary, findings, and bottom line — inside **one fenced code block**, formatted as structured plain text. Don't put any part of the review outside the block; the triaging agent needs the summary and bottom line too.
+
+Use this structure (plain text reads fine in monospace and pastes cleanly):
 
 ```
-Review findings (N):
+══════════════════════════════════════════════
+ REVIEW · Mode A (read-only first pass)
+══════════════════════════════════════════════
 
-1. [severity] File:line → what's wrong → why it matters → suggested fix
-2. [severity] File:line → ...
+SUMMARY
+One short paragraph: what's solid and well done, then how many
+things you're flagging. Give credit where due — this is context
+the triaging agent needs, not filler.
+
+──────────────────────────────────────────────
+ FINDINGS (N)
+──────────────────────────────────────────────
+
+[1] BUG · path/to/File.ext:line
+  What → what's wrong
+  Why  → why it matters / what it breaks
+  Fix  → the suggested change
+
+[2] MINOR · path/to/File.ext:line
+  What → ...
+  Why  → ...
+  Fix  → ...
+
+──────────────────────────────────────────────
+ BOTTOM LINE
+──────────────────────────────────────────────
+Which findings actually matter vs. polish, and any recommendation.
+End by confirming the pass was read-only — nothing was modified.
 ```
 
-Number the findings and order them by severity: breaking issues first, then potential bugs, then minor concerns. Use `[breaking]`, `[bug]`, or `[minor]` as the severity tag.
+Rules for the block:
 
-If everything looks clean, say so briefly outside the code block — don't invent problems, and skip the block entirely.
+- **Number** the findings and **order by severity**: breaking first, then bugs, then minor. Tag each with `BREAKING`, `BUG`, or `MINOR`.
+- Keep `What / Why / Fix` as separate lines — don't collapse a finding onto one dense line.
+- If everything looks clean, still use the block: write the SUMMARY, then `FINDINGS (0)` with "No issues found.", and a short BOTTOM LINE. Don't invent problems.
 
 **Mode A is read-only — don't modify any files.**
 
