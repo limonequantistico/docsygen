@@ -8,6 +8,14 @@
 - Document features as you build them, not after.
 - If a technology or library not in the tech stack would solve a real problem you're facing right now, mention it once. Don't advocate — just flag it and let the user decide.
 
+# Shipping changes
+
+When a change to the skills is ready to ship, keep these in sync so the update actually reaches users and the docs stay honest:
+
+- **Bump the version.** On Claude Code, updates only reach installed projects when the version changes (it caches by version). Bump `version` in `.claude-plugin/plugin.json`, and update both version spots in the `README.md` ASCII banner to match.
+- **Update `/help` and the README** when a skill is added, removed, or its behavior changes meaningfully. Sync the command list and workflow tips in `skills/help/SKILL.md`, and the workflow table + conventions in `README.md`. If the skill count changes, update it everywhere it's stated.
+- A `/commit` message should mention the version bump.
+
 # Custom Commands
 
 - When executing a command, if the user added extra instructions after the command name, respect them — they override or extend the default behavior.

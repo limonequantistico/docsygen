@@ -44,7 +44,7 @@ Turn a shaped idea into tracked work, then start coding. Use your own templates 
 13. `/new` — Ad-hoc feature or fix with full project context (also how you pull a backlog item into action — pass it as context)
 14. `/resume` — Fresh situational assessment: where you are, what's next, what's off
 15. `/test` — Testing strategy, critical-path coverage, flakiness guardrails
-16. `/review` — Read-only review of uncommitted changes before commit
+16. `/review` — Read-only review of uncommitted changes before commit, or triage another agent's review of your work
 17. `/commit` — Generate a copyable commit message for the latest changes
 
 ### Phase 4 — Maintain & harden
@@ -70,6 +70,6 @@ Keep docs honest, dependencies current, and quality visible.
 - Dump ideas and tasks in `.docs/backlog.md` anytime. Pin it in the IDE. Use `/to-issues` to break a plan into items, `/new` to work through them, `/tidy` to archive done items to the changelog, `/version` when cutting a release.
 - Reusable UI can be built via `/new`; there is no separate `/component` command.
 - For small updates to the design system or tech stack, you can ask the agent directly. Use `/sync` after bigger changes to catch drift.
-- Run `/review` before commits; use `/test`, `/env`, `/performance`, or `/a11y` when those dimensions matter.
+- Run `/review` before commits; use `/test`, `/env`, `/performance`, or `/a11y` when those dimensions matter. For a second opinion, have another agent run `/review` and paste its findings back into `/review` on the original agent to triage them.
 
 Ask the user which step they'd like to start with.

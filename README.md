@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 28          Dev Tools ║  [INFO] Version 1.2.0 (Build 492)
+║ 28          Dev Tools ║  [INFO] Version 1.2.2 (Build 492)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.2.0         ║  [OK] Config: /etc/docsygen/config.toml
+║         1.2.2         ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -145,7 +145,7 @@ Skills update in place — nothing is copied into your project, so they never go
 | `/new`       | Ad-hoc feature or fix with full project context (also how you pull a backlog item into action). |
 | `/resume`    | Fresh situational assessment: where you are, what's next.                                       |
 | `/test`      | Testing strategy, critical-path coverage, flakiness guardrails.                                 |
-| `/review`    | Read-only review of uncommitted changes before commit.                                          |
+| `/review`    | Read-only review of uncommitted changes before commit — or triage another agent's review of your work. |
 | `/commit`    | Generate a copyable commit message for the latest changes.                                      |
 
 ### Phase 4 — Maintain & harden
@@ -186,7 +186,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 
 - **Changelog:** Every command logs to `.docs/changelog.md` in the format defined by `.docs/changelog-spec.md`. Timestamps (`HH:mm`) are never stripped.
 - **Backlog-driven:** Dump tasks in `.docs/backlog.md` anytime. `/to-issues` slices plans into items, `/new` works through them, `/tidy` archives done work, `/version` cuts releases.
-- **Before committing:** Run `/review` for a read-only pass; reach for `/test`, `/env`, `/performance`, or `/a11y` when those dimensions matter.
+- **Before committing:** Run `/review` for a read-only pass; reach for `/test`, `/env`, `/performance`, or `/a11y` when those dimensions matter. For a second opinion, have another agent run `/review`, then paste its findings back into `/review` on the original agent to triage and apply the ones that hold up.
 - **Truth over docs:** If docs and code disagree, the code wins — run `/sync` to reconcile.
 
 ## Developing Docsygen itself

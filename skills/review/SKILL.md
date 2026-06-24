@@ -43,13 +43,18 @@ Don't nitpick style, formatting, naming, or missing comments. Focus only on thin
 
 ### A3 — Report
 
-If you find issues, present them as a clear list:
+This output is often copied and pasted into the original agent for triage (Mode B), so make it **easy to copy as a single block**. Put the findings inside one fenced code block, with each finding numbered so they can be referred back to:
 
-- **File** → what's wrong → why it matters → suggested fix
+```
+Review findings (N):
 
-Group by severity: breaking issues first, then potential bugs, then minor concerns.
+1. [severity] File:line → what's wrong → why it matters → suggested fix
+2. [severity] File:line → ...
+```
 
-If everything looks clean, say so briefly — don't invent problems.
+Number the findings and order them by severity: breaking issues first, then potential bugs, then minor concerns. Use `[breaking]`, `[bug]`, or `[minor]` as the severity tag.
+
+If everything looks clean, say so briefly outside the code block — don't invent problems, and skip the block entirely.
 
 **Mode A is read-only — don't modify any files.**
 
