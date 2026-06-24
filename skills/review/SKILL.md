@@ -52,57 +52,52 @@ Keep finding numbers and severity tags identical across both versions so they li
 
 **Version 1 — Scan (for the user), as normal markdown:**
 
-Lead with one sentence on overall health, then a compact list — one line per finding — and a one-line bottom line. No `What/Why/Fix` breakdown here; that's what Version 2 is for.
+A header line with the counts, a one-sentence health check, then one bullet per finding (gist inline), then a one-line bottom line. No `What/Why/Fix` breakdown here; that's what Version 2 is for.
 
 ```md
-**Review — Mode A (read-only).** Overall: <one-sentence health check>.
+**Review — Mode A** (read-only) — N findings, X blocking.
 
-- **[1] BUG** · `File.ext:line` — one-line gist of the problem
+Overall: <one-sentence health check>.
+
+- **[1] BREAKING** · `File.ext:line` — one-line gist of the problem
 - **[2] MINOR** · `File.ext:line` — one-line gist
-- ...
 
-**Bottom line:** which findings actually matter vs. polish.
+**Bottom line:** what must change vs. what's polish.
 ```
 
 **Version 2 — Full (for the agent), inside one fenced code block:**
 
-Put the **entire** detailed review — summary, findings with `What/Why/Fix`, bottom line — inside a single block so it pastes as one unit. Don't leave any of it outside the block; the triaging agent needs the summary and bottom line too.
+Put the **entire** detailed review inside a single block so it pastes as one unit — don't leave any of it outside; the triaging agent needs the summary and bottom line too. Keep it **minimal**: plain labels, no decorative rules or boxes (they're noise to an agent). Hard-wrap nothing artificially; let lines run.
 
 ```
-══════════════════════════════════════════════
- REVIEW · Mode A (read-only first pass)
-══════════════════════════════════════════════
+REVIEW · Mode A (read-only first pass)
 
 SUMMARY
-One short paragraph: what's solid and well done, then how many
-things you're flagging. Give credit where due — this is context
-the triaging agent needs, not filler.
+2–4 sentences: what's solid (give due credit — it's context the
+triaging agent needs), then how many issues you're flagging. Not a wall.
 
-──────────────────────────────────────────────
- FINDINGS (N)
-──────────────────────────────────────────────
+FINDINGS (N)
 
-[1] BUG · path/to/File.ext:line
-  What → what's wrong
-  Why  → why it matters / what it breaks
-  Fix  → the suggested change
+[1] BREAKING · path/to/File.ext:line
+What: what's wrong
+Why: why it matters / what it breaks
+Fix: the suggested change
 
 [2] MINOR · path/to/File.ext:line
-  What → ...
-  Why  → ...
-  Fix  → ...
+What: ...
+Why: ...
+Fix: ...
 
-──────────────────────────────────────────────
- BOTTOM LINE
-──────────────────────────────────────────────
-Which findings actually matter vs. polish, and any recommendation.
+BOTTOM LINE
+Which findings actually matter vs. polish, plus any recommendation.
 End by confirming the pass was read-only — nothing was modified.
 ```
 
 Rules:
 
 - **Number** the findings and **order by severity**: breaking first, then bugs, then minor. Tag each with `BREAKING`, `BUG`, or `MINOR`.
-- In Version 2, keep `What / Why / Fix` as separate lines — don't collapse a finding onto one dense line.
+- In Version 2, keep `What / Why / Fix` on their own lines — don't collapse a finding onto one dense line, and don't pad it back out with separators or ASCII art.
+- Keep the SUMMARY tight in both versions — a couple of sentences, not a paragraph-long wall.
 - If everything looks clean, say so in Version 1 in a sentence and skip Version 2 entirely — no empty block, no invented problems.
 
 **Mode A is read-only — don't modify any files.**
