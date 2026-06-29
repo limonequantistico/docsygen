@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 28          Dev Tools ║  [INFO] Version 1.2.5 (Build 492)
+║ 30          Dev Tools ║  [INFO] Version 1.2.6 (Build 493)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.2.5         ║  [OK] Config: /etc/docsygen/config.toml
+║         1.2.6         ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -50,7 +50,7 @@ docsygen >
 
 # Docsygen
 
-**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **28 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
+**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **30 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
 
 It's **language-agnostic** — the skills and docs work the same whether the project is Swift, Android, web, or anything else. Docsygen ships no application code; it's a toolkit of skills plus a `.docs/` convention.
 
@@ -125,6 +125,8 @@ Skills update in place — nothing is copied into your project, so they never go
 | `/seed-update` | Integrate new notes into the existing seed.                               |
 | `/seed-review` | Stress-test the seed (scope, riskiest assumption, gaps) with a verdict.   |
 | `/grill-me`    | Interactive interview that resolves every open decision before you build. |
+| `/grill-with-docs` | A `/grill-me` interview that also captures glossary terms and ADRs as it goes. |
+| `/domain-modeling` | Maintain the ubiquitous language (`CONTEXT.md`) and record architectural decisions (ADRs). |
 
 ### Phase 2 — Shape
 
@@ -180,6 +182,9 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 | `.docs/tech-stack.md`     | Tools and runtime versions.                                  | `/stack`   |
 | `.docs/design-system.md`  | Visual tokens and UI rules.                                  | `/design`  |
 | `.docs/prds/`             | Product requirement docs.                                    | `/to-prd`  |
+| `.docs/adr/`              | Architecture Decision Records (numbered, append-only).       | `/domain-modeling` |
+| `CONTEXT.md`              | Ubiquitous-language glossary (root, or per context).         | `/domain-modeling` |
+| `CONTEXT-MAP.md`          | Map of bounded contexts (multi-context repos only).          | `/domain-modeling` |
 | `CLAUDE.md`               | Project rules agents follow.                                 | `/init`    |
 
 ## Conventions
@@ -193,7 +198,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 
 This repository **is** the source of truth, the Claude Code plugin, and its marketplace:
 
-- [`skills/`](skills/) — the 28 skills, one `SKILL.md` per directory. This is the single source both agents use. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the symlink from the install step. This repo also dogfoods them directly.
+- [`skills/`](skills/) — the 30 skills, one `SKILL.md` per directory. This is the single source both agents use. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the symlink from the install step. This repo also dogfoods them directly.
 - `.claude-plugin/plugin.json` — plugin manifest (name, version). Components in `skills/` are auto-discovered, so there's no path to maintain.
 - `.claude-plugin/marketplace.json` — makes the repo its own marketplace.
 

@@ -152,6 +152,7 @@ The next `/version` run treats entries **below** the latest separator as “sinc
 - Keep tasks small and sequential. Complete one thing fully before moving to the next.
 - Document features as you build them, not after.
 - If a technology or library not in the tech stack would solve a real problem you're facing right now, mention it once. Don't advocate — just flag it and let the user decide.
+- When a domain term gets settled (or conflicts with existing usage), or a decision passes the ADR test (hard to reverse, surprising without context, a real trade-off), **offer** to capture it with `/domain-modeling` — glossary in `CONTEXT.md`, ADRs in `.docs/adr/`. Propose it; don't silently edit the domain docs.
 
 # Custom Commands
 

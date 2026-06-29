@@ -106,7 +106,7 @@ Rules:
 
 ## Mode B — Triage another agent's review
 
-The user has handed you a review that a *different* agent wrote about the changes you made. The point of this is to widen the net and catch mistakes a single agent would miss — so take it seriously. But the other agent reviewed in isolation: it didn't have your full context, the project's direction, or the reasoning behind your choices, so some of its findings will be wrong, out of scope, or false positives. Your job is to separate the signal from the noise and act on the signal.
+The user has handed you a review that a *different* agent wrote about the changes you made. The point of this is to widen the net and catch mistakes a single agent would miss — so take it seriously. But the other agent reviewed in isolation: it didn't have your full context, the project's direction, or the reasoning behind your choices, so some of its findings could be wrong, out of scope, or false positives. Your job is to separate the signal from the noise and act on the signal.
 
 ### B1 — Ground yourself in the actual code
 
