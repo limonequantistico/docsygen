@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 30          Dev Tools ║  [INFO] Version 1.2.6 (Build 493)
+║ 31          Dev Tools ║  [INFO] Version 1.2.7 (Build 494)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.2.6         ║  [OK] Config: /etc/docsygen/config.toml
+║         1.2.7         ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -50,7 +50,7 @@ docsygen >
 
 # Docsygen
 
-**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **30 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
+**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **31 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
 
 It's **language-agnostic** — the skills and docs work the same whether the project is Swift, Android, web, or anything else. Docsygen ships no application code; it's a toolkit of skills plus a `.docs/` convention.
 
@@ -149,6 +149,7 @@ Skills update in place — nothing is copied into your project, so they never go
 | `/test`      | Testing strategy, critical-path coverage, flakiness guardrails.                                 |
 | `/review`    | Read-only review of uncommitted changes before commit — or triage another agent's review of your work. |
 | `/commit`    | Generate a copyable commit message for the latest changes.                                      |
+| `/conductor-commit` | One-shot ship for a Conductor workspace: generate a message, then commit, push, open a PR against `main`, and auto-merge. |
 
 ### Phase 4 — Maintain & harden
 
@@ -198,7 +199,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 
 This repository **is** the source of truth, the Claude Code plugin, and its marketplace:
 
-- [`skills/`](skills/) — the 30 skills, one `SKILL.md` per directory. This is the single source both agents use. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the symlink from the install step. This repo also dogfoods them directly.
+- [`skills/`](skills/) — the 31 skills, one `SKILL.md` per directory. This is the single source both agents use. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the symlink from the install step. This repo also dogfoods them directly.
 - `.claude-plugin/plugin.json` — plugin manifest (name, version). Components in `skills/` are auto-discovered, so there's no path to maintain.
 - `.claude-plugin/marketplace.json` — makes the repo its own marketplace.
 

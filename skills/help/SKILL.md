@@ -48,6 +48,7 @@ Turn a shaped idea into tracked work, then start coding. Use your own templates 
 17. `/test` — Testing strategy, critical-path coverage, flakiness guardrails
 18. `/review` — Read-only review of uncommitted changes before commit, or triage another agent's review of your work
 19. `/commit` — Generate a copyable commit message for the latest changes
+19b. `/conductor-commit` — One-shot ship for a Conductor workspace: generate a message, then stage, commit, push, open a PR against `main`, and auto-merge it (this one *does* run git and `gh`)
 
 ### Phase 4 — Maintain & harden
 
