@@ -17,26 +17,28 @@ Produce the message exactly as the `/commit` skill would:
 
 Format — a `<type>: ...` title line, a blank line, then concrete bullets:
 
-```
+​```
 <type>: changed this, added that, removed this
 
 - specific bullet about one change
 - specific bullet about another change
-```
+​```
 
 Pick the `<type>` (`feat`, `fix`, `docs`, `refactor`, `chore`, `style`, `test`) that matches the dominant change. No footers, Co-Authored-By lines, emoji, or marketing language.
 
 If there is nothing to commit (`git status --porcelain` is empty), stop and tell the user — don't create an empty commit or PR.
 
-### 2. Confirm before shipping
+### 2. Ship without asking
 
-This flow pushes and **auto-merges** into `main` — it's hard to reverse. Show the user the message and the base branch you'll target, and get a quick confirmation before running step 3, unless they already told you to proceed without asking (e.g. included "no confirm" or ran it with that intent).
+This skill is a one-shot ship: running it **is** the confirmation. Do not ask the user to confirm — invoking `/conductor-commit` already means "commit, push, open the PR, and auto-merge into `main`". If the user only wanted the message, they would have run `/commit`. Proceed straight to step 3 with the generated message. (You may briefly state the message and base branch as you go, but do not pause for approval.)
+
+The only reasons to stop before shipping are hard blockers, not confirmation: nothing to commit (`git status --porcelain` empty), or an explicit override in the invocation (e.g. a different base branch or a dictated message) that you must honor.
 
 ### 3. Run the flow
 
 Write the full message to a temp file so multi-line bodies survive shelling out, then run the flow. `TITLE` is the first line; the whole message is the PR body and commit message:
 
-```bash
+​```bash
 MSG_FILE="$(mktemp)"
 cat > "$MSG_FILE" <<'EOF'
 <the generated commit message goes here>
@@ -51,7 +53,7 @@ git push -u origin HEAD && \
 PR_URL=$(gh pr create --base main --head "$BRANCH" --title "$TITLE" --body-file "$MSG_FILE") && \
 gh pr merge "$PR_URL" --merge && \
 rm -f "$MSG_FILE"
-```
+​```
 
 Notes:
 - Default base branch is `main`; honor any override the user gave.
