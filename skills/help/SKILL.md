@@ -47,8 +47,9 @@ Turn a shaped idea into tracked work, then start coding. Use your own templates 
 16. `/resume` — Fresh situational assessment: where you are, what's next, what's off
 17. `/test` — Testing strategy, critical-path coverage, flakiness guardrails
 18. `/review` — Read-only review of uncommitted changes before commit, or triage another agent's review of your work
-19. `/commit` — Generate a copyable commit message for the latest changes
-19b. `/conductor-commit` — One-shot ship for a Conductor workspace: generate a message, then stage, commit, push, open a PR against `main`, and auto-merge it (this one *does* run git and `gh`)
+19. `/commit` — Generate a copyable commit message for the latest changes (message only, runs nothing)
+19b. `/push` — Commit and push the current branch (*does* run git). Stops at the push: no branch, no PR, no merge
+19c. `/merge` — One-shot ship (*does* run git and `gh`): generate a message, then commit and — on a feature branch — push, open a PR against `main`, and auto-merge it; or, if you're already on `main`, push straight to it with no branch and no PR
 
 ### Phase 4 — Maintain & harden
 
@@ -73,6 +74,7 @@ Keep docs honest, dependencies current, and quality visible.
 - Dump ideas and tasks in `.docs/backlog.md` anytime. Pin it in the IDE. Use `/to-issues` to break a plan into items, `/new` to work through them, `/tidy` to archive done items to the changelog, `/version` when cutting a release.
 - Reusable UI can be built via `/new`; there is no separate `/component` command.
 - For small updates to the design system or tech stack, you can ask the agent directly. Use `/sync` after bigger changes to catch drift.
+- Three levels of commitment: `/commit` writes the message and stops, `/push` commits and pushes the branch you're on, `/merge` gets the work into `main`. `/merge` is branch-aware — on a feature branch it ships via PR, on `main` it just commits and pushes — so you don't need to check which branch you're on first.
 - Run `/review` before commits; use `/test`, `/env`, `/performance`, or `/a11y` when those dimensions matter. For a second opinion, have another agent run `/review` and paste its findings back into `/review` on the original agent to triage them.
 - To pin down the domain language while you think, run `/grill-with-docs` instead of `/grill-me` — it captures glossary terms (`CONTEXT.md`) and architectural decisions (ADRs in `.docs/adr/`) as the interview surfaces them. Use `/domain-modeling` on its own to sharpen the glossary or record an ADR outside an interview.
 
