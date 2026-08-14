@@ -1,0 +1,19 @@
+{
+  "name": "docsygen",
+  "interface": {
+    "displayName": "Docsygen"
+  },
+  "plugins": [
+    {
+      "name": "docsygen",
+      "source": {
+        "source": "local",
+        "path": "."
+      },
+      "policy": {
+        "installation": "AVAILABLE"
+      },
+      "category": "Engineering"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "docsygen",
+  "version": "1.4.0",
+  "description": "Documentation-driven development workflow: skills for seeding, scaffolding, building, reviewing, and shipping projects in any language (Swift, Android, web, ...). Works in Claude Code and Codex.",
+  "author": {
+    "name": "Luigi Piferi",
+    "email": "luigipiferi94@gmail.com"
+  },
+  "homepage": "https://github.com/limonequantistico/docsygen",
+  "repository": "https://github.com/limonequantistico/docsygen",
+  "keywords": [
+    "documentation",
+    "documentation-driven development",
+    "workflow",
+    "planning",
+    "backlog",
+    "adr",
+    "domain modeling",
+    "code review",
+    "changelog"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Docsygen",
+    "shortDescription": "Documentation-driven development, idea to release",
+    "longDescription": "A language-agnostic set of 32 skills that carry a project from raw idea to shipped release: seed the idea, define the stack and design system, scaffold the structure, build features with full context, review and clean the result, then commit, version, and ship. Docs stay honest along the way.",
+    "developerName": "Luigi Piferi",
+    "category": "Engineering",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/limonequantistico/docsygen",
+    "defaultPrompt": [
+      "Initialize docsygen in this project",
+      "Turn my notes in .docs/idea.md into a seed document",
+      "Break this plan into backlog items"
+    ]
+  }
+}
