@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 32          Dev Tools ║  [INFO] Version 1.3.0 (Build 497)
+║ 32          Dev Tools ║  [INFO] Version 1.4.0 (Build 497)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.3.0         ║  [OK] Config: /etc/docsygen/config.toml
+║         1.4.0         ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -39,12 +39,11 @@ docsygen >
 ╔════════════════════════════════════════════════════════════════╗
 ║  CODEX  ·  install once per machine                            ║
 ╟────────────────────────────────────────────────────────────────╢
-║  git clone https://github.com/limonequantistico/docsygen \     ║
-║      ~/.docsygen                                               ║
-║  ln -s ~/.docsygen/skills ~/.codex/skills/docsygen             ║
+║  codex plugin marketplace add limonequantistico/docsygen       ║
+║  codex plugin add docsygen@docsygen                            ║
 ║                                                                ║
 ║  per project   /init   (or ask: "initialize docsygen")         ║
-║  update        git -C ~/.docsygen pull                         ║
+║  update        codex plugin marketplace upgrade docsygen       ║
 ╚════════════════════════════════════════════════════════════════╝
 ```
 
@@ -54,7 +53,7 @@ docsygen >
 
 It's **language-agnostic** — the skills and docs work the same whether the project is Swift, Android, web, or anything else. Docsygen ships no application code; it's a toolkit of skills plus a `.docs/` convention.
 
-Skills are a **cross-agent standard**: the same [`skills/`](skills/) directory is the single source of truth for both agents. On Claude Code it's distributed as a plugin; on Codex you point its skills folder at the same files. One repo, no forks.
+Skills are a **cross-agent standard**: the same [`skills/`](skills/) directory is the single source of truth for both agents. The repo is its own marketplace on each — one plugin manifest per agent, both pointing at that one `skills/` folder. One repo, no forks.
 
 ## Install
 
@@ -73,14 +72,23 @@ Or the equivalent slash commands inside an interactive session: `/plugin marketp
 
 ### Codex
 
-Codex has no plugin marketplace — clone the repo once and symlink Codex's skills folder at it, so updates are a single `git pull`:
+The repo doubles as a Codex plugin marketplace. From a terminal:
 
 ```
-git clone https://github.com/limonequantistico/docsygen ~/.docsygen
-ln -s ~/.docsygen/skills ~/.codex/skills/docsygen
+codex plugin marketplace add limonequantistico/docsygen
+codex plugin add docsygen@docsygen
 ```
 
-> Tip: `~/.codex/skills/` is global (all projects). For a single project shared with a team, copy skills into the repo's `.codex/skills/` and commit them instead.
+Requires a Codex CLI with plugin support (`codex plugin --help` should list `add` / `marketplace`).
+
+> Alternative — track `main` directly. If you'd rather follow the branch than pinned versions, clone once and symlink Codex's skills folder at it, so updates are a single `git pull`:
+>
+> ```
+> git clone https://github.com/limonequantistico/docsygen ~/.docsygen
+> ln -s ~/.docsygen/skills ~/.codex/skills/docsygen
+> ```
+>
+> `~/.codex/skills/` is global (all projects). For a single project shared with a team, copy skills into the repo's `.codex/skills/` and commit them instead. Don't run both methods at once — you'd load every skill twice.
 
 ### Per project
 
@@ -99,9 +107,13 @@ Whichever agent you use, the only per-project step is scaffolding the docs struc
 When a new version of Docsygen is published:
 
 ```
-claude plugin update docsygen@docsygen   # Claude Code (or /plugin update … in a session)
-git -C ~/.docsygen pull                   # Codex (the symlink picks up changes automatically)
+claude plugin update docsygen@docsygen        # Claude Code (or /plugin update … in a session)
+
+codex plugin marketplace upgrade docsygen     # Codex — refresh the marketplace snapshot,
+codex plugin add docsygen@docsygen            #         then reinstall at the new version
 ```
+
+> On the symlink alternative, `git -C ~/.docsygen pull` is the whole update — the symlink picks up changes immediately.
 
 Skills update in place — nothing is copied into your project, so they never go stale. Your project's own `.docs/` content is yours and is untouched by updates.
 
@@ -198,16 +210,18 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 
 ## Developing Docsygen itself
 
-This repository **is** the source of truth, the Claude Code plugin, and its marketplace:
+This repository **is** the source of truth, the plugin, and the marketplace — for both agents at once:
 
-- [`skills/`](skills/) — the 32 skills, one `SKILL.md` per directory. This is the single source both agents use. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the symlink from the install step. This repo also dogfoods them directly.
-- `.claude-plugin/plugin.json` — plugin manifest (name, version). Components in `skills/` are auto-discovered, so there's no path to maintain.
-- `.claude-plugin/marketplace.json` — makes the repo its own marketplace.
+- [`skills/`](skills/) — the 32 skills, one `SKILL.md` per directory. This is the single source both agents use, and this repo also dogfoods them directly. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the `skills` path in its manifest.
+- `.claude-plugin/plugin.json` — Claude Code plugin manifest (name, version). Components in `skills/` are auto-discovered, so there's no path to maintain.
+- `.claude-plugin/marketplace.json` — makes the repo its own Claude Code marketplace.
+- `.codex-plugin/plugin.json` — Codex plugin manifest. Mirrors the Claude one, plus an `interface` block (display name, category, sample prompts) and an explicit `"skills": "./skills/"`.
+- `.agents/plugins/marketplace.json` — makes the repo its own Codex marketplace. The single plugin entry uses `"path": "."`, so the repo root *is* the plugin root.
 
 To work on it:
 
 - **Add a skill:** create `skills/<name>/SKILL.md` with YAML frontmatter (`name` + `description`). The description controls when the agent reaches for it — gate deliberate steps to explicit invocation (*"Use only when the user explicitly asks … or runs /name"*) so they don't auto-fire. Add it to the `/help` skill so it's documented.
-- **Validate:** `claude plugin validate .`
-- **Ship an update:** bump `version` in `plugin.json`, then push. ⚠️ On Claude Code, updates only reach installed projects when the version changes — pushing commits alone does nothing, because Claude Code caches by version; users then run `/plugin update docsygen@docsygen`. On Codex, a `git pull` picks up changes immediately (no version bump required).
+- **Validate:** `claude plugin validate .` for Claude Code. For Codex, `codex plugin marketplace add .` from a clone, then `codex plugin add docsygen@docsygen` — it fails loudly on a malformed manifest.
+- **Ship an update:** bump `version` in **both** `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json` (keep them equal), update the two version spots in the README banner, then push. ⚠️ Both agents cache by version — pushing commits alone does nothing. Users then run `/plugin update docsygen@docsygen` (Claude Code) or `codex plugin marketplace upgrade docsygen && codex plugin add docsygen@docsygen` (Codex).
 
 Repo: [github.com/limonequantistico/docsygen](https://github.com/limonequantistico/docsygen)
