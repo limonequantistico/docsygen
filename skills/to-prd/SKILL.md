@@ -7,7 +7,7 @@ This skill takes the current conversation context and codebase understanding and
 
 ## Process
 
-1. Load project context the way `/new` does (silently): `.docs/seed.md` for orientation, `.docs/tech-stack.md` for constraints, `.docs/design-system.md` for UI work, and a few nearby files of the same kind. Use the project's own vocabulary throughout the PRD. When docs and code conflict, trust the code.
+1. Load project context (silently): `.docs/seed.md` for orientation, `.docs/tech-stack.md` for constraints, `.docs/design-system.md` for UI work, and a few nearby files of the same kind. Use the project's own vocabulary throughout the PRD. When docs and code conflict, trust the code.
 
 2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can.
 

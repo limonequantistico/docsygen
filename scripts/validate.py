@@ -144,19 +144,22 @@ def check_skill_count(count: int) -> None:
             fail(f".codex-plugin/plugin.json longDescription says {stated} skills but skills/ contains {count}")
 
     # /help is the command reference, so every skill except /help itself must appear
-    # in its numbered list — that list is the thing most likely to be forgotten when
-    # a skill is added.
+    # in one of its lists — that listing is the thing most likely to be forgotten when
+    # a skill is added. The numbered phases are the workflow's spine; the "Anytime"
+    # commands are bulleted precisely because they have no position in that order, so
+    # accept both forms (an entry must *start* with the command, which is what keeps
+    # prose tips mentioning `/foo` from counting as a listing).
     help_skill = ROOT / "skills" / "help" / "SKILL.md"
     if help_skill.is_file():
         text = help_skill.read_text(encoding="utf-8")
-        listed = set(re.findall(r"^\s*\d+\.\s+`/([a-z0-9-]+)`", text, re.M))
+        listed = set(re.findall(r"^\s*(?:\d+\.|[-*])\s+`/([a-z0-9-]+)`", text, re.M))
         expected = {d.name for d in (ROOT / "skills").iterdir() if d.is_dir()} - {"help"}
         for missing in sorted(expected - listed):
             fail(f"skills/help/SKILL.md does not list /{missing} in its numbered command list")
         for extra in sorted(listed - expected):
             fail(f"skills/help/SKILL.md lists /{extra}, which has no skills/{extra}/ directory")
 
-        # The list opens with `0. /init` (Phase 0) and one un-numbered prose step, so
+        # The numbered spine opens with `0. /init` (Phase 0) and one un-numbered prose step, so
         # don't demand it start at 1 — just that it never repeats or goes backwards,
         # which is what catches a skill bolted on as "19b." instead of renumbered.
         numbers = [int(n) for n in re.findall(r"^\s*(\d+)\.\s+`/", text, re.M)]
