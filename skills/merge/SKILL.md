@@ -29,6 +29,14 @@ echo "base=$BASE current=$BRANCH"
 - If the user named a base branch in the invocation, that wins over the detected `BASE`.
 - If the detected base looks wrong for the repo (e.g. the repo actually uses `master`), trust the git output over the default.
 
+**Scan the file list before staging.** This skill stages everything, so glance at what "everything" is. Speed is the point — say nothing and keep going unless something genuinely doesn't belong:
+
+- **OS / editor junk** — `.DS_Store`, `Thumbs.db`, `.idea/`, `*.swp`. Don't commit these. Add them to `.gitignore` instead, mention it in one line, and continue.
+- **Possible secrets** — `.env`, `.env.local`, `*.pem`, `*.key`, `credentials*`, `*.p12`. **Stop and ask.** Never commit one on your own initiative — and here it would land in `main`.
+- **Clearly unrelated work** — untracked scratch files, or edits in a part of the repo the current work never touched. Name them in one line and ask whether to include them, since the commit message and PR won't describe them.
+
+Anything else, just stage it. Don't narrate a clean file list, and don't turn this into an approval step — `/merge` is meant to be one shot.
+
 ### 2. Generate the commit message
 
 Produce the message exactly as the `/commit` skill would:
@@ -50,11 +58,15 @@ Pick the `<type>` (`feat`, `fix`, `docs`, `refactor`, `chore`, `style`, `test`) 
 
 ### 3. Ship without asking
 
-This skill is a one-shot ship: running it **is** the confirmation. Do not ask the user to confirm — invoking `/merge` already means "commit and get this into `main`". If the user only wanted the message, they would have run `/commit`. Proceed straight to step 4 with the generated message. (You may briefly state the message, the base branch, and which flow you're taking as you go, but do not pause for approval.)
+This skill is a one-shot ship: running it **is** the confirmation. Do not ask the user to confirm — invoking `/merge` already means "commit and get this into `main`". If the user only wanted the message, they would have run `/commit`. Proceed straight to the remaining steps with the generated message. (You may briefly state the message, the base branch, and which flow you're taking as you go, but do not pause for approval.)
 
 The only reasons to stop before shipping are hard blockers, not confirmation: nothing to commit, detached HEAD, or an explicit override in the invocation that you must honor.
 
-### 4. Run the flow
+### 4. Obey the project's own pre-ship rules
+
+If `CLAUDE.md` (or equivalent workspace rules) defines steps that must happen before shipping — a validation script, a version bump, a changelog entry — do them now, before anything is committed. If one fails, stop and report; don't ship a knowingly broken commit. If the project defines no such steps, skip straight to the next section.
+
+### 5. Run the flow
 
 Write the full message to a temp file so multi-line bodies survive shelling out. `TITLE` is the first line; the whole message is the PR body and commit message:
 
@@ -95,7 +107,7 @@ Notes:
 - In Case A, if a PR already exists for the branch, `gh pr create` will fail — fall back to pushing and running `gh pr merge "$BRANCH" --merge` on the existing PR.
 - If any other step fails (merge blocked by checks or reviews, etc.), stop and report the exact error. Don't retry blindly or force anything.
 
-### 5. Report
+### 6. Report
 
 Tell the user the outcome in one or two lines:
 

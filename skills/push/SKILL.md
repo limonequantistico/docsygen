@@ -20,6 +20,14 @@ echo "current=$BRANCH"
 - If `git status --porcelain` is empty, stop and tell the user — don't create an empty commit.
 - If `BRANCH` is empty you're in detached HEAD. Stop and report; don't guess a branch.
 
+**Scan the file list before staging.** This skill stages everything, so glance at what "everything" is. Speed is the point — say nothing and keep going unless something genuinely doesn't belong:
+
+- **OS / editor junk** — `.DS_Store`, `Thumbs.db`, `.idea/`, `*.swp`. Don't commit these. Add them to `.gitignore` instead, mention it in one line, and continue.
+- **Possible secrets** — `.env`, `.env.local`, `*.pem`, `*.key`, `credentials*`, `*.p12`. **Stop and ask.** Never commit one on your own initiative.
+- **Clearly unrelated work** — untracked scratch files, or edits in a part of the repo the current work never touched. Name them in one line and ask whether to include them, since the commit message won't describe them.
+
+Anything else, just stage it. Don't narrate a clean file list, and don't turn this into an approval step — `/push` is meant to be one shot.
+
 ### 2. Generate the commit message
 
 Produce the message exactly as the `/commit` skill would:
@@ -41,9 +49,13 @@ Pick the `<type>` (`feat`, `fix`, `docs`, `refactor`, `chore`, `style`, `test`) 
 
 ### 3. Push without asking
 
-Running this skill **is** the confirmation. Do not ask the user to approve the message — invoking `/push` already means "commit this and push it". If they only wanted the message, they would have run `/commit`. Proceed straight to step 4. (You may state the message as you go, but don't pause for approval.)
+Running this skill **is** the confirmation. Do not ask the user to approve the message — invoking `/push` already means "commit this and push it". If they only wanted the message, they would have run `/commit`. Proceed straight to the remaining steps. (You may state the message as you go, but don't pause for approval.)
 
-### 4. Run it
+### 4. Obey the project's own pre-ship rules
+
+If `CLAUDE.md` (or equivalent workspace rules) defines steps that must happen before shipping — a validation script, a version bump, a changelog entry — do them now, before anything is committed. If one fails, stop and report; don't ship a knowingly broken commit. If the project defines no such steps, skip straight to the next section.
+
+### 5. Run it
 
 Write the full message to a temp file so multi-line bodies survive shelling out:
 
@@ -64,6 +76,6 @@ Notes:
 - If the push is rejected because the branch is protected, stop and tell the user the branch requires a PR, so `/merge` from a feature branch is the way in. Don't create a branch behind their back.
 - If any other step fails, stop and report the exact error. Don't retry blindly.
 
-### 5. Report
+### 6. Report
 
 One or two lines: the commit title and the branch it was pushed to. Say plainly that no PR was opened — if they want it merged into `main`, `/merge` is next. Or report exactly where it stopped and why.
