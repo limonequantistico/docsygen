@@ -16,6 +16,7 @@ When a change to the skills is ready to ship, keep these in sync so the update a
 - **Bump the version — in all four spots.** Both agents cache by version, so updates only reach installed projects when it changes. Bump `version` in `.claude-plugin/plugin.json` **and** `.codex-plugin/plugin.json` (they must stay equal), then update both version spots in the `README.md` ASCII banner to match.
 - **Keep the two plugin manifests in sync.** `.claude-plugin/plugin.json` (Claude Code) and `.codex-plugin/plugin.json` (Codex) describe the same plugin; `name`, `version`, and `description` should not drift. The Codex one additionally carries an `interface` block and an explicit `"skills": "./skills/"`.
 - **Update `/help` and the README** when a skill is added, removed, or its behavior changes meaningfully. Sync the command list and workflow tips in `skills/help/SKILL.md`, and the workflow table + conventions in `README.md`. If the skill count changes, update it everywhere it's stated.
+- **Run `python3 scripts/validate.py` before shipping.** It checks every `SKILL.md` has frontmatter with a `name` matching its directory and a `description`, that all four manifests parse, that the two `plugin.json` versions and both README banner spots agree, and that `/help` lists every skill. Fix what it reports before committing — the same script runs in CI, but by then the broken version may already be on `main`.
 - A `/commit` message should mention the version bump.
 
 # Custom Commands

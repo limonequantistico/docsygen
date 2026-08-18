@@ -1,2 +1,9 @@
+# macOS
+.DS_Store
+
+# Conductor workspace scratch
+.context/
+
+# Personal, not part of the template
 .docs/docsygen-personal-logs.md
 .docs/docsygen-backlog.md

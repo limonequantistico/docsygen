@@ -48,23 +48,23 @@ Turn a shaped idea into tracked work, then start coding. Use your own templates 
 17. `/test` — Testing strategy, critical-path coverage, flakiness guardrails
 18. `/review` — Read-only review of uncommitted changes before commit, or triage another agent's review of your work
 19. `/commit` — Generate a copyable commit message for the latest changes (message only, runs nothing)
-19b. `/push` — Commit and push the current branch (*does* run git). Stops at the push: no branch, no PR, no merge
-19c. `/merge` — One-shot ship (*does* run git and `gh`): generate a message, then commit and — on a feature branch — push, open a PR against `main`, and auto-merge it; or, if you're already on `main`, push straight to it with no branch and no PR
+20. `/push` — Commit and push the current branch (*does* run git). Stops at the push: no branch, no PR, no merge
+21. `/merge` — One-shot ship (*does* run git and `gh`): generate a message, then commit and — on a feature branch — push, open a PR against `main`, and auto-merge it; or, if you're already on `main`, push straight to it with no branch and no PR
 
 ### Phase 4 — Maintain & harden
 
 Keep docs honest, dependencies current, and quality visible.
 
-20. `/tidy` — Clean up the backlog, move completed items to the changelog
-21. `/sync` — Reconcile docs with reality (seed, stack, design, components)
-22. `/deps` — Bump dependencies to latest stable versions; align `tech-stack.md`
-23. `/env` — Environment variables, secrets hygiene, production config checklist
-24. `/performance` — Performance and observability (logging, metrics, bottlenecks)
-25. `/a11y` — WCAG-focused accessibility pass on the current UI
-26. `/ux-review` — Broader UI/UX quality check (hierarchy, flow, consistency)
-27. `/clean` — Audit modularity, structure, and separation of concerns; refactor on approval
-28. `/version` — Cut a new app version: reviews changes, writes to `versions.json`
-29. `/onboard` — Refresh README / onboarding so another dev can run and contribute
+22. `/tidy` — Clean up the backlog, move completed items to the changelog
+23. `/sync` — Reconcile docs with reality (seed, stack, design, components)
+24. `/deps` — Bump dependencies to latest stable versions; align `tech-stack.md`
+25. `/env` — Environment variables, secrets hygiene, production config checklist
+26. `/performance` — Performance and observability (logging, metrics, bottlenecks)
+27. `/a11y` — WCAG-focused accessibility pass on the current UI
+28. `/ux-review` — Broader UI/UX quality check (hierarchy, flow, consistency)
+29. `/clean` — Audit modularity, structure, and separation of concerns; refactor on approval
+30. `/version` — Cut a new app version: reviews changes, writes to `versions.json`
+31. `/onboard` — Refresh README / onboarding so another dev can run and contribute
 
 ---
 
@@ -77,5 +77,24 @@ Keep docs honest, dependencies current, and quality visible.
 - Three levels of commitment: `/commit` writes the message and stops, `/push` commits and pushes the branch you're on, `/merge` gets the work into `main`. `/merge` is branch-aware — on a feature branch it ships via PR, on `main` it just commits and pushes — so you don't need to check which branch you're on first.
 - Run `/review` before commits; use `/test`, `/env`, `/performance`, or `/a11y` when those dimensions matter. For a second opinion, have another agent run `/review` and paste its findings back into `/review` on the original agent to triage them.
 - To pin down the domain language while you think, run `/grill-with-docs` instead of `/grill-me` — it captures glossary terms (`CONTEXT.md`) and architectural decisions (ADRs in `.docs/adr/`) as the interview surfaces them. Use `/domain-modeling` on its own to sharpen the glossary or record an ADR outside an interview.
+
+---
+
+**Version check.** After printing the guide, check whether the user is on the latest docsygen. Both agents cache plugins by version and third-party marketplaces don't auto-update by default, so an out-of-date install is the normal state, not the exception:
+
+```bash
+INSTALLED="$(cat "${CLAUDE_PLUGIN_ROOT:-.}/.claude-plugin/plugin.json" 2>/dev/null | grep -o '"version"[^,]*' | head -1 | cut -d'"' -f4)"
+LATEST="$(curl -fsSL --max-time 5 https://raw.githubusercontent.com/limonequantistico/docsygen/main/.claude-plugin/plugin.json 2>/dev/null | grep -o '"version"[^,]*' | head -1 | cut -d'"' -f4)"
+echo "installed=${INSTALLED:-unknown} latest=${LATEST:-unknown}"
+```
+
+- **Same version, or either value is unknown** — say nothing. A failed network call is not worth a line of output.
+- **Installed is behind** — add one line at the bottom with the version numbers and the right command for the agent in use:
+  - Claude Code: `claude plugin update docsygen@docsygen`
+  - Codex: `codex plugin marketplace upgrade docsygen && codex plugin add docsygen@docsygen`
+
+Don't run the update — just show the command. Don't offer to check again.
+
+---
 
 Ask the user which step they'd like to start with.

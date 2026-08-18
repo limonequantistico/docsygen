@@ -1,11 +1,12 @@
 {
   "name": "docsygen",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Documentation-driven development workflow: skills for seeding, scaffolding, building, reviewing, and shipping projects in any language (Swift, Android, web, ...). Works in Claude Code and Codex.",
   "author": {
     "name": "Luigi Piferi",
-    "email": "luigipiferi94@gmail.com"
+    "email": "52014672+limonequantistico@users.noreply.github.com"
   },
+  "license": "MIT",
   "homepage": "https://github.com/limonequantistico/docsygen",
   "repository": "https://github.com/limonequantistico/docsygen",
   "keywords": [

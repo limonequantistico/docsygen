@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 32          Dev Tools ║  [INFO] Version 1.4.0 (Build 497)
+║ 32          Dev Tools ║  [INFO] Version 1.5.0 (Build 512)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.4.0         ║  [OK] Config: /etc/docsygen/config.toml
+║         1.5.0         ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -221,7 +221,11 @@ This repository **is** the source of truth, the plugin, and the marketplace — 
 To work on it:
 
 - **Add a skill:** create `skills/<name>/SKILL.md` with YAML frontmatter (`name` + `description`). The description controls when the agent reaches for it — gate deliberate steps to explicit invocation (*"Use only when the user explicitly asks … or runs /name"*) so they don't auto-fire. Add it to the `/help` skill so it's documented.
-- **Validate:** `claude plugin validate .` for Claude Code. For Codex, `codex plugin marketplace add .` from a clone, then `codex plugin add docsygen@docsygen` — it fails loudly on a malformed manifest.
-- **Ship an update:** bump `version` in **both** `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json` (keep them equal), update the two version spots in the README banner, then push. ⚠️ Both agents cache by version — pushing commits alone does nothing. Users then run `/plugin update docsygen@docsygen` (Claude Code) or `codex plugin marketplace upgrade docsygen && codex plugin add docsygen@docsygen` (Codex).
+- **Validate:** run `python3 scripts/validate.py` — it checks every `SKILL.md` has frontmatter with a `name` matching its directory and a `description`, that all four manifests parse, that the two `plugin.json` versions and the README banner agree, and that `/help` lists every skill. The same script runs in CI on every push and PR ([`.github/workflows/validate.yml`](.github/workflows/validate.yml)). Additionally: `claude plugin validate .` for Claude Code, and for Codex `codex plugin marketplace add .` from a clone, then `codex plugin add docsygen@docsygen` — it fails loudly on a malformed manifest.
+- **Ship an update:** bump `version` in **both** `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json` (keep them equal), update the two version spots in the README banner, then push. `scripts/validate.py` fails if you miss one of the four. ⚠️ Both agents cache by version — pushing commits alone does nothing. Users then run `/plugin update docsygen@docsygen` (Claude Code) or `codex plugin marketplace upgrade docsygen && codex plugin add docsygen@docsygen` (Codex).
 
 Repo: [github.com/limonequantistico/docsygen](https://github.com/limonequantistico/docsygen)
+
+## License
+
+[MIT](LICENSE) — use it, fork it, adapt it to your own workflow.

@@ -140,7 +140,29 @@ The next `/version` run treats entries **below** the latest separator as “sinc
 - This file is **tracked in git** so the team shares the same history.
 ~~~
 
-**7. `CLAUDE.md`** (at the project root, not under `.docs/`) — the project rules docsygen commands assume. Create it only if missing; never overwrite an existing `CLAUDE.md`, since the project may already have its own rules. If one exists, leave it and tell the user to make sure it references the `.docs/` conventions below. Content to write:
+**7. `.gitignore`** (at the project root) — if one **exists**, don't overwrite it: check whether it covers OS and editor junk, and append only the missing lines under a comment. If it's **missing**, create it with at least this baseline, then add stack-specific entries (`node_modules/`, `.venv/`, `build/`, `DerivedData/`, …) based on `.docs/tech-stack.md` or what's actually in the repo:
+
+~~~gitignore
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Env & secrets — never commit these
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+~~~
+
+Committed OS junk like `.DS_Store` is the most common way a clean repo starts looking sloppy, and a missing `.env` line is how secrets leak. Getting this right at `/init` is cheaper than cleaning it up later.
+
+**8. `CLAUDE.md`** (at the project root, not under `.docs/`) — the project rules docsygen commands assume. Create it only if missing; never overwrite an existing `CLAUDE.md`, since the project may already have its own rules. If one exists, leave it and tell the user to make sure it references the `.docs/` conventions below. Content to write:
 
 ~~~markdown
 # Project Rules
