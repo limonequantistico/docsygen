@@ -59,7 +59,7 @@ Wrap command names in backticks.
 Short command tags should also use backticks.
 
 ```markdown
-  - `/sync` — ≤10 words
+  - `/drift` — ≤10 words
 ```
 
 ### Untimed notes

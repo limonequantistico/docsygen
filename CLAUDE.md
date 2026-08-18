@@ -7,7 +7,28 @@
 - Keep tasks small and sequential. Complete one thing fully before moving to the next.
 - Document features as you build them, not after.
 - If a technology or library not in the tech stack would solve a real problem you're facing right now, mention it once. Don't advocate — just flag it and let the user decide.
-- When a domain term gets settled (or conflicts with existing usage), or a decision passes the ADR test (hard to reverse, surprising without context, a real trade-off), **offer** to capture it with `/domain-modeling` — glossary in `CONTEXT.md`, ADRs in `.docs/adr/`. Propose it; don't silently edit the domain docs.
+- When a domain term gets settled (or conflicts with existing usage), or a decision passes the Architecture Decision Record (ADR) test (hard to reverse, surprising without context, a real trade-off), **offer** to capture it with `/domain-modeling` — glossary in `CONTEXT.md`, ADRs in `.docs/adr/`. Propose it; don't silently edit the domain docs.
+- Log completed work to `.docs/changelog.md` as you finish it, following `.docs/changelog-spec.md` — not only when a command runs. Work done by plain conversation is the work most likely to go unrecorded, and an empty changelog makes `/version` and `/tidy` useless.
+- If a doc you're reading contradicts the code you're looking at, say so in one line and offer `/drift` — don't quietly work around it. Docs drift fastest right after a stretch of building, which is exactly when nobody thinks to check them.
+- After pushing or merging, check whether the work since the last version in `.docs/versions.json` adds up to something a user would notice. If it does, propose cutting a version with `/version` — don't wait to be asked. If it doesn't, stay quiet: scaffolding, docs, refactors, and work-in-progress are not releases, and an inflated version number is worse than a missing one.
+
+# Writing code
+
+- Read a few nearby files of the same kind (components, routes, hooks, handlers) before writing new ones. New code should look like the same team wrote it — same naming, folder layout, import style, error handling.
+- Extend before you duplicate. Search for an existing pattern, component, or utility that already does something close, and propose adapting it when possible. Only build a parallel implementation when there's a clear reason — and say what it is.
+- If something is genuinely unclear, ask one batch of focused questions before starting. Don't drip-feed questions across turns, and don't ask about details you can reasonably default — decide, and mention the choice.
+- Don't over-build. Only the variants, options, and surfaces actually needed.
+- If the project has a storybook, showcase, or demo page, add new UI there. If it has none, mention it — don't create one without asking.
+
+# Adding capability
+
+Before adding a skill, check that it needs to be one. **The cost of a skill isn't writing it — it's remembering it exists**, and a command that only makes sense at one narrow moment is a command that gets forgotten at that moment. In order of preference:
+
+1. **A rule in the `CLAUDE.md` template** (`skills/init/SKILL.md`) — always in context, costs no recall, fires on every task. Right for anything the agent should just *do*, or notice and offer.
+2. **A step inside a skill that already runs at the right time** — right when the behaviour has a natural home but no trigger of its own. The inspiration shortlist lives in `/design-system` for this reason, not in a skill of its own.
+3. **A new skill** — only when it genuinely has to be invoked deliberately, and when you can name the moment a user would think to type it. If that moment is "whenever I'm about to write code", it's not a command.
+
+The same test applies in reverse: a skill nobody can find a trigger for should be deleted and its good parts moved up this list. That's how `/new` and `/seed-update` went.
 
 # Shipping changes
 

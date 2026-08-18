@@ -28,11 +28,15 @@ Format:
 - ...
 ```
 
-- **Title line**: a `<type>: ...` summary (e.g. `feat`, `fix`, `docs`, `refactor`, `chore`, `style`, `test`), followed by a short comma-separated list of the main changes using plain verbs (`added`, `changed`, `removed`, `edited`, `fixed`). Keep it under ~100 characters when reasonable.
+- **Title line**: follows [Conventional Commits](https://www.conventionalcommits.org/) — `<type>: <summary>`, where type is one of `feat`, `fix`, `docs`, `refactor`, `chore`, `style`, `test`, `perf`, `build`, `ci`. Then a short comma-separated list of the main changes using plain verbs (`added`, `changed`, `removed`, `edited`, `fixed`). Keep it under ~100 characters when reasonable.
+- **Breaking changes**: mark them, either with `!` after the type (`feat!: ...`) or a `BREAKING CHANGE:` line in the body. This is the one detail that must not be skipped — it's what decides a major version.
 - **Body**: a blank line, then bullet points going a bit deeper — one bullet per meaningful change. Keep each bullet short and concrete. Don't pad with obvious filler.
 - Pick the `<type>` that best matches the dominant change. If truly mixed, `chore` or `refactor` are fine.
+
 - Describe the "what" plainly. Only include a "why" if it's non-obvious and useful.
 - Do **not** add footers, Co-Authored-By lines, emoji, or marketing language.
+
+The type isn't decoration — `/version` reads these to work out the next [Semantic Version](https://semver.org/): `feat` implies a minor bump, `fix` a patch, a breaking marker a major (minor while pre-1.0), and `docs` / `chore` / `refactor` / `test` / `ci` imply no release at all. Calling a feature `chore` hides it from the release; calling a refactor `feat` inflates the version. Pick the type that's true.
 
 ### 3. Output
 

@@ -31,9 +31,9 @@ Analyze the seed document critically. Go through each point:
 - Be direct and honest, not encouraging. The point is to find weaknesses before they become expensive.
 - Each point should be 2-3 lines max. This is a quick stress-test, not a report.
 - End with a clear recommendation:
-  - **Proceed** → seed is solid enough, suggest `/prototype` as the next step
-  - **Revise** → specific sections need work first (list them), suggest `/seed-update`
-  - **Rethink** → fundamentals are shaky, suggest going back to `/seed` with better input
+  - **Proceed** → seed is solid enough, suggest `/stack` as the next step (then `/prototype` to shape the experience)
+  - **Revise** → specific sections need work first (list them), suggest adding the missing detail to `.docs/idea.md` and re-running `/seed` to integrate it
+  - **Rethink** → fundamentals are shaky, suggest going back to the raw notes and rebuilding the seed from better input
 
 Always ask the user if they agree with the recommendation before suggesting the next command. Never chain commands automatically.
 

@@ -1,9 +1,11 @@
 ---
 name: init
-description: Scaffold the baseline .docs/ structure and CLAUDE.md that other docsygen skills depend on (idempotent). Use only when the user explicitly asks to initialize docsygen or runs /init.
+description: Scaffold the baseline .docs/ structure and CLAUDE.md that other docsygen skills depend on, and bring a project set up under an older docsygen up to current conventions (idempotent). Use only when the user explicitly asks to initialize or update docsygen in this project, or runs /init.
 ---
 
 You are initializing the **docsygen docs structure** in the current project. Create the baseline `.docs/` skeleton that the other docsygen commands depend on — most importantly `.docs/changelog-spec.md`, which ~15 commands reference when writing the changelog.
+
+**This command has two jobs.** In a new project it scaffolds. In a project set up under an **older version of docsygen**, it also brings the conventions up to date — skills get added, renamed, and reworked over time, and a project scaffolded a few releases ago silently misses all of it. Re-running `/init` after updating the plugin is the intended way to catch up.
 
 **Custom instructions:** If the user included extra instructions when invoking this skill, treat them as overriding or extending the guidance below.
 
@@ -28,8 +30,15 @@ This file is the input for `/seed`.
 ```markdown
 # Backlog
 
-Dump ideas and tasks here anytime. Pin this file in your IDE.
-Use `/to-issues` to slice a plan into items, `/new` to work through them, `/tidy` to archive done items to the changelog.
+Your scratchpad. Dump ideas and tasks here anytime, one line each — pin this file in your IDE.
+No network, no auth, no context switch, and the agent reads it on every task.
+
+Work that's *definitely* happening, needs discussion, or someone else might pick up
+belongs in GitHub Issues instead. An item graduates from here to there; it never lives
+in both, so there's nothing to keep in sync.
+
+`/to-issues` slices a plan into items and writes them to whichever you pick.
+`/tidy` archives done items from this file to the changelog.
 ```
 
 **3. `.docs/changelog.md`**
@@ -112,7 +121,7 @@ Wrap command names in backticks.
 Short command tags should also use backticks.
 
 ```markdown
-  - `/sync` — ≤10 words
+  - `/drift` — ≤10 words
 ```
 
 ### Untimed notes
@@ -174,7 +183,18 @@ Committed OS junk like `.DS_Store` is the most common way a clean repo starts lo
 - Keep tasks small and sequential. Complete one thing fully before moving to the next.
 - Document features as you build them, not after.
 - If a technology or library not in the tech stack would solve a real problem you're facing right now, mention it once. Don't advocate — just flag it and let the user decide.
-- When a domain term gets settled (or conflicts with existing usage), or a decision passes the ADR test (hard to reverse, surprising without context, a real trade-off), **offer** to capture it with `/domain-modeling` — glossary in `CONTEXT.md`, ADRs in `.docs/adr/`. Propose it; don't silently edit the domain docs.
+- When a domain term gets settled (or conflicts with existing usage), or a decision passes the Architecture Decision Record (ADR) test (hard to reverse, surprising without context, a real trade-off), **offer** to capture it with `/domain-modeling` — glossary in `CONTEXT.md`, ADRs in `.docs/adr/`. Propose it; don't silently edit the domain docs.
+- Log completed work to `.docs/changelog.md` as you finish it, following `.docs/changelog-spec.md` — not only when a command runs. Work done by plain conversation is the work most likely to go unrecorded, and an empty changelog makes `/version` and `/tidy` useless.
+- If a doc you're reading contradicts the code you're looking at, say so in one line and offer `/drift` — don't quietly work around it. Docs drift fastest right after a stretch of building, which is exactly when nobody thinks to check them.
+- After pushing or merging, check whether the work since the last version in `.docs/versions.json` adds up to something a user would notice. If it does, propose cutting a version with `/version` — don't wait to be asked. If it doesn't, stay quiet: scaffolding, docs, refactors, and work-in-progress are not releases, and an inflated version number is worse than a missing one.
+
+# Writing code
+
+- Read a few nearby files of the same kind (components, routes, hooks, handlers) before writing new ones. New code should look like the same team wrote it — same naming, folder layout, import style, error handling.
+- Extend before you duplicate. Search for an existing pattern, component, or utility that already does something close, and propose adapting it when possible. Only build a parallel implementation when there's a clear reason — and say what it is.
+- If something is genuinely unclear, ask one batch of focused questions before starting. Don't drip-feed questions across turns, and don't ask about details you can reasonably default — decide, and mention the choice.
+- Don't over-build. Only the variants, options, and surfaces actually needed.
+- If the project has a storybook, showcase, or demo page, add new UI there. If it has none, mention it — don't create one without asking.
 
 # Custom Commands
 
@@ -183,9 +203,23 @@ Committed OS junk like `.DS_Store` is the most common way a clean repo starts lo
 - Chained flows are fine, but stay alert to runaway loops — both build/test retry loops and token-burning exploration loops. If the same failure repeats 4/5 times, stop and ask instead of trying again. If a task is ballooning in scope or token usage past what it should reasonably cost, pause and check in before continuing.
 ~~~
 
+### Bringing an existing project up to date
+
+If `.docs/` already exists, this is an update pass as well as a scaffold. Beyond creating missing files, check for convention drift and **report it — don't fix it silently**:
+
+- **`CLAUDE.md` rules.** The template below is the current set. An existing `CLAUDE.md` is never overwritten, but compare it against the template and list any rules it's missing, with a one-line explanation of what each buys. Offer to append the missing ones; let the user choose. Their own custom rules stay untouched.
+- **`.docs/changelog-spec.md`.** Canonical, not user data — if it differs from the version below, say it's outdated and offer to update it.
+- **Stale command names.** Grep `.docs/` and `CLAUDE.md` for references to commands that no longer exist and name the replacements. As of now: `/new` (deleted — building needs no command), `/seed-update` (folded into `/seed`), `/design` (now `/design-system`), `/sync` (now `/drift`).
+- **Newer artifacts the project has no idea about.** Don't create them — just mention which ones apply and which command produces them: `.docs/preview.md` (`/ux-review`), `.docs/logging.md` (`/logs`), `.docs/adr/` and `CONTEXT.md` (`/domain-modeling`), `.docs/versions.json` (`/version`).
+
+Keep this to a short list. If nothing has drifted, say so in one line and move on.
+
 ### After scaffolding
 
 - `CLAUDE.md` is created above. If the project already had one, point out it was left untouched and that it should reference the `.docs/` conventions (`tech-stack.md`, `design-system.md`, `seed.md`).
-- Point the user at `.docs/idea.md` as the starting point, then `/seed`. Suggest `/help` for the full workflow.
+- **Offer the two ways to start**, choosing which to lead with based on what's in `.docs/idea.md`:
+  - **Empty or just-created** — say there are two routes and let the user pick: write raw notes into `.docs/idea.md` (best when they roughly know what they want), or run `/grill-with-docs` and let the interview find the idea while settling the vocabulary (best when it's still fuzzy — waiting until you can write a coherent brief is the wrong order). Either way, `/seed` comes next and can work from the notes *or* from the interview still in context.
+  - **Already has content** — point straight at `/seed`, and mention `/grill-with-docs` only as the option if the notes feel unresolved.
+- Suggest `/help` for the full workflow.
 
 **Logging:** On success, append to `.docs/changelog.md` per `.docs/changelog-spec.md`: `- YYYY-MM-DD HH:mm ran /init — [brief description of what was created or skipped]`.

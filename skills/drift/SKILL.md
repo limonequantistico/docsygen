@@ -1,9 +1,11 @@
 ---
-name: sync
-description: Reconcile docs with the actual codebase to catch drift across direction, stack, design, and components. Use only when the user explicitly asks to sync docs or runs /sync.
+name: drift
+description: Find where the docs and the codebase have diverged — direction, stack, design, components — and propose a fix for each, in whichever direction is right. Use only when the user explicitly asks to check doc drift or reconcile docs with code, or runs /drift.
 ---
 
-You are auditing the project's documentation against the actual state of the codebase. The goal is to catch doc drift — places where docs and reality have diverged.
+You are auditing the project's documentation against the actual state of the codebase. The goal is to find **drift** — places where the docs and reality have diverged — and propose a fix for each.
+
+Drift is not always the doc's fault. For direction, stack, and undocumented work the code is the truth and the doc gets corrected; for design tokens and duplicated components the doc is the truth and the *code* is what's wrong. Decide per item, not per run.
 
 **Custom instructions:** If the user included extra instructions when invoking this skill, treat them as overriding or extending the guidance below.
 
@@ -18,7 +20,9 @@ You are auditing the project's documentation against the actual state of the cod
 
 **Compare and report:**
 
-1. **Direction drift** — Does the code still match what the seed document describes? Features built that aren't in the seed? Seed features abandoned without updating the doc?
+1. **Direction drift** — Does the code still match what the seed document describes? Features built that aren't in the seed? Seed features described but not built?
+
+   **Distinguish drift from intent.** A feature in the seed with no code behind it may be abandoned — or it may simply not be built yet, which is what a seed is *for*. Never silently delete it. Ask which it is, or flag it as **[PLANNED?]** and leave it alone until the user says. Erasing a plan because the code hasn't caught up is the one way this command can do real damage.
 
 2. **Stack drift** — Dependencies or tools in the code that aren't in the tech stack doc? Anything replaced or added without updating the doc?
 
@@ -40,9 +44,9 @@ You are auditing the project's documentation against the actual state of the cod
 
 **RULES:**
 
-- For direction, stack, and undocumented changes: the code is always right. Docs adapt to code.
+- For stack and undocumented changes: the code is always right, docs adapt to it. For direction, the code is right about what *exists* — but not about what's intended, so confirm before removing anything from the seed.
 - For design and component drift: suggest code fixes too, since scattered styles and duplicate components are bugs, not intentional divergence.
 - Only flag meaningful drift, not nitpicks
 - If everything is in sync, say so and move on — don't invent problems
 
-**Logging:** Append to `.docs/changelog.md` per `.docs/changelog-spec.md`: `- YYYY-MM-DD HH:mm /sync — [≤10 words]`.
+**Logging:** Append to `.docs/changelog.md` per `.docs/changelog-spec.md`: `- YYYY-MM-DD HH:mm /drift — [≤10 words]`.

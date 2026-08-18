@@ -1,6 +1,6 @@
 ---
 name: domain-modeling
-description: Build and sharpen a project's domain model — ubiquitous language (CONTEXT.md) and architectural decisions (ADRs). Use only when the user explicitly asks to pin down domain terminology or record an architectural decision, runs /domain-modeling, or when another skill (e.g. /grill-with-docs) composes it.
+description: Build and sharpen a project's domain model — ubiquitous language (CONTEXT.md) and Architecture Decision Records (ADRs). Use only when the user explicitly asks to pin down domain terminology or record an architectural decision, runs /domain-modeling, or when another skill (e.g. /grill-with-docs) composes it.
 ---
 
 # Domain Modeling

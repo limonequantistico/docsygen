@@ -1,11 +1,11 @@
 ---
 name: to-issues
-description: Break a plan, spec, or PRD into independently-grabbable backlog items using tracer-bullet vertical slices, then append them to .docs/backlog.md. Use when user wants to convert a plan into issues, create implementation tickets, or break down work into tasks.
+description: Break a plan, spec, or PRD into independently-grabbable items using tracer-bullet vertical slices, then write them to .docs/backlog.md or to GitHub Issues. Use when user wants to convert a plan into issues, create implementation tickets, or break down work into tasks.
 ---
 
 # To Issues
 
-Break a plan into independently-grabbable backlog items using vertical slices (tracer bullets), then write them into `.docs/backlog.md` so you can tackle them one at a time with `/new`.
+Break a plan into independently-grabbable items using vertical slices (tracer bullets), then write them where the project tracks work — `.docs/backlog.md` or GitHub Issues — so they can be tackled one at a time.
 
 ## Process
 
@@ -47,7 +47,18 @@ Ask the user:
 
 Iterate until the user approves the breakdown.
 
-### 5. Write the items to the backlog
+### 5. Ask where the items go
+
+Two destinations, and they are **not two copies of the same list** — they're different stages, so nothing needs syncing:
+
+- **`.docs/backlog.md`** — the scratchpad. Zero friction, offline, private, sits in the repo next to the code. Right for *maybe* work and for anything you're the only person who'll touch.
+- **GitHub Issues** — committed work. Right when an item is definitely happening, needs discussion, or someone else might pick it up. Buys assignment, comments, PR linking, and notifications; costs a network round-trip and a context switch.
+
+**Pick a default, then confirm in one line — don't interrogate.** If the repo has a GitHub remote, `gh` is installed and authenticated (`gh auth status`), and the repo already has open issues, propose GitHub. Otherwise propose the backlog. Either way say which and let the user redirect.
+
+If the user wants GitHub Issues but `gh` is missing or unauthenticated, say so, write to the backlog instead, and mention that re-running later can push them up.
+
+### 6. Writing to the backlog
 
 For each approved slice, append an item to `.docs/backlog.md` in dependency order (blockers first). Match the existing backlog style — a top-level bullet per item with nested detail bullets. Use the shape below, condensed to fit the backlog:
 
@@ -60,4 +71,15 @@ For each approved slice, append an item to `.docs/backlog.md` in dependency orde
 
 Avoid specific file paths or code snippets — they go stale fast. Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it and note briefly that it came from a prototype. Trim to the decision-rich parts.
 
-Don't modify or remove unrelated existing backlog items. Once written, work through them in dependency order with `/new` (passing the item as context), and `/tidy` archives completed ones to the changelog.
+Don't modify or remove unrelated existing backlog items. Once written, work through them in dependency order — hand one item to the agent as the task — and `/tidy` archives completed ones to the changelog.
+
+### 7. Writing to GitHub Issues
+
+Create one issue per approved slice with `gh issue create`, in dependency order so the blockers exist first and can be referenced by number.
+
+- **Title** — the slice title, no ticket prefix or numbering; GitHub numbers them.
+- **Body** — the one-line behavior description, then `## Acceptance` as a checklist, then `Blocked by #<n>` referencing the issue created earlier (or omit the line entirely if nothing blocks it). Add `Source: .docs/prds/<slug>.md` when the slices came from a PRD.
+- **Labels** — apply `HITL` / `AFK` as labels rather than title suffixes. Create a label only if the user agrees; if label creation fails or is declined, put the marker in the body instead. Never invent a taxonomy of new labels.
+- Print the created issue numbers and URLs at the end so the user can see what landed.
+
+**Don't also write these to `.docs/backlog.md`.** One item lives in one place. If an item is being *promoted* from the backlog to an issue, remove it from `backlog.md` in the same pass and note the issue number in your summary — the whole point is that nothing is duplicated and nothing needs reconciling.
