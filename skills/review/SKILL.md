@@ -39,6 +39,8 @@ Go through each changed file and look for:
 - **State & data problems** — stale state, missing cleanup, wrong data flow, inconsistent updates
 - **Copy-paste mistakes** — duplicated code that wasn't updated, leftover debug code, TODO comments that should have been resolved
 
+**If the repo has a `.codegraph/` directory**, run `codegraph impact <symbol>` on every function, method, or type the diff modified or renamed before you judge regressions — it lists the real dependents and the call paths reaching them, including hops grep won't surface. Judging a changed symbol without knowing who calls it is how a "safe" rename ships broken. Skip this if there is no index.
+
 Don't nitpick style, formatting, naming, or missing comments. Focus only on things that would cause real problems.
 
 ### A3 — Report

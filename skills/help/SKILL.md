@@ -17,6 +17,8 @@ In a brand-new project, run this once to create the baseline docs structure the 
 
 0. `/init` — Scaffold the `.docs/` skeleton (`idea.md`, `backlog.md`, `changelog.md`, `changelog-spec.md`, asset folders) plus a root `CLAUDE.md`. Idempotent — safe to re-run; never overwrites existing work. **Re-run it after updating docsygen** to catch conventions that changed since this project was set up.
 
+Optionally, on an existing codebase of any size: install [CodeGraph](https://github.com/colbymchenry/codegraph) (`npm install -g @colbymchenry/codegraph`) and run `codegraph init` once in the repo. Docsygen works without it — but where a `.codegraph/` directory exists, the agent navigates code by call graph instead of grep, and `/review` and `/clean` get real blast-radius numbers.
+
 ### Anytime — Sharpen and capture
 
 These interrogate whatever you're currently holding in your head — a plan, a design, a half-formed decision — then write down what survives. Useful at any point in any project, before writing code or in the middle of it.

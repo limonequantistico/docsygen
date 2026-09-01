@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 32          Dev Tools ║  [INFO] Version 1.8.0 (Build 512)
+║ 32          Dev Tools ║  [INFO] Version 1.9.0 (Build 512)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.8.0         ║  [OK] Config: /etc/docsygen/config.toml
+║         1.9.0         ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -109,6 +109,26 @@ Whichever agent you use, the only per-project step is scaffolding the docs struc
 `/init` creates the baseline `.docs/` skeleton the other skills rely on (`idea.md`, `backlog.md`, `changelog.md`, `changelog-spec.md`, asset folders) plus a root `CLAUDE.md` with the project rules. It's idempotent — safe to re-run, never overwrites existing work (an existing `CLAUDE.md` is left untouched).
 
 > New here? Run `/help` for the full guided workflow, then start by dropping notes in `.docs/idea.md`.
+
+### Optional — CodeGraph
+
+Docsygen is fully functional without this. But on a codebase past a few dozen files, the slowest part of any
+task is the agent grepping around to find out how things connect — and
+[CodeGraph](https://github.com/colbymchenry/codegraph) (MIT, local-first, no network) replaces that loop with a
+queryable call graph:
+
+```
+npm install -g @colbymchenry/codegraph   # note the scope — the bare `codegraph` npm name is an unrelated package
+codegraph init                           # run once per repo, from the repo root
+```
+
+That creates a `.codegraph/` directory. The `CLAUDE.md` rule `/init` writes is conditional on it: where the
+directory exists, the agent reaches for `codegraph explore` instead of grep and checks `codegraph impact` before
+renaming anything shared; where it doesn't, the rule is inert and nothing changes. `/review` and `/clean` use the
+same signal to compute a refactor's real blast radius rather than guessing at it.
+
+Indexing is always your call — no docsygen skill will run `codegraph init` for you. Not affiliated with docsygen;
+just the tool this workflow is tuned for.
 
 ## Update
 

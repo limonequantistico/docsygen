@@ -39,6 +39,8 @@ Go through each file in scope and evaluate:
 - **Reuse** — Is there duplicated logic that should be extracted into a shared utility or hook? Are existing utilities or helpers being ignored in favor of inline re-implementation?
 - **Best practices** — Specific to this project's tech stack. Not generic advice — concrete issues in the actual code. Think: proper hook usage, correct data flow patterns, idiomatic API usage for the frameworks in play.
 
+**If the repo has a `.codegraph/` directory**, lean on it here: `codegraph explore` to see how a suspect file is actually wired before calling it a god file, and `codegraph impact <symbol>` before proposing that anything shared be extracted, moved, or renamed. The cost of a refactor is its number of dependents, and that number should come from the graph rather than a guess. Skip this if there is no index.
+
 Skip anything that is purely stylistic (formatting, naming preferences with no functional impact, missing comments). Focus on structural issues that affect maintainability, readability, or correctness.
 
 ---

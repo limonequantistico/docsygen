@@ -177,6 +177,7 @@ Committed OS junk like `.DS_Store` is the most common way a clean repo starts lo
 # Project Rules
 
 - If useful documentation is available, use it. Use Context7's MCP for any needed deeper research.
+- If the repo has a `.codegraph/` directory it is indexed by CodeGraph: reach for `codegraph explore "<symbols or question>"` before grep/find when you need to locate or understand code, and `codegraph impact <symbol>` before changing or renaming anything shared. One call returns the relevant symbols' source plus the call paths between them, including dynamic-dispatch hops grep can't follow. If there is no `.codegraph/` directory, ignore all of this and search normally — indexing is the user's decision, so never run `codegraph init` unprompted.
 - Follow the tech stack defined in `.docs/tech-stack.md`. Don't introduce technologies not listed there.
 - Follow the design system defined in `.docs/design-system.md`. Use global style variables, don't hardcode values.
 - Before starting any task, check `.docs/seed.md` for project context. But docs may be outdated — when they conflict with the actual code, trust the code.
@@ -212,6 +213,7 @@ If `.docs/` already exists, this is an update pass as well as a scaffold. Beyond
 - **`CLAUDE.md` rules.** The template below is the current set. An existing `CLAUDE.md` is never overwritten, but compare it against the template and list any rules it's missing, with a one-line explanation of what each buys. Offer to append the missing ones; let the user choose. Their own custom rules stay untouched.
 - **`.docs/changelog-spec.md`.** Canonical, not user data — if it differs from the version below, say it's outdated and offer to update it.
 - **Stale command names.** Grep `.docs/` and `CLAUDE.md` for references to commands that no longer exist and name the replacements. As of now: `/new` (deleted — building needs no command), `/seed-update` (folded into `/seed`), `/design` (now `/design-system`), `/sync` (now `/drift`).
+- **Code intelligence.** If the repo has no `.codegraph/` directory and the codebase is big enough that finding things costs real time, mention **once** that CodeGraph would let the agent answer code questions by call graph instead of grep — the `CLAUDE.md` rule above is written to use it and is otherwise inert. Which line to give depends on the machine: if the `codegraph` CLI is on PATH, it's `codegraph init` from the repo root; if it isn't, it's `npm install -g @colbymchenry/codegraph` first (scoped name — the bare `codegraph` npm package is unrelated). Offer it and move on; never install or index anything yourself, and don't raise it again if the user passes.
 - **Newer artifacts the project has no idea about.** Don't create them — just mention which ones apply and which command produces them: `.docs/preview.md` (`/ux-review`), `.docs/logging.md` (`/logs`), `.docs/adr/` and `CONTEXT.md` (`/domain-modeling`), `.docs/versions.json` (`/version`).
 
 Keep this to a short list. If nothing has drifted, say so in one line and move on.

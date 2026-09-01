@@ -1,6 +1,7 @@
 # Project Rules
 
 - If useful documentation is available, use it. Use Context7's MCP for any needed deeper research.
+- If the repo has a `.codegraph/` directory it is indexed by CodeGraph: reach for `codegraph explore "<symbols or question>"` before grep/find when you need to locate or understand code, and `codegraph impact <symbol>` before changing or renaming anything shared. One call returns the relevant symbols' source plus the call paths between them, including dynamic-dispatch hops grep can't follow. If there is no `.codegraph/` directory, ignore all of this and search normally — indexing is the user's decision, so never run `codegraph init` unprompted.
 - Follow the tech stack defined in `.docs/tech-stack.md`. Don't introduce technologies not listed there.
 - Follow the design system defined in `.docs/design-system.md`. Use global style variables, don't hardcode values.
 - Before starting any task, check `.docs/seed.md` for project context. But docs may be outdated — when they conflict with the actual code, trust the code.
