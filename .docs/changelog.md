@@ -9,3 +9,14 @@
   - fixed `check_skill_count()` crashing on a malformed Codex manifest instead of printing the collected errors
   - fixed the README banner check validating only the indent, letting a misaligned box pass green
   - bumped docsygen to 1.10.0
+
+## 2026-09-02
+
+### 00:32
+
+  - added `/debug` skill — evidence-driven diagnosis of one reported bug: competing hypotheses, instrumentation to tell them apart, a reproduction, a root-cause fix, then the instrumentation stripped back out
+  - shaped `/debug` as a runtime-evidence loop rather than the ticket-style interview the backlog proposed — the interview mostly collects what the agent can find by reading the repo; only repro, expected, and actual can't be, so intake is a gate, not a session. Cursor's Debug Mode confirmed the shape
+  - kept `/debug` user-invoked only: the agent debugs from evidence on every bug via a new `CLAUDE.md` rule, and points at the skill once, after a second failed fix attempt on the same symptom
+  - added a debugging rule to the `/init` `CLAUDE.md` template and the repo's own `CLAUDE.md` — the always-on half, since most bugs are never escalated to a command
+  - wired scope boundaries: `/review` and `/deep-audit` hand a reproducible symptom to `/debug`
+  - bumped docsygen to 1.11.0

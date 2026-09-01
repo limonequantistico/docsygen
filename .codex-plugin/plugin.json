@@ -1,6 +1,6 @@
 {
   "name": "docsygen",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "description": "Documentation-driven development workflow: skills for seeding, scaffolding, building, reviewing, and shipping projects in any language (Swift, Android, web, ...). Works in Claude Code and Codex.",
   "author": {
     "name": "Luigi Piferi",
@@ -24,7 +24,7 @@
   "interface": {
     "displayName": "Docsygen",
     "shortDescription": "Documentation-driven development, idea to release",
-    "longDescription": "A language-agnostic set of 33 skills that carry a project from raw idea to shipped release: seed the idea, define the stack and design system, scaffold the structure, build features with full context, review and clean the result, then commit, version, and ship. Docs stay honest along the way.",
+    "longDescription": "A language-agnostic set of 34 skills that carry a project from raw idea to shipped release: seed the idea, define the stack and design system, scaffold the structure, build features with full context, review and clean the result, then commit, version, and ship. Docs stay honest along the way.",
     "developerName": "Luigi Piferi",
     "category": "Engineering",
     "capabilities": [

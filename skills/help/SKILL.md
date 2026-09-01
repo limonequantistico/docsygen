@@ -21,7 +21,7 @@ Optionally, on an existing codebase of any size: install [CodeGraph](https://git
 
 ### Anytime — Sharpen and capture
 
-These interrogate whatever you're currently holding in your head — a plan, a design, a half-formed decision — then write down what survives. Useful at any point in any project, before writing code or in the middle of it.
+These interrogate whatever you're currently holding in your head — a plan, a design, a half-formed decision, a bug you can't explain — then write down what survives. Useful at any point in any project, before writing code or in the middle of it.
 
 - `/grill-me` — Interactive interview that walks the decision tree one question at a time, resolving every open decision in a plan or design before you invest in building
 - `/grill-with-docs` — A `/grill-me` interview that also captures the domain model as it goes (glossary terms and Architecture Decision Records via `/domain-modeling`). The one to reach for when **starting** a project or feature, while the vocabulary is still up for grabs
@@ -29,6 +29,7 @@ These interrogate whatever you're currently holding in your head — a plan, a d
 - `/to-prd` — Synthesize the current conversation and its decisions into a PRD saved under `.docs/prds/`. Reach for it when the *reasoning* needs to outlive the session
 - `/to-issues` — Break a plan or PRD into independently-grabbable, vertical slices, written to `.docs/backlog.md` or GitHub Issues (it asks). Reach for it when the work spans more than one sitting
 - `/resume` — Fresh situational assessment after time away: where you are, what's next, what's off
+- `/debug` — Structured diagnosis of one bug you can point at: competing hypotheses, logging added to tell them apart, a reproduction, a root-cause fix, then the instrumentation stripped back out. Reach for it when the ordinary back-and-forth has stopped converging
 
 ### Phase 1 — Think
 
@@ -109,6 +110,7 @@ Keep docs honest, dependencies current, and the structure from rotting.
 - Three levels of commitment: `/commit` writes the message and stops, `/push` commits and pushes the branch you're on, `/merge` gets the work into `main`. `/merge` is branch-aware — on a feature branch it ships via PR, on `main` it just commits and pushes — so you don't need to check which branch you're on first.
 - Run `/review` before commits. For a second opinion inside herdr, `/herdr-review` automates the whole loop — it spawns a reviewer agent, triages its findings, and applies the ones that hold up, including one round of pushback on what it rejected. Outside herdr, do it by hand: have another agent run `/review` and paste its findings back into `/review` on the original agent.
 - **Three review scopes, not three depths.** `/review` looks at the uncommitted diff, `/clean` at structure across the codebase, `/deep-audit` at correctness and safety across the codebase. `/deep-audit` isn't `/clean` turned up — it's the dimension `/clean` deliberately doesn't cover, and it hands structure back to `/clean` when it trips over it.
+- **`/debug` starts from a symptom, the audits start from code.** `/review` and `/deep-audit` go looking for bugs you haven't hit yet; `/debug` diagnoses one that's already biting. It's the only one that instruments the code and asks you to reproduce, because a bug you can trigger on demand gives you evidence that reading never will. You always invoke it yourself — the agent debugs from evidence on every bug anyway (that's a `CLAUDE.md` rule), and only points at `/debug` once, when a second fix attempt hasn't found the cause.
 - Every `/deep-audit` report is stamped with the model, its reasoning effort, and the commit it ran against. Re-running it after a stronger model ships — or the same model at a higher effort — gives you two files you can diff by eye. That's the cheapest way to find out whether the new model actually sees more.
 - Quality passes report whether each finding was **measured** against the running app or **inferred** from code. Inferred findings are weaker — worth checking before you act on them.
 - Give `/ux-review` a way to actually see the product and it stops guessing. It proposes options (`agent-browser`, the `chrome-devtools` MCP server, a simulator, a screenshot script, or just your own screenshots), you decide what it's allowed to touch, and the working path lands in `.docs/preview.md` for every run after that. Screenshots it captures are kept in `.docs/assets/imgs/screens/<date>/` as a visual history and a regression baseline.

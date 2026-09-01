@@ -16,6 +16,7 @@ This is the deep pass. There is no time limit and no page limit on how carefully
 - **Bottlenecks, baselines, tracing** → `/performance`
 - **Test coverage and strategy** → `/test`
 - **Docs that no longer match the code** → `/drift`
+- **A specific bug the user can already point at and reproduce** → `/debug`
 
 If you trip over something in one of those, name it in one line and point at the skill that owns it. Don't design the fix here — that's how a deep audit turns into an everything audit nobody reads.
 
