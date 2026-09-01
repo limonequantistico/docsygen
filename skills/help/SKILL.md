@@ -77,6 +77,7 @@ Get the work reviewed, committed, and out.
 
 Focused reviews of what's already built. Run one when that dimension matters — not on a schedule.
 
+- `/deep-audit` — The broad one: a whole-codebase sweep for latent bugs, security holes, broken failure paths, and architectural risk. No time limit, but every finding must survive a verification pass, so a clean codebase reports clean. Writes a stamped report to `.docs/audits/`, fixes only what you approve
 - `/ux-review` — UI/UX quality check (hierarchy, flow, consistency, cognitive load). **Sets up the agent's eyes**: proposes ways to reach the real running app, and records the working one in `.docs/preview.md`
 - `/a11y` — WCAG-focused accessibility pass on the current UI, reusing the same access path
 - `/logs` — Establish or audit application logging: what gets recorded, at what level, with what context — shaped to the project's architecture, contract written to `.docs/logging.md`
@@ -107,6 +108,8 @@ Keep docs honest, dependencies current, and the structure from rotting.
 - If a command here feels like one you'd never remember to type, that's a bug in the command, not in you. The cost of a skill isn't writing it — it's remembering it exists, so anything that can live as a project rule or a step inside another skill does.
 - Three levels of commitment: `/commit` writes the message and stops, `/push` commits and pushes the branch you're on, `/merge` gets the work into `main`. `/merge` is branch-aware — on a feature branch it ships via PR, on `main` it just commits and pushes — so you don't need to check which branch you're on first.
 - Run `/review` before commits. For a second opinion inside herdr, `/herdr-review` automates the whole loop — it spawns a reviewer agent, triages its findings, and applies the ones that hold up, including one round of pushback on what it rejected. Outside herdr, do it by hand: have another agent run `/review` and paste its findings back into `/review` on the original agent.
+- **Three review scopes, not three depths.** `/review` looks at the uncommitted diff, `/clean` at structure across the codebase, `/deep-audit` at correctness and safety across the codebase. `/deep-audit` isn't `/clean` turned up — it's the dimension `/clean` deliberately doesn't cover, and it hands structure back to `/clean` when it trips over it.
+- Every `/deep-audit` report is stamped with the model, its reasoning effort, and the commit it ran against. Re-running it after a stronger model ships — or the same model at a higher effort — gives you two files you can diff by eye. That's the cheapest way to find out whether the new model actually sees more.
 - Quality passes report whether each finding was **measured** against the running app or **inferred** from code. Inferred findings are weaker — worth checking before you act on them.
 - Give `/ux-review` a way to actually see the product and it stops guessing. It proposes options (`agent-browser`, the `chrome-devtools` MCP server, a simulator, a screenshot script, or just your own screenshots), you decide what it's allowed to touch, and the working path lands in `.docs/preview.md` for every run after that. Screenshots it captures are kept in `.docs/assets/imgs/screens/<date>/` as a visual history and a regression baseline.
 

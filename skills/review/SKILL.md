@@ -149,5 +149,6 @@ Be direct. The user wants to know what the second pass actually caught and what 
 
 - Mode A is strictly read-only. In Mode B you may modify files, but only to implement findings you've verified and accepted.
 - If there are no uncommitted changes, tell the user and stop.
+- This skill is **diff-scoped by design** — it reviews what changed, not what's already committed. For a whole-codebase pass over correctness and safety, that's `/deep-audit`.
 - Be direct. If something is fine, don't pad the review with praise.
 - Use Context7's MCP to make sure the code is well written and follows official documentation's standards.

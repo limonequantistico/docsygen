@@ -126,8 +126,18 @@ def check_versions() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     if version and f"Version {version}" not in readme:
         fail(f"README banner does not mention 'Version {version}' — bump the two version spots in the ASCII banner")
-    if version and f"║         {version}" not in readme:
-        fail(f"README banner box does not show {version} — bump the second version spot in the ASCII banner")
+    # Check the whole box row, not just its indent: a bump that keeps the old padding
+    # around a longer version passes an indent-only check while pushing ║ past the ╗.
+    row = re.search(rf"^║(\s*{re.escape(version or '')}\s*)║", readme, re.M) if version else None
+    if version and row is None:
+        fail(f"README banner box has no row showing {version} — bump the second version spot in the ASCII banner")
+    elif row is not None:
+        tops = [m for m in re.finditer(r"^╔(═+)╗", readme, re.M) if m.start() < row.start()]
+        if tops and len(row.group(1)) != len(tops[-1].group(1)):
+            fail(
+                f"README banner box: the {version} row is {len(row.group(1))} chars wide but its box "
+                f"is {len(tops[-1].group(1))} — repad the row or the ║ won't line up with the ╗"
+            )
 
 
 def check_skill_count(count: int) -> None:
@@ -137,7 +147,13 @@ def check_skill_count(count: int) -> None:
             if int(stated) != count:
                 fail(f"{label} says {stated} skills but skills/ contains {count}")
 
-    codex = json.loads(CODEX_MANIFEST.read_text(encoding="utf-8"))
+    if not CODEX_MANIFEST.is_file():
+        return  # already reported by check_manifests
+    try:
+        codex = json.loads(CODEX_MANIFEST.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return  # already reported by check_manifests — don't crash before main() prints it
+
     long_desc = codex.get("interface", {}).get("longDescription", "")
     for stated in set(re.findall(r"(\d+) skills", long_desc)):
         if int(stated) != count:

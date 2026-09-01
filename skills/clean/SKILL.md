@@ -5,6 +5,8 @@ description: Audit the codebase for modularity, structure, and separation of con
 
 You are auditing the codebase for **modularity, structure, and separation of concerns** — then refactoring what the user approves.
 
+**Scope note:** correctness and safety — latent bugs, security holes, broken failure paths, races — belong to `/deep-audit`. Flag one in a line if you trip over it, then point at `/deep-audit` rather than chasing it here. This pass is structural.
+
 **Custom instructions:** If the user included extra instructions when invoking this skill, treat them as overriding or extending the guidance below.
 
 ---

@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 32          Dev Tools ║  [INFO] Version 1.9.0 (Build 512)
+║ 33          Dev Tools ║  [INFO] Version 1.10.0 (Build 512)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.9.0         ║  [OK] Config: /etc/docsygen/config.toml
+║         1.10.0        ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -49,7 +49,7 @@ docsygen >
 
 # Docsygen
 
-**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **32 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
+**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **33 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
 
 It's **language-agnostic** — the skills and docs work the same whether the project is Swift, Android, web, or anything else. Docsygen ships no application code; it's a toolkit of skills plus a `.docs/` convention.
 
@@ -214,6 +214,7 @@ Focused reviews of what's already built. Run one when that dimension matters, no
 
 | Command        | Purpose                                                                     |
 | -------------- | --------------------------------------------------------------------------- |
+| `/deep-audit`  | Whole-codebase sweep for latent bugs, security holes, broken failure paths, and architectural risk — stamped report to `.docs/audits/`, fixes on approval. |
 | `/ux-review`   | UI/UX quality check (hierarchy, flow, consistency, cognitive load) — and the agent's eyes setup. |
 | `/a11y`        | WCAG-focused accessibility pass on the current UI.                          |
 | `/logs`        | Establish or audit application logging → `.docs/logging.md`.                |
@@ -284,7 +285,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 
 This repository **is** the source of truth, the plugin, and the marketplace — for both agents at once:
 
-- [`skills/`](skills/) — the 32 skills, one `SKILL.md` per directory. This is the single source both agents use, and this repo also dogfoods them directly. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the `skills` path in its manifest.
+- [`skills/`](skills/) — the 33 skills, one `SKILL.md` per directory. This is the single source both agents use, and this repo also dogfoods them directly. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the `skills` path in its manifest.
 - `.claude-plugin/plugin.json` — Claude Code plugin manifest (name, version). Components in `skills/` are auto-discovered, so there's no path to maintain.
 - `.claude-plugin/marketplace.json` — makes the repo its own Claude Code marketplace.
 - `.codex-plugin/plugin.json` — Codex plugin manifest. Mirrors the Claude one, plus an `interface` block (display name, category, sample prompts) and an explicit `"skills": "./skills/"`.
