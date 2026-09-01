@@ -65,10 +65,11 @@ Stand up the structure, then write the code. There's no command for writing the 
 Get the work reviewed, committed, and out.
 
 11. `/review` — Read-only review of uncommitted changes before commit, or triage another agent's review of your work
-12. `/commit` — Generate a copyable commit message for the latest changes (message only, runs nothing)
-13. `/push` — Commit and push the current branch (*does* run git). Stops at the push: no branch, no PR, no merge
-14. `/merge` — One-shot ship (*does* run git and `gh`): generate a message, then commit and — on a feature branch — push, open a PR against `main`, and auto-merge it; or, if you're already on `main`, push straight to it with no branch and no PR
-15. `/version` — Cut a new app version: reviews changes, writes to `versions.json`
+12. `/herdr-review` — Automated second opinion inside [herdr](https://herdr.dev): spawns a reviewer agent in a sibling pane, captures its review, triages the findings, and applies the ones that hold up — no copy-paste
+13. `/commit` — Generate a copyable commit message for the latest changes (message only, runs nothing)
+14. `/push` — Commit and push the current branch (*does* run git). Stops at the push: no branch, no PR, no merge
+15. `/merge` — One-shot ship (*does* run git and `gh`): generate a message, then commit and — on a feature branch — push, open a PR against `main`, and auto-merge it; or, if you're already on `main`, push straight to it with no branch and no PR
+16. `/version` — Cut a new app version: reviews changes, writes to `versions.json`
 
 ### Quality passes
 
@@ -103,7 +104,7 @@ Keep docs honest, dependencies current, and the structure from rotting.
 - Don't try to remember `/drift` — the project rules tell the agent to flag a doc that contradicts the code and offer it. Reach for it yourself after a long stretch of building, before handing the project to someone else, or after a pivot.
 - If a command here feels like one you'd never remember to type, that's a bug in the command, not in you. The cost of a skill isn't writing it — it's remembering it exists, so anything that can live as a project rule or a step inside another skill does.
 - Three levels of commitment: `/commit` writes the message and stops, `/push` commits and pushes the branch you're on, `/merge` gets the work into `main`. `/merge` is branch-aware — on a feature branch it ships via PR, on `main` it just commits and pushes — so you don't need to check which branch you're on first.
-- Run `/review` before commits. For a second opinion, have another agent run `/review` and paste its findings back into `/review` on the original agent to triage them.
+- Run `/review` before commits. For a second opinion inside herdr, `/herdr-review` automates the whole loop — it spawns a reviewer agent, triages its findings, and applies the ones that hold up, including one round of pushback on what it rejected. Outside herdr, do it by hand: have another agent run `/review` and paste its findings back into `/review` on the original agent.
 - Quality passes report whether each finding was **measured** against the running app or **inferred** from code. Inferred findings are weaker — worth checking before you act on them.
 - Give `/ux-review` a way to actually see the product and it stops guessing. It proposes options (`agent-browser`, the `chrome-devtools` MCP server, a simulator, a screenshot script, or just your own screenshots), you decide what it's allowed to touch, and the working path lands in `.docs/preview.md` for every run after that. Screenshots it captures are kept in `.docs/assets/imgs/screens/<date>/` as a visual history and a regression baseline.
 

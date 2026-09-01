@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 31          Dev Tools ║  [INFO] Version 1.7.0 (Build 512)
+║ 32          Dev Tools ║  [INFO] Version 1.8.0 (Build 512)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.7.0         ║  [OK] Config: /etc/docsygen/config.toml
+║         1.8.0         ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -49,7 +49,7 @@ docsygen >
 
 # Docsygen
 
-**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **31 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
+**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **32 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
 
 It's **language-agnostic** — the skills and docs work the same whether the project is Swift, Android, web, or anything else. Docsygen ships no application code; it's a toolkit of skills plus a `.docs/` convention.
 
@@ -182,6 +182,7 @@ This phase has one deliberately manual step in the middle: **collect screenshots
 | Command    | Purpose                                                                                                |
 | ---------- | ------------------------------------------------------------------------------------------------------ |
 | `/review`  | Read-only review of uncommitted changes before commit — or triage another agent's review of your work. |
+| `/herdr-review` | Automated second opinion inside [herdr](https://herdr.dev): spawns a reviewer agent in a sibling pane, triages its findings, applies the ones that hold up. |
 | `/commit`  | Generate a copyable commit message for the latest changes (message only, runs nothing).                |
 | `/push`    | Commit and push the current branch. Stops there — no PR, no merge.                                     |
 | `/merge`   | One-shot ship, branch-aware: commit, then open+merge a PR against `main` — or push straight to `main` when already on it. |
@@ -254,7 +255,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 - **Changelog:** Every command logs to `.docs/changelog.md` in the format defined by `.docs/changelog-spec.md`. Timestamps (`HH:mm`) are never stripped.
 - **Backlog vs. GitHub Issues — two stages, not two lists.** `.docs/backlog.md` is the scratchpad: pin it in your IDE and dump anything in one line. No network, no auth, no context switch, and the agent reads it for free on every task. GitHub Issues is for work that's *definitely happening* — assignable, discussable, linkable to a PR, visible to people who aren't you. An item graduates from one to the other and never lives in both, so there is nothing to keep in sync. `/to-issues` writes to whichever you pick, proposing GitHub when the repo has a remote, `gh` is authenticated, and issues already exist.
 - **Backlog-driven:** hand an item to the agent when you're ready to build it, `/tidy` archives done backlog work to the changelog (closed issues are their own record), `/version` cuts releases.
-- **Before committing:** Run `/review` for a read-only pass; reach for a quality pass (`/ux-review`, `/a11y`, `/performance`) or `/test` / `/env` when those dimensions matter. For a second opinion, have another agent run `/review`, then paste its findings back into `/review` on the original agent to triage and apply the ones that hold up.
+- **Before committing:** Run `/review` for a read-only pass; reach for a quality pass (`/ux-review`, `/a11y`, `/performance`) or `/test` / `/env` when those dimensions matter. For a second opinion inside [herdr](https://herdr.dev), `/herdr-review` runs the whole loop for you — it spawns a reviewer agent in a sibling pane, triages its findings, and applies the ones that hold up. Outside herdr, do it by hand: have another agent run `/review`, then paste its findings back into `/review` on the original agent.
 - **Measured over inferred:** The UI quality passes open the real running app when they can reach it and label every finding accordingly. A finding read off the source is a hypothesis, and it says so.
 - **Propose, don't install:** Skills that need new access — a browser, a simulator, a dependency — present the options and let you grant them. Nothing reaches for a new resource on its own.
 - **Truth over docs:** If docs and code disagree about what *exists*, the code wins — run `/drift` to reconcile. What the docs say is *intended* is a different matter: `/drift` confirms before removing a plan the code hasn't caught up to yet.
@@ -263,7 +264,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 
 This repository **is** the source of truth, the plugin, and the marketplace — for both agents at once:
 
-- [`skills/`](skills/) — the 31 skills, one `SKILL.md` per directory. This is the single source both agents use, and this repo also dogfoods them directly. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the `skills` path in its manifest.
+- [`skills/`](skills/) — the 32 skills, one `SKILL.md` per directory. This is the single source both agents use, and this repo also dogfoods them directly. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the `skills` path in its manifest.
 - `.claude-plugin/plugin.json` — Claude Code plugin manifest (name, version). Components in `skills/` are auto-discovered, so there's no path to maintain.
 - `.claude-plugin/marketplace.json` — makes the repo its own Claude Code marketplace.
 - `.codex-plugin/plugin.json` — Codex plugin manifest. Mirrors the Claude one, plus an `interface` block (display name, category, sample prompts) and an explicit `"skills": "./skills/"`.
