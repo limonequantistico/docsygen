@@ -1,0 +1,22 @@
+"$schema" = "https://conductor.build/schemas/settings.repo.schema.json"
+
+[scripts]
+# Private backlog.
+#
+# private-backlog.md is gitignored, so it does not travel between branches —
+# every new worktree would otherwise start without it. Files to copy is the
+# wrong tool here: it would give each workspace an independent copy, and a
+# backlog you append to would fork into as many versions as you have branches.
+#
+# Instead, one real file lives at the repository root (CONDUCTOR_ROOT_PATH,
+# shared by every worktree) and each workspace gets a symlink to it. Notes
+# written from any branch land in the same file.
+#
+# Cloud workspaces are skipped: they have no access to the Mac's filesystem,
+# and there CONDUCTOR_ROOT_PATH is the workspace itself.
+setup = '''
+if [ "$CONDUCTOR_IS_LOCAL" = "1" ] && [ "$CONDUCTOR_ROOT_PATH" != "$CONDUCTOR_WORKSPACE_PATH" ]; then
+  touch "$CONDUCTOR_ROOT_PATH/private-backlog.md"
+  ln -sf "$CONDUCTOR_ROOT_PATH/private-backlog.md" "$CONDUCTOR_WORKSPACE_PATH/private-backlog.md"
+fi
+'''
