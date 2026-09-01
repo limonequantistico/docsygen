@@ -5,5 +5,8 @@
 .context/
 
 # Personal, not part of the template
+# private-backlog.md is a symlink to the real file at the repository root,
+# recreated in each workspace by .conductor/settings.toml so every branch
+# shares one file. See "Private backlog" in that file.
 .docs/docsygen-personal-logs.md
-.docs/docsygen-backlog.md
+private-backlog.md

@@ -195,6 +195,8 @@ Committed OS junk like `.DS_Store` is the most common way a clean repo starts lo
 - If something is genuinely unclear, ask one batch of focused questions before starting. Don't drip-feed questions across turns, and don't ask about details you can reasonably default — decide, and mention the choice.
 - Don't over-build. Only the variants, options, and surfaces actually needed.
 - If the project has a storybook, showcase, or demo page, add new UI there. If it has none, mention it — don't create one without asking.
+- Before calling a piece of work finished, verify it — and size the check to the change. Use what the project already gives you: build, typecheck, or lint first, then actually exercise the path you touched. For UI that means looking at it — `.docs/preview.md`, if it exists, records how to launch and view this app; follow it rather than working it out again. If tests already cover the area, run them; running the whole suite for a copy change is waste, and a docs-only change needs none of this. Then say what you checked and what you didn't — "done" means verified, and code that was written and read but never run is "written, not run". Never add a test framework, a preview setup, or any scaffolding just to satisfy this rule; that's `/test` and `/ux-review`'s job, and both need approval first.
+- If the work added or changed behaviour on a critical path and no test covers it, say so once and offer `/test`. Don't write the test unprompted, and don't repeat the offer every turn.
 
 # Custom Commands
 
