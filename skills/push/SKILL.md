@@ -30,22 +30,9 @@ Anything else, just stage it. Don't narrate a clean file list, and don't turn th
 
 ### 2. Generate the commit message
 
-Produce the message exactly as the `/commit` skill would:
+Read `skills/commit/SKILL.md` and follow its steps 1–3 — figuring out what changed, checking `.docs/commit-convention.md` (detecting or asking and persisting it if missing), and writing the message — exactly as `/commit` would. Stop before its step 4 (`Output`): that step is `/commit`-specific ("print it, don't touch git") and doesn't apply here. Keep the message you produced; use it for staging and committing below.
 
-- Rely first on the **conversation history** — if the changes were made earlier in this chat, you already know what and why.
-- Otherwise inspect the working tree: `git status`, `git diff`, `git diff --staged`.
-- Consult `.docs/backlog.md` if it clarifies intent.
-
-Format — a `<type>: ...` title line, a blank line, then concrete bullets:
-
-​```
-<type>: changed this, added that, removed this
-
-- specific bullet about one change
-- specific bullet about another change
-​```
-
-Pick the `<type>` (`feat`, `fix`, `docs`, `refactor`, `chore`, `style`, `test`) that matches the dominant change. No footers, Co-Authored-By lines, emoji, or marketing language.
+The convention check is the one narrow exception to "push without asking" in this skill — same category as the secrets check in Step 1. It only asks the user directly when `.docs/commit-convention.md` doesn't exist yet and recent history is genuinely ambiguous; once answered it's persisted to that file and never asks again.
 
 ### 3. Push without asking
 

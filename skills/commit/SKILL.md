@@ -16,9 +16,20 @@ You are producing a **copyable commit message** for the user's latest changes. D
 - Consult `.docs/backlog.md` if it helps explain the intent behind the changes (e.g. a backlog item that was just completed).
 - If the scope is still unclear after all of the above, ask the user before writing the message.
 
-### 2. Write the message
+### 2. Check the commit convention
 
-Format:
+Before writing the message, make sure it matches the convention this project actually uses — don't assume Conventional Commits.
+
+- **A recorded decision wins outright.** If `.docs/commit-convention.md` exists, follow it and skip to the next step — no re-analysis, no asking.
+- **Otherwise, look at recent history**: `git log -20 --no-merges --oneline`.
+  - **Too little history** (fewer than ~5 commits, e.g. a brand-new repo): default to Conventional Commits, write that default to `.docs/commit-convention.md`, and say so in one line.
+  - **A dominant pattern** (Conventional Commits, a ticket/issue-ID prefix, gitmoji, plain imperative subjects with no prefix, or something else consistent across most of the sample): adopt it, write it to `.docs/commit-convention.md`, and tell the user in one line what you detected and that you're following it.
+  - **Mixed or ambiguous**: ask the user once which convention to use, recommending Conventional Commits if they have no preference. Once they answer, write it to `.docs/commit-convention.md` and say plainly it's saved so you won't be asked again.
+- `.docs/commit-convention.md` is shared with `/merge` and `/push` — whichever of the three runs first writes it, the others just read it.
+
+### 3. Write the message
+
+If `.docs/commit-convention.md` says something other than Conventional Commits, follow that format and skip the rest of this section. Otherwise, format:
 
 ```
 <type>: changed this, added that, edited this, removed this
@@ -38,7 +49,7 @@ Format:
 
 The type isn't decoration — `/version` reads these to work out the next [Semantic Version](https://semver.org/): `feat` implies a minor bump, `fix` a patch, a breaking marker a major (minor while pre-1.0), and `docs` / `chore` / `refactor` / `test` / `ci` imply no release at all. Calling a feature `chore` hides it from the release; calling a refactor `feat` inflates the version. Pick the type that's true.
 
-### 3. Output
+### 4. Output
 
 - Print the commit message inside a single fenced code block so it's easy to copy.
 - Do not run `git commit`, do not stage files, do not modify the repo.
