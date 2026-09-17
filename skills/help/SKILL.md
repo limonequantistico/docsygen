@@ -60,9 +60,10 @@ Design the experience before building it. This phase has one manual step in the 
 Stand up the structure, then write the code. There's no command for writing the code itself — describe the work, or paste a backlog item, and the project rules in `CLAUDE.md` carry the context.
 
 8. `/scaffold` — Validate existing project structure or create one from scratch
-9. `/setup` — Wire design tokens into the codebase and build base components. Always builds role tokens (`surface`, `text-muted`…) on top of the palette, so a later mode is cheap. It offers `/theming` and `/showcase` along the way — both optional, and both runnable on their own later:
+9. `/setup` — Wire design tokens into the codebase and build base components. Always builds role tokens (`surface`, `text-muted`…) on top of the palette, so a later mode is cheap. It offers `/theming`, `/showcase`, and `/tweaks` along the way — all optional, and all runnable on their own later:
    - `/theming` — Add or repair color modes (dark, high contrast, brand themes) on a new or existing project: moves components onto role tokens, settles each mode's values in `design-system.md`, and wires the modes the way the stack expects
    - `/showcase` — Create or update one dev-only page or screen that renders the design tokens and base components with their variants and states. Worth it when someone will look at it; `/ux-review` can use it before real screens exist
+   - `/tweaks` — Add a dev-only panel inside the running app, on any platform that allows it, to tune colors, fonts, type scale, and shape live — with presets to compare whole directions, save, copy, and reset. Values you keep are written back to the styles file and `design-system.md` on approval
 10. `/test` — Testing strategy, critical-path coverage, flakiness guardrails
 
 ### Phase 4 — Ship

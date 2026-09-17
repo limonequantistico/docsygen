@@ -75,6 +75,7 @@ Only after confirmation, write `.docs/design-system.md` — a tech-agnostic refe
    - The aesthetic direction, named
    - Why it fits these users and this project — carry over the reasoning from the interview, so the *why* survives
    - What it deliberately isn't — the two or three templated looks this direction avoids, so later reviews have something concrete to check against
+   - Directions considered — the named alternatives offered in the interview and not chosen, one line each. `/tweaks` builds its presets from them. If the direction was inferred from the seed or references and no alternatives were offered, write "none offered" — never invent them
 2. **Visual Foundation**
    - **Colors**: primary, secondary, accent, neutrals, semantic (success, error, warning). Hex codes.
    - **Color roles**: the roles the UI uses (surface, text, muted text, border, accent, text on accent…), each mapped to a palette value — one column per mode when there's more than one. This is what code consumes, and what `/theming` reads.

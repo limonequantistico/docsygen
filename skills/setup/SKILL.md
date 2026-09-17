@@ -86,6 +86,6 @@ Keep this to one inspection round per batch, fix what it shows, and move on — 
 - If the project already has components or a styles file, integrate with what exists rather than replacing it
 - Ask before overwriting any existing files
 
-**After completing, ask the user** to verify the components — in the showcase if there is one, otherwise by listing what was built and what was "written, not run". If everything looks good, suggest `/resume` to get a fresh assessment of where to go next.
+**After completing, ask the user** to verify the components — in the showcase if there is one, otherwise by listing what was built and what was "written, not run". In the same message, offer `/tweaks` once — a dev-only panel for tuning colors, fonts, and shape live on real screens, with presets to compare directions. It's optional; skip it when the direction already feels right. On yes, run `/tweaks`, then continue. If everything looks good, suggest `/resume` to get a fresh assessment of where to go next.
 
 **Logging:** On success, append to `.docs/changelog.md` per `.docs/changelog-spec.md`: `- YYYY-MM-DD HH:mm ran /setup — [brief description of what was wired up]`.

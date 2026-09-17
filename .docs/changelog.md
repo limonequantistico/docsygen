@@ -78,3 +78,16 @@
 
   - structured `/showcase` like a Figma design-system file — an index, foundations from primitive to composite (palette → role tokens, type, spacing/radii/elevation), components grouped by purpose (or by the project's own folder groups) with the same variant-grid, states-row, and awkward-case frame for each, flagging variants that won't form clean axes; updates slot new components into their group and offer to reorganize a flat showcase rather than doing it unasked
   - bumped docsygen to 1.13.0
+
+### 02:14
+
+  - added `/tweaks` — a dev-only in-app panel on any platform that allows it: checks runtime feasibility first and reports what won't work before building, a few high-leverage controls (color, fonts from a curated licensed list, type scale, shape), contrast-checked presets drawn from the directions `/design-system` considered, save to device-local storage, copy for agent, copy tokens, share or dev-log fallback for devices without an easy clipboard path, and reset; kept values and presets flow back to the styles file, `design-system.md`, or a committed presets file on approval
+  - had `/setup` offer `/tweaks` once when components are done
+  - listed `/tweaks` in `/help` and the README, and updated the skill count to 37
+  - had `/design-system` record the directions it considered and the user didn't pick, one line each, so `/tweaks` presets start from real alternatives
+
+### 02:27
+
+  - tightened `/tweaks` after a second-opinion review — the copy-for-agent payload names `/tweaks` (and pasting one is a trigger) so values always return through the approval and contrast gate, the panel warns on any failing text/surface pair, font installs happen only on approval, the panel mounts on the showcase when no real screens exist yet, and later runs keep saved presets loadable
+  - had `/design-system` write \"none offered\" instead of inventing considered directions, and spelled out what yes does in `/setup`'s `/tweaks` offer
+  - bumped docsygen to 1.14.0
