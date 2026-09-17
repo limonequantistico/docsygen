@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 38          Dev Tools ║  [INFO] Version 1.15.0 (Build 512)
+║ 38          Dev Tools ║  [INFO] Version 1.16.0 (Build 512)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.15.0        ║  [OK] Config: /etc/docsygen/config.toml
+║         1.16.0        ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -147,7 +147,7 @@ Skills update in place — nothing is copied into your project, so they never go
 
 ## The workflow
 
-`/help` prints this. The numbered phases are a spine, not a rule — the un-numbered sections have no fixed place in the order.
+`/help` prints this. Steps 0-8 are the spine — roughly the order a project goes through once. The un-numbered sections have no fixed place in the order.
 
 > **How to invoke:** In Claude Code, type the skill as a slash command (`/seed`). In Codex, either ask for the task in plain language (*"create the seed"*) — skills load by description — or name the skill directly. The `/name` notation below is the canonical reference for both.
 
@@ -202,7 +202,7 @@ This phase has one deliberately manual step in the middle: **collect screenshots
 | `/tweaks`   | Optional dev-only panel to tune colors, fonts, and shape live, with presets; kept values flow back to code and docs. |
 | `/test`     | Testing strategy, critical-path coverage, flakiness guardrails. |
 
-### Phase 4 — Ship
+### Ship
 
 | Command    | Purpose                                                                                                |
 | ---------- | ------------------------------------------------------------------------------------------------------ |

@@ -160,25 +160,34 @@ def check_skill_count(count: int) -> None:
             fail(f".codex-plugin/plugin.json longDescription says {stated} skills but skills/ contains {count}")
 
     # /help is the command reference, so every skill except /help itself must appear
-    # in one of its lists — that listing is the thing most likely to be forgotten when
-    # a skill is added. The numbered phases are the workflow's spine; the "Anytime"
-    # commands are bulleted precisely because they have no position in that order, so
-    # accept both forms (an entry must *start* with the command, which is what keeps
-    # prose tips mentioning `/foo` from counting as a listing).
+    # in one of its tables — that listing is the thing most likely to be forgotten when
+    # a skill is added. Commands live in tables, either `| step | `/foo` | …` in the
+    # numbered phases or `| `/foo` | …` in the un-numbered sections, and a step cell may
+    # be an em dash for a command with no position in the order. Bare list items are
+    # still accepted so an older /help keeps validating. Either way the entry must
+    # *start* with the command, which is what keeps prose tips mentioning `/foo` from
+    # counting as a listing.
     help_skill = ROOT / "skills" / "help" / "SKILL.md"
     if help_skill.is_file():
         text = help_skill.read_text(encoding="utf-8")
-        listed = set(re.findall(r"^\s*(?:\d+\.|[-*])\s+`/([a-z0-9-]+)`", text, re.M))
+        entry = r"^(?:\s*(?:\d+\.|[-*])\s+|\|(?:\s*(?:\d+|—)\s*\|)?\s*)`/([a-z0-9-]+)`"
+        listed = set(re.findall(entry, text, re.M))
         expected = {d.name for d in (ROOT / "skills").iterdir() if d.is_dir()} - {"help"}
         for missing in sorted(expected - listed):
-            fail(f"skills/help/SKILL.md does not list /{missing} in its numbered command list")
+            fail(f"skills/help/SKILL.md does not list /{missing} in its command tables")
         for extra in sorted(listed - expected):
             fail(f"skills/help/SKILL.md lists /{extra}, which has no skills/{extra}/ directory")
 
-        # The numbered spine opens with `0. /init` (Phase 0) and one un-numbered prose step, so
-        # don't demand it start at 1 — just that it never repeats or goes backwards,
-        # which is what catches a skill bolted on as "19b." instead of renumbered.
-        numbers = [int(n) for n in re.findall(r"^\s*(\d+)\.\s+`/", text, re.M)]
+        # The numbered spine opens with step 0 (`/init`) and skips the manual steps that
+        # have no command, so don't demand it start at 1 or run contiguously — just that
+        # it never repeats or goes backwards, which is what catches a skill bolted on as
+        # "19b." instead of renumbered.
+        numbers = [
+            int(n)
+            for n in re.findall(r"^(?:\s*(\d+)\.\s+`/|\|\s*(\d+)\s*\|\s*`/)", text, re.M)
+            for n in n
+            if n
+        ]
         if numbers != sorted(set(numbers)):
             fail("skills/help/SKILL.md command list has duplicate or out-of-order numbers")
 

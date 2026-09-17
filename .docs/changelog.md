@@ -148,3 +148,24 @@
 ### 16:29
 
   - removed the local or connected tool route from `/asset` — free local models do not reach the quality the skill is for; routes are now code, a chat app, or an API key
+
+## 2026-09-18
+
+### 01:06
+
+  - restructured `/help` into tables — every phase is now a `Step | Command | What it does` (or `Command | What it does`) table with one-line cells, replacing the prose bullet lists that had grown 2-3 sentences deep per command
+  - added a "Which one do I want?" disambiguation table to `/help`, folding the `/commit`-`/push`-`/merge`, `/review`-`/clean`-`/deep-audit`, `/debug`, and `/to-prd`-`/to-issues` comparisons out of Tips
+  - cut `/help` Tips from 14 bullets to 7, dropping the ones that restated a command's own entry in longer form
+  - taught `scripts/validate.py` to read `/help`'s command entries and step numbers from table rows as well as list items, so the listing check still catches a skill that was never added to the guide
+
+### 01:16
+
+  - renumbered the `/help` spine to 0-8 — `/init`, the manual idea file, `/seed`, `/seed-review`, `/stack`, `/design-system`, `/scaffold`, `/setup`, `/test` — and unnumbered everything after it; the old numbering implied `/prototype`, `/test`, and the ship commands were mandatory steps in order, when `/commit`/`/push`/`/merge` are alternatives and the rest are optional
+  - moved the Anytime section below the numbered phases so the spine reads 0→7 uninterrupted, and renamed "Phase 4 — Ship" to "Ship" now that it carries no step numbers
+  - removed the "Which one do I want?" table and the whole Tips section from `/help` — it should be a glanceable reminder of what's available, not a document to study; the planning pipeline, backlog-vs-Issues, and measured-vs-inferred notes already live in the README, which `/help` now links to
+  - trimmed `/help` from ~2000 to ~1200 words, cutting the CodeGraph setup paragraph and the "two ways in" explainer down to the rows they belong to
+
+### 01:24
+
+  - numbered `/test` as step 8 in `/help`, extending the spine to 0-8
+  - bumped docsygen to 1.16.0
