@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 37          Dev Tools ║  [INFO] Version 1.14.0 (Build 512)
+║ 38          Dev Tools ║  [INFO] Version 1.15.0 (Build 512)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.14.0        ║  [OK] Config: /etc/docsygen/config.toml
+║         1.15.0        ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -49,7 +49,7 @@ docsygen >
 
 # Docsygen
 
-**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **37 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
+**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **38 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
 
 It's **language-agnostic** — the skills and docs work the same whether the project is Swift, Android, web, or anything else. Docsygen ships no application code; it's a toolkit of skills plus a `.docs/` convention.
 
@@ -187,6 +187,7 @@ Define what you're building, challenge it, and decide what you're building it wi
 | ---------------- | -------------------------------------------------------------------- |
 | `/design-system` | Guided interview that settles the aesthetic direction and visual tokens → `.docs/design-system.md`. |
 | `/prototype`     | Generate a paste-ready prompt **per screen** for external design tools, carrying the design system with it. |
+| `/asset`         | Make an image, icon, illustration, marketing frame, or store screenshot (or just its prompt) from the project's context, via whichever route works today: code, a chat app, or an API key. Resized and compressed for the platform before it's placed. |
 
 This phase has one deliberately manual step in the middle: **collect screenshots of interfaces you like into `.docs/assets/imgs/references/`**. Taste is yours, not the agent's — but you don't have to start from a blank search. If that folder is empty, `/design-system` curates a shortlist first: named products worth studying and why, the right gallery for this kind of product, and what to look for given your users. Then the interview begins, and every question after that is sharper for it.
 
@@ -268,6 +269,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 | `.docs/design-system.md`  | Visual tokens and UI rules.                                  | `/design-system` |
 | `.docs/prds/`             | Product requirement docs.                                    | `/to-prd`  |
 | `.docs/preview.md`        | How to run the app so the agent can see it, and where the showcase lives. | `/ux-review`, `/showcase` |
+| `.docs/assets/imgs/generated/` | One folder per `/asset` run: the prompt, the brief (model, route, sizes, where it was placed), and the uncompressed master, so matching variants stay reproducible. | `/asset` |
 | `.docs/assets/imgs/screens/` | Dated screenshots of the running app; visual history and regression baseline. | `/ux-review` |
 | `.docs/logging.md`        | The logging contract: fields, levels, what never gets logged. | `/logs`   |
 | `.docs/adr/`              | Architecture Decision Records (numbered, append-only).       | `/domain-modeling` |
@@ -289,7 +291,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 
 This repository **is** the source of truth, the plugin, and the marketplace — for both agents at once:
 
-- [`skills/`](skills/) — the 37 skills, one `SKILL.md` per directory. This is the single source both agents use, and this repo also dogfoods them directly. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the `skills` path in its manifest.
+- [`skills/`](skills/) — the 38 skills, one `SKILL.md` per directory. This is the single source both agents use, and this repo also dogfoods them directly. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the `skills` path in its manifest.
 - `.claude-plugin/plugin.json` — Claude Code plugin manifest (name, version). Components in `skills/` are auto-discovered, so there's no path to maintain.
 - `.claude-plugin/marketplace.json` — makes the repo its own Claude Code marketplace.
 - `.codex-plugin/plugin.json` — Codex plugin manifest. Mirrors the Claude one, plus an `interface` block (display name, category, sample prompts) and an explicit `"skills": "./skills/"`.

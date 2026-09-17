@@ -91,3 +91,60 @@
   - tightened `/tweaks` after a second-opinion review — the copy-for-agent payload names `/tweaks` (and pasting one is a trigger) so values always return through the approval and contrast gate, the panel warns on any failing text/surface pair, font installs happen only on approval, the panel mounts on the showcase when no real screens exist yet, and later runs keep saved presets loadable
   - had `/design-system` write \"none offered\" instead of inventing considered directions, and spelled out what yes does in `/setup`'s `/tweaks` offer
   - bumped docsygen to 1.14.0
+
+### 14:40
+
+  - added `/asset` skill — makes an image, icon, illustration, marketing frame, App Store screenshot, or just a ready-to-use prompt from the seed and design system, through a route picked each run: built in code (SVG/HTML), pasted into a chat app, an API key, or a local or connected tool
+  - added `skills/asset/generate.py`, the first script bundled with a skill — calls OpenAI, Gemini, or Cloudflare Workers AI with keys kept in `~/.config/docsygen/assets.env` (mode 600, edited by the user); it never takes a key as an argument, reports only set/missing, and scrubs key values from its output, so the agent never reads a key
+  - listed `/asset` in `/help` and the README, added `.docs/assets/imgs/generated/` to the project map, and updated the skill count to 38
+  - bumped docsygen to 1.15.0
+
+### 14:55
+
+  - had `/asset` ask for the display size when the platform doesn't fix one, derive density exports from it, and never export above the target, so small slots don't ship 4K renders
+  - had `/asset` look up the best model for the asset's category on every run (arena.ai categories for ranking, Artificial Analysis for price and API availability), filtered to what the user can reach today, with dated sources; added `--model` to `generate.py` and moved the OpenAI default to `gpt-image-2`
+
+### 15:06
+
+  - ran `/herdr-review` with a Claude Opus reviewer on `/asset` — 6 findings, all accepted and fixed
+  - fixed `generate.py` crashing at import on the macOS system Python 3.9 (PEP 604 annotations), and routed timeouts, malformed responses, and a missing prompt file through the scrubbed error path instead of raw tracebacks
+  - fixed `generate.py` overwriting a kept candidate when an earlier one had been discarded — numbering now continues after the highest existing number
+  - made the key file 600 from creation instead of chmod-ed afterwards, and tightened an already-existing config directory to 700
+  - split the `/asset` run folder into `prompt.md` (sent to the model word for word) and `brief.md` (model, route, resolution, leaderboard snapshot), so metadata no longer leaks into paid prompts
+  - had `/asset` locate `generate.py` from the skill's base directory — `CLAUDE_PLUGIN_ROOT` isn't set in the agent's shell — and spelled out the order of the code-route offer, model check, and route question
+
+### 15:20
+
+  - added an export, compress, and place step to `/asset`, replacing a manual pass through Squoosh — resize to the target, then compress per destination (pngquant for asset catalogs, WebP for Android, AVIF/WebP for plain web images, a light pass only when a framework image pipeline optimizes later, app icons left alone), check for banding before showing sizes before and after, and place only after the user confirms
+  - stopped `/asset` from opening past runs and existing images on every run — it lists folder names only, and reads one run's `brief.md` plus the final placed asset only when the new asset has to match a series
+  - had `/asset` keep the uncompressed master, `prompt.md`, and `brief.md` per run and offer to delete discarded candidates, since `.docs/` is usually committed
+
+### 15:29
+
+  - ran `/herdr-review` with a Claude Opus reviewer on `/asset`'s export and compression step — 13 findings, all accepted and fixed
+  - had `/asset` crop to the target's proportions before resizing (scale to cover, crop around the planned composition, never upscale), since models return 3:2 or square for most requests
+  - fixed the iOS app icon guidance — check `hasAlpha` and flatten, since App Store Connect rejects icons with an alpha channel — and dropped pngquant for asset catalogs, which Xcode re-encodes anyway
+  - added Android exceptions (9-patches, launcher icon layers, Play Store graphics) and full compression commands with explicit outputs, treating pngquant's exit 98/99 as "keep the original"
+  - opened the run folder for every route, code-built included (the SVG/HTML source is the master), and had series matching read `prompt.md` as well as `brief.md`
+  - stopped `generate.py init` from chmod-ing a directory it doesn't own; `check` now prints where to get each missing key and whether a ready key comes from the key file or the shell environment; non-ASCII keys and undecodable image data now fail with a clear message instead of a misleading one or a traceback
+
+### 15:43
+
+  - ran `/herdr-review` with a Claude Opus reviewer on `/asset` — 7 findings, 6 accepted and fixed, 1 rejected (the reviewer conceded)
+  - had `/asset` write every `sips` crop and resize to a new file, since `sips` edits in place and was destroying the kept master
+  - added a short path for "Prompt only" in `/asset` — brief, optional model check, prompt, log — instead of running it through generation and export
+  - added `--size 512px|1K|2K|4K` to `generate.py` (Gemini only; the others say they ignore it), snapped Gemini aspect ratios to the ones it accepts, and had `/asset` count a route's maximum size against it when picking
+  - separated "invalid character in a key or account ID" and non-UTF-8 prompt files from provider errors in `generate.py`, including `InvalidURL`, which isn't a `ValueError` on Python 3.9
+  - moved "where `generate.py` lives" ahead of its first use in `/asset`, and named the exact `rsvg-convert` flatten for the app icon (verified RGB output; a BMP round-trip keeps alpha)
+
+### 16:24
+
+  - had `/asset` treat text or ASCII art as an asset type of its own: written as text, checked for monospace alignment, plain ASCII vs Unicode stated, and not rendered to an image unless one is actually needed
+
+### 16:26
+
+  - removed Cloudflare Workers AI from `/asset` and `generate.py` — the free models were not good enough to justify the setup, and only FLUX.1 schnell worked with the script; the API route now covers OpenAI and Gemini
+
+### 16:29
+
+  - removed the local or connected tool route from `/asset` — free local models do not reach the quality the skill is for; routes are now code, a chat app, or an API key

@@ -55,6 +55,10 @@ Design the experience before building it. This phase has one manual step in the 
 6. `/design-system` — Settle the aesthetic direction and visual tokens through a guided interview: it proposes options, you choose, and nothing is written until you do
 7. `/prototype` — Generate a **paste-ready prompt per screen** for external design tools (Claude Design, Stitch, Figma AI, V0), carrying the design system with it so the output is usable rather than something to look past; save the screens you like under `.docs/assets/imgs/prototypes/`
 
+Assets have no fixed step. Reach for this whenever the product needs one, ideally once the design system exists:
+
+- `/asset` — Make an image, icon, illustration, marketing frame, App Store screenshot, or just a ready-to-use prompt, grounded in the seed and design system. Pick the route each time: built in code, pasted into a chat app you have access to, or an API key. It checks which model is best for the asset right now, then resizes and compresses the pick for its platform before placing it. Keys stay in a file you edit yourself, outside the repo, and the agent never reads them
+
 ### Phase 3 — Build
 
 Stand up the structure, then write the code. There's no command for writing the code itself — describe the work, or paste a backlog item, and the project rules in `CLAUDE.md` carry the context.
