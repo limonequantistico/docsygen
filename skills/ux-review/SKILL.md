@@ -13,7 +13,7 @@ Reviewing a UI by reading source is guessing. A component tree doesn't tell you 
 
 ## Step 1 — Get eyes on the product
 
-**First, check `.docs/preview.md`.** If it records a working way to see this app running, follow it and go to Step 2. If following it fails, say what broke and continue below.
+**First, check `.docs/preview.md`.** If it records a working way to see this app running, follow it and go to Step 2. A **Showcase** entry there (from `/showcase`) shows tokens and components, not flows — use it alongside the running app, or on its own when no real screens exist yet, and say which. If following it fails, say what broke and continue below.
 
 If there's no recorded path, work one out — don't fall back to reading source yet, and don't silently give up.
 
@@ -81,6 +81,15 @@ Three rules keep it from turning into a liability:
 6. **Accessibility basics** — Contrast, touch targets, keyboard navigation, semantic structure, alt text. Keep this shallow — `/a11y` is the real pass, and it can reuse the same access path.
 
 7. **UI patterns** — Are there standard patterns that would work better for what's built? (e.g., a list that should be a card grid, a multi-step form that should be a wizard, tabs vs. sidebar)
+
+8. **Templated look** — Does it look designed for this product, or assembled from defaults? Check against what `.docs/design-system.md` says the direction deliberately isn't, then the usual tells:
+   - Rows of identical cards (icon + heading + two lines) standing in for structure; cards nested in cards
+   - A small uppercase label above every heading; section numbers (01 / 02 / 03) that carry no information
+   - Gradient text, decorative glass/blur, a thick colored left border on cards or alerts
+   - A big-number-small-label stat block where the number isn't what the user came for
+   - Browser defaults left on the surfaces nobody drew — selection color, focus rings, scrollbars
+
+   Any of these can be a real decision; they're findings only when nothing in the design system or the product explains them. Rank them below usability issues.
 
 ## Step 4 — Report
 

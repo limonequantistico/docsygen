@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 34          Dev Tools ║  [INFO] Version 1.12.0 (Build 512)
+║ 36          Dev Tools ║  [INFO] Version 1.13.0 (Build 512)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.12.0        ║  [OK] Config: /etc/docsygen/config.toml
+║         1.13.0        ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -49,7 +49,7 @@ docsygen >
 
 # Docsygen
 
-**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **34 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
+**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **36 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
 
 It's **language-agnostic** — the skills and docs work the same whether the project is Swift, Android, web, or anything else. Docsygen ships no application code; it's a toolkit of skills plus a `.docs/` convention.
 
@@ -196,6 +196,8 @@ This phase has one deliberately manual step in the middle: **collect screenshots
 | ----------- | --------------------------------------------------------------- |
 | `/scaffold` | Validate or create the project structure.                       |
 | `/setup`    | Wire design tokens into the codebase and build base components. |
+| `/showcase` | Optional dev-only page rendering tokens and components; `/setup` offers it. |
+| `/theming`  | Add or repair color modes (dark, high contrast, brand themes) via role tokens; new or existing projects. |
 | `/test`     | Testing strategy, critical-path coverage, flakiness guardrails. |
 
 ### Phase 4 — Ship
@@ -264,7 +266,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 | `.docs/tech-stack.md`     | Tools and runtime versions.                                  | `/stack`   |
 | `.docs/design-system.md`  | Visual tokens and UI rules.                                  | `/design-system` |
 | `.docs/prds/`             | Product requirement docs.                                    | `/to-prd`  |
-| `.docs/preview.md`        | How to run the app so the agent can see it.                  | `/ux-review` |
+| `.docs/preview.md`        | How to run the app so the agent can see it, and where the showcase lives. | `/ux-review`, `/showcase` |
 | `.docs/assets/imgs/screens/` | Dated screenshots of the running app; visual history and regression baseline. | `/ux-review` |
 | `.docs/logging.md`        | The logging contract: fields, levels, what never gets logged. | `/logs`   |
 | `.docs/adr/`              | Architecture Decision Records (numbered, append-only).       | `/domain-modeling` |
@@ -286,7 +288,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 
 This repository **is** the source of truth, the plugin, and the marketplace — for both agents at once:
 
-- [`skills/`](skills/) — the 34 skills, one `SKILL.md` per directory. This is the single source both agents use, and this repo also dogfoods them directly. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the `skills` path in its manifest.
+- [`skills/`](skills/) — the 36 skills, one `SKILL.md` per directory. This is the single source both agents use, and this repo also dogfoods them directly. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the `skills` path in its manifest.
 - `.claude-plugin/plugin.json` — Claude Code plugin manifest (name, version). Components in `skills/` are auto-discovered, so there's no path to maintain.
 - `.claude-plugin/marketplace.json` — makes the repo its own Claude Code marketplace.
 - `.codex-plugin/plugin.json` — Codex plugin manifest. Mirrors the Claude one, plus an `interface` block (display name, category, sample prompts) and an explicit `"skills": "./skills/"`.
