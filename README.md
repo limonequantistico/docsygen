@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 38          Dev Tools ║  [INFO] Version 1.16.0 (Build 512)
+║ 38          Dev Tools ║  [INFO] Version 1.17.0 (Build 512)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.16.0        ║  [OK] Config: /etc/docsygen/config.toml
+║         1.17.0        ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -232,7 +232,7 @@ Focused reviews of what's already built. Run one when that dimension matters, no
 | Command    | Purpose                                                            |
 | ---------- | ------------------------------------------------------------------ |
 | `/drift`   | Find where docs and code have diverged; fix each in the right direction. |
-| `/tidy`    | Clean up the backlog; move completed items to the changelog.       |
+| `/tidy`    | Clean up the backlog; move completed items to the changelog, bury stale ones in the graveyard. |
 | `/deps`    | Bump dependencies to latest stable; align `tech-stack.md`.         |
 | `/env`     | Environment variables, secrets hygiene, production checklist.      |
 | `/clean`   | Audit modularity and separation of concerns; refactor on approval. |
@@ -261,6 +261,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 | ------------------------- | ------------------------------------------------------------ | ---------- |
 | `.docs/idea.md`           | Raw notes; input for `/seed`.                                | `/init`    |
 | `.docs/backlog.md`        | Scratchpad task queue; pin it in your IDE.                   | `/init`    |
+| `.docs/graveyard.md`      | Backlog items buried after 60+ days untouched; searchable, revivable. | `/tidy` |
 | `.docs/changelog.md`      | Dated log of work and command runs.                          | `/init`    |
 | `.docs/changelog-spec.md` | Canonical changelog format (commands follow this).           | `/init`    |
 | `.docs/assets/imgs/`      | Prototypes and references.                                   | `/init`    |
@@ -282,6 +283,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 - **Changelog:** Every command logs to `.docs/changelog.md` in the format defined by `.docs/changelog-spec.md`. Timestamps (`HH:mm`) are never stripped.
 - **Backlog vs. GitHub Issues — two stages, not two lists.** `.docs/backlog.md` is the scratchpad: pin it in your IDE and dump anything in one line. No network, no auth, no context switch, and the agent reads it for free on every task. GitHub Issues is for work that's *definitely happening* — assignable, discussable, linkable to a PR, visible to people who aren't you. An item graduates from one to the other and never lives in both, so there is nothing to keep in sync. `/to-issues` writes to whichever you pick, proposing GitHub when the repo has a remote, `gh` is authenticated, and issues already exist.
 - **Backlog-driven:** hand an item to the agent when you're ready to build it, `/tidy` archives done backlog work to the changelog (closed issues are their own record), `/version` cuts releases.
+- **Bury, don't hoard:** a backlog that only grows stops being read. `/tidy` uses `git blame` to find items nobody has touched in 60 days (or whatever you pass, e.g. `/tidy 90 days`) and, on your approval, moves them word for word to `.docs/graveyard.md`. Nothing is deleted, and editing an item is enough to keep it alive. When a buried idea shows up again in the backlog, `/tidy` points it out and offers the old note's context — an idea that comes back on its own is one worth building.
 - **Before committing:** Run `/review` for a read-only pass; reach for a quality pass (`/ux-review`, `/a11y`, `/performance`) or `/test` / `/env` when those dimensions matter. For a second opinion inside [herdr](https://herdr.dev), `/herdr-review` runs the whole loop for you — it spawns a reviewer agent in a sibling pane, triages its findings, and applies the ones that hold up. Outside herdr, do it by hand: have another agent run `/review`, then paste its findings back into `/review` on the original agent.
 - **Measured over inferred:** The UI quality passes open the real running app when they can reach it and label every finding accordingly. A finding read off the source is a hypothesis, and it says so.
 - **Propose, don't install:** Skills that need new access — a browser, a simulator, a dependency — present the options and let you grant them. Nothing reaches for a new resource on its own.

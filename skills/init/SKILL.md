@@ -38,7 +38,8 @@ belongs in GitHub Issues instead. An item graduates from here to there; it never
 in both, so there's nothing to keep in sync.
 
 `/to-issues` slices a plan into items and writes them to whichever you pick.
-`/tidy` archives done items from this file to the changelog.
+`/tidy` archives done items from this file to the changelog, and offers to bury items
+untouched for 60 days in `.docs/graveyard.md` — nothing is deleted, edit an item to keep it alive.
 ```
 
 **3. `.docs/changelog.md`**

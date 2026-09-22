@@ -90,7 +90,7 @@ Focused reviews of what's already built. Run one when that dimension matters —
 | Command | What it does |
 | ------- | ------------ |
 | `/drift` | Finds where docs and code have diverged and fixes each in the right direction. |
-| `/tidy` | Archives completed backlog items to the changelog. |
+| `/tidy` | Archives completed backlog items to the changelog; proposes burying items untouched 60+ days in `.docs/graveyard.md`. |
 | `/deps` | Bumps dependencies to latest stable; aligns `tech-stack.md`. |
 | `/env` | Environment variables, secrets hygiene, production config checklist. |
 | `/clean` | Audits modularity, structure, and separation of concerns; refactors on approval. |

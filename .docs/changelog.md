@@ -169,3 +169,13 @@
 
   - numbered `/test` as step 8 in `/help`, extending the spine to 0-8
   - bumped docsygen to 1.16.0
+
+## 2026-09-22
+
+### 10:49
+
+  - added a graveyard to `/tidy` — backlog items untouched for 60+ days (per `git blame`, overridable with e.g. `/tidy 90 days`) are proposed for burial and, on approval, moved word for word to `.docs/graveyard.md` with their added date; nothing is deleted, and editing an item keeps it alive
+  - `/tidy` now flags backlog items that restate a buried one and offers to bring back the old note's context, turning "good ideas resurface" into a signal
+  - kept `.docs/idea.md` out of the graveyard — it's `/seed`'s raw input, not a task list
+  - updated `/help`, the README (command table, docs table, conventions), and the `/init` backlog template
+  - bumped docsygen to 1.17.0
