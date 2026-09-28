@@ -11,7 +11,7 @@
 - When a domain term gets settled (or conflicts with existing usage), or a decision passes the Architecture Decision Record (ADR) test (hard to reverse, surprising without context, a real trade-off), **offer** to capture it with `/domain-modeling` — glossary in `CONTEXT.md`, ADRs in `.docs/adr/`. Propose it; don't silently edit the domain docs.
 - Log completed work to `.docs/changelog.md` as you finish it, following `.docs/changelog-spec.md` — not only when a command runs. Work done by plain conversation is the work most likely to go unrecorded, and an empty changelog makes `/version` and `/tidy` useless.
 - If a doc you're reading contradicts the code you're looking at, say so in one line and offer `/drift` — don't quietly work around it. Docs drift fastest right after a stretch of building, which is exactly when nobody thinks to check them.
-- After pushing or merging, check whether the work since the last version in `.docs/versions.json` adds up to something a user would notice. If it does, propose cutting a version with `/version` — don't wait to be asked. If it doesn't, stay quiet: scaffolding, docs, refactors, and work-in-progress are not releases, and an inflated version number is worse than a missing one.
+- Versioning is automatic: `/merge`, and `/push` on the base branch, run `/version` in automatic mode before committing. If work lands on the base branch any other way, run it yourself the same way — no confirmation needed. It cuts only when something a user would notice has landed, never bumps MAJOR or reaches `1.0.0` on its own, and skips when in doubt: scaffolding, docs, refactors, and work-in-progress are not releases, and an inflated version number is worse than a missing one.
 
 # Writing code
 

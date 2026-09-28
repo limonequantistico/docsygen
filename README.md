@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 38          Dev Tools ║  [INFO] Version 1.17.0 (Build 512)
+║ 38          Dev Tools ║  [INFO] Version 1.18.0 (Build 512)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.17.0        ║  [OK] Config: /etc/docsygen/config.toml
+║         1.18.0        ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -211,7 +211,7 @@ This phase has one deliberately manual step in the middle: **collect screenshots
 | `/commit`  | Generate a copyable commit message for the latest changes (message only, runs nothing).                |
 | `/push`    | Commit and push the current branch. Stops there — no PR, no merge.                                     |
 | `/merge`   | One-shot ship, branch-aware: commit, then open+merge a PR against `main` — or push straight to `main` when already on it. |
-| `/version` | Cut a new app version; record it in `versions.json`.                                                   |
+| `/version` | Cut a new app version into `versions.json`. Runs automatically when work lands on `main` (`/merge`, or `/push` on `main`); tells you when the product looks production-ready; you cut `1.0.0` by hand. |
 
 ### Quality passes
 
@@ -251,7 +251,7 @@ The shape of this toolkit follows a few rules. They're worth knowing mostly beca
 - **Name it for what it does.** `/drift` finds drift. It used to be called `/sync`, which implied a direction it doesn't actually have.
 - **Measured beats inferred, and the difference is stated.** A contrast ratio from a real audit and one guessed from a hex value are not the same claim. The quality passes label which one you got, so a hypothesis never reads like an observation.
 - **Propose, don't install.** Anything that needs new access — a browser, a simulator, a dependency, a vendor — is offered with its trade-offs. You grant it.
-- **Taste stays yours.** The agent curates options, measures what's measurable, and records what you decide. It doesn't pick the aesthetic, cut the version, or delete the plan.
+- **Taste stays yours.** The agent curates options, measures what's measurable, and records what you decide. It doesn't pick the aesthetic, declare `1.0.0`, or delete the plan. Routine version cuts are automated, but within guardrails: nothing user-facing, no version; never a MAJOR bump on its own.
 
 ## Project map
 

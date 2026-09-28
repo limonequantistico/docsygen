@@ -53,7 +53,13 @@ The only reasons to stop before shipping are hard blockers, not confirmation: no
 
 If `CLAUDE.md` (or equivalent workspace rules) defines steps that must happen before shipping — a validation script, a version bump, a changelog entry — do them now, before anything is committed. If one fails, stop and report; don't ship a knowingly broken commit. If the project defines no such steps, skip straight to the next section.
 
-### 5. Run the flow
+### 5. Cut a version if one is due
+
+Always — `/merge` lands work on the base branch in both flows, which is what a release is made of.
+
+If the project has a `.docs/` folder, read `skills/version/SKILL.md` and run it in **automatic mode**: it decides from the changelog and commits since the last version whether anything user-facing has landed, and if so writes `.docs/versions.json` and the changelog separator — no confirmation. Do this before committing, so the version files ship in the same commit. Don't pause here; a skipped version is the normal outcome. Carry its one-line result into the report.
+
+### 6. Run the flow
 
 Write the full message to a temp file so multi-line bodies survive shelling out. `TITLE` is the first line; the whole message is the PR body and commit message:
 
@@ -94,11 +100,12 @@ Notes:
 - In Case A, if a PR already exists for the branch, `gh pr create` will fail — fall back to pushing and running `gh pr merge "$BRANCH" --merge` on the existing PR.
 - If any other step fails (merge blocked by checks or reviews, etc.), stop and report the exact error. Don't retry blindly or force anything.
 
-### 6. Report
+### 7. Report
 
 Tell the user the outcome in one or two lines:
 
 - Case A: the commit title, the PR URL, and that it was merged.
 - Case B: the commit title and that it was pushed straight to `main` (no PR).
+- Either case: the version line from Step 5, if it produced one.
 
 Or exactly where it stopped and why.

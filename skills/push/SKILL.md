@@ -42,7 +42,13 @@ Running this skill **is** the confirmation. Do not ask the user to approve the m
 
 If `CLAUDE.md` (or equivalent workspace rules) defines steps that must happen before shipping — a validation script, a version bump, a changelog entry — do them now, before anything is committed. If one fails, stop and report; don't ship a knowingly broken commit. If the project defines no such steps, skip straight to the next section.
 
-### 5. Run it
+### 5. Cut a version if one is due
+
+Only when `BRANCH` is the base branch (`main`, or whatever `origin/HEAD` points to). A push to a feature branch hasn't landed anything yet — skip this step entirely.
+
+If the project has a `.docs/` folder, read `skills/version/SKILL.md` and run it in **automatic mode**: it decides from the changelog and commits since the last version whether anything user-facing has landed, and if so writes `.docs/versions.json` and the changelog separator — no confirmation. Do this before committing, so the version files ship in the same commit. Don't pause here; a skipped version is the normal outcome. Carry its one-line result into the report.
+
+### 6. Run it
 
 Write the full message to a temp file so multi-line bodies survive shelling out:
 
@@ -63,6 +69,6 @@ Notes:
 - If the push is rejected because the branch is protected, stop and tell the user the branch requires a PR, so `/merge` from a feature branch is the way in. Don't create a branch behind their back.
 - If any other step fails, stop and report the exact error. Don't retry blindly.
 
-### 6. Report
+### 7. Report
 
-One or two lines: the commit title and the branch it was pushed to. Say plainly that no PR was opened — if they want it merged into `main`, `/merge` is next. Or report exactly where it stopped and why.
+One or two lines: the commit title, the branch it was pushed to, and the version line from Step 5 if it ran. Say plainly that no PR was opened — if they want it merged into `main`, `/merge` is next. Or report exactly where it stopped and why.

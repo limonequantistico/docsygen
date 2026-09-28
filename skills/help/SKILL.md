@@ -71,7 +71,7 @@ Pick the level of commitment — these are alternatives, not a sequence.
 | `/commit` | Writes a copyable commit message. Runs nothing. |
 | `/push` | Commits and pushes the current branch. No PR, no merge. |
 | `/merge` | Ships it, branch-aware: PR against `main` + auto-merge on a feature branch, straight push when already on `main`. |
-| `/version` | Cuts a new app version: reviews changes, writes to `versions.json`. |
+| `/version` | Cuts a new app version into `versions.json`. Runs automatically when work lands on `main`; tells you when the product looks production-ready; you cut `1.0.0` by hand. |
 
 ### Quality passes
 
