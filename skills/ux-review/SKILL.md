@@ -38,7 +38,7 @@ If there's no recorded path, work one out — don't fall back to reading source 
 
 Recommend one and say why. Then **let the user decide** — they may know a better path, already have tooling you can't see, or not want the agent touching a given resource. Never install a dependency, start a long-running service, or reach for a resource that needs new permissions without asking first.
 
-**Record what works.** As soon as a path succeeds, write it to `.docs/preview.md`: the exact commands, the URL or target, any prerequisite (dev server, seeded account, env vars), what it can and can't show, and anything that tripped you up. Create the file if it doesn't exist, update it if the setup has changed. Keep it short enough to follow without thinking.
+**Record what works.** As soon as a path succeeds, write it to `.docs/preview.md`: the exact commands, the URL or target, any prerequisite (dev server, seeded account, env vars), how to tell it's already running (the port, or the process name to `pgrep`) so the next run reuses it instead of starting a second one, what it can and can't show, and anything that tripped you up. Create the file if it doesn't exist, update it if the setup has changed. Keep it short enough to follow without thinking.
 
 **Flag better paths when you see them.** If the recorded setup works but something stronger is available — the project has Storybook and you're taking manual screenshots, or the `chrome-devtools` MCP server would replace a brittle script — say so once, with the concrete gain. Don't nag; the user decides.
 
