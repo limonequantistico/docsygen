@@ -179,3 +179,9 @@
   - kept `.docs/idea.md` out of the graveyard — it's `/seed`'s raw input, not a task list
   - updated `/help`, the README (command table, docs table, conventions), and the `/init` backlog template
   - bumped docsygen to 1.17.0
+
+## 2026-10-15
+
+### 01:47
+
+  - replaced the gitignored `private-backlog.md` with a gitignored `TODOS.md` for the herdr-todos panel; the Conductor setup script now symlinks `TODOS.md` into each local workspace

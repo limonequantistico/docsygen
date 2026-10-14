@@ -1,9 +1,9 @@
 "$schema" = "https://conductor.build/schemas/settings.repo.schema.json"
 
 [scripts]
-# Private backlog.
+# Private todos (herdr-todos panel).
 #
-# private-backlog.md is gitignored, so it does not travel between branches —
+# TODOS.md is gitignored, so it does not travel between branches —
 # every new worktree would otherwise start without it. Files to copy is the
 # wrong tool here: it would give each workspace an independent copy, and a
 # backlog you append to would fork into as many versions as you have branches.
@@ -16,7 +16,7 @@
 # and there CONDUCTOR_ROOT_PATH is the workspace itself.
 setup = '''
 if [ "$CONDUCTOR_IS_LOCAL" = "1" ] && [ "$CONDUCTOR_ROOT_PATH" != "$CONDUCTOR_WORKSPACE_PATH" ]; then
-  touch "$CONDUCTOR_ROOT_PATH/private-backlog.md"
-  ln -sf "$CONDUCTOR_ROOT_PATH/private-backlog.md" "$CONDUCTOR_WORKSPACE_PATH/private-backlog.md"
+  touch "$CONDUCTOR_ROOT_PATH/TODOS.md"
+  ln -sf "$CONDUCTOR_ROOT_PATH/TODOS.md" "$CONDUCTOR_WORKSPACE_PATH/TODOS.md"
 fi
 '''
