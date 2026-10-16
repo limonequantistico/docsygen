@@ -195,3 +195,8 @@
   - `/drift` now flags a stale architecture map
   - `/architecture <github link>` maps someone else's repo from a read-only temporary clone into `~/Downloads/`, then offers to delete what it created
   - bumped docsygen to 1.20.0
+
+### 16:57
+
+  - `/architecture` now stops when the repo has no CodeGraph index and asks: index it now, run it yourself, or continue with line-count-only tags; a missing `codegraph` install gets the install line instead
+  - bumped docsygen to 1.20.1
