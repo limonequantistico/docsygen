@@ -153,7 +153,11 @@ Then render (Step 5).
 ## Step 7 — Hand it over
 
 1. **The file**, as a clickable absolute path, with how to open it: *drag it onto https://excalidraw.com, or open it with the VS Code Excalidraw extension.*
-2. **A share link, only on a yes.** Ask once, plainly: *"Want a one-click excalidraw.com link? It uploads the diagram to Excalidraw's servers, encrypted, with the key only in the link. Anyone with the link can open it. Icons are left out."* On yes, run `node <base>/share.mjs MAP/architecture.excalidraw` and print the link it returns. If Node isn't there, or the upload fails, say so; the local file is still the answer.
+2. **How to open it.** After every create, update, zoom or trace, ask in one `AskUserQuestion` (multi-select, so both can be picked):
+   - **Show it in the file manager** (Recommended): reveals the file so it can be dragged onto excalidraw.com, with icons, and nothing uploaded. Run `open -R <file>` on macOS, `explorer /select,<file>` on Windows, `xdg-open <folder>` on Linux. If it fails, the clickable path is still there.
+   - **Make a share link**: *uploads the diagram to Excalidraw's servers, encrypted, with the key only in the link. Anyone with the link can open it. Icons are left out.* Run `node <base>/share.mjs MAP/architecture.excalidraw` and print the link it returns. If Node isn't there, or the upload fails, say so; the local file is still the answer.
+
+   Picking neither is fine: the path from item 1 is enough.
 3. **A short summary:**
    - which views it has;
    - the red-tagged parts, i.e. where to look first;

@@ -672,8 +672,8 @@ def layout_view(sc: Scene, view: dict, ox: float, oy: float, number: str, pins: 
 
     arrow_pts = [sample(p["pts"]) for p in plans]
     for band, r, st in band_els:
-        title = band["title"]
-        tw = measure(title, 22)
+        btitle = band["title"]
+        tw = measure(btitle, 22)
         tx = r["x"] + 16
         spots = [r["x"] + 16 + k * 40 for k in range(int((r["width"] - tw - 36) // 40) + 1)]
         spots = spots[:1] + [r["x"] + r["width"] - 20 - tw] + spots[1:]
@@ -684,8 +684,8 @@ def layout_view(sc: Scene, view: dict, ox: float, oy: float, number: str, pins: 
                 tx = cand
                 break
         else:
-            sc.notes.append(f"band title '{title[:30]}' has no clear spot; consider fewer arrows across that band")
-        sc.text(tx, r["y"] + 10, title, 22, st)
+            sc.notes.append(f"band title '{btitle[:30]}' has no clear spot; consider fewer arrows across that band")
+        sc.text(tx, r["y"] + 10, btitle, 22, st)
 
     for note in view.get("notes", []):
         sc.text(ox + 60, y, note, 19, MUTED)
@@ -814,17 +814,30 @@ def render(model: dict, use_icons: bool = True) -> tuple[dict, Scene]:
                      f"Paths start at the project root; ending in / means a folder. Drawn from commit {commit} on {model.get('date', '?')}.",
             22, MUTED)
     pins: dict = {}
+
+    def place(v, x, y):
+        if v["kind"] in ("zoom", "trace") and model.get("commit"):
+            q = v.get("question", "")
+            stamp = f"Drawn from commit {v.get('commit', model['commit'])} on {v.get('date', model.get('date', '?'))}."
+            if stamp not in q:
+                v["question"] = (q + "  " + stamp).strip()
+        return layout_view(sc, v, x, y, numbers[v["id"]], pins, zoom_of)
+
+    # zooms and traces (4a, 4b …) sit in a row to the right of the menu, so many of them don't stretch the map
+    lettered = {vid for vid, num in zooms if not num.isdigit()}
     y = 0
     for v in views:
+        if v["id"] in lettered:
+            continue
         if v["kind"] == "menu":
             h = layout_menu(sc, model, v, 0, y, numbers[v["id"]], zooms)
+            x = FRAME_MIN_W + FRAME_GAP
+            for z in views:
+                if z["id"] in lettered:
+                    h = max(h, place(z, x, y))
+                    x += z["_w"] + FRAME_GAP
         else:
-            if v["kind"] in ("zoom", "trace") and model.get("commit"):
-                q = v.get("question", "")
-                stamp = f"Drawn from commit {v.get('commit', model['commit'])} on {v.get('date', model.get('date', '?'))}."
-                if stamp not in q:
-                    v["question"] = (q + "  " + stamp).strip()
-            h = layout_view(sc, v, 0, y, numbers[v["id"]], pins, zoom_of)
+            h = place(v, 0, y)
         y += h + FRAME_GAP
     if model.get("cracks"):
         layout_cracks(sc, model["cracks"], 0, y, cracks_number, numbers)

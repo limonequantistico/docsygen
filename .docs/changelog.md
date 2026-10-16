@@ -200,3 +200,13 @@
 
   - `/architecture` now stops when the repo has no CodeGraph index and asks: index it now, run it yourself, or continue with line-count-only tags; a missing `codegraph` install gets the install line instead
   - bumped docsygen to 1.20.1
+
+### 17:06
+
+  - `/architecture` draws zooms and traces (4a, 4b…) in a row to the right of the zoom menu instead of stacking them below, so many zooms no longer stretch the map; example re-rendered
+
+### 17:12
+
+  - `/architecture` hand-over now asks how to open the map: show it in Finder/the file manager to drag onto excalidraw.com (icons kept, no upload), make a share link, or both
+  - fixed `/architecture` frames being named after their last band instead of their view title
+  - bumped docsygen to 1.20.2

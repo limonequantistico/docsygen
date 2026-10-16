@@ -23,7 +23,7 @@
 
 ## Views
 
-Order is the reading order. Numbers are assigned automatically. A `zoom` or `trace` view placed after the `menu` view takes the menu's number plus a letter (4a, 4b…).
+Order is the reading order. Numbers are assigned automatically. A `zoom` or `trace` view placed after the `menu` view takes the menu's number plus a letter (4a, 4b…). They are drawn in a row to the right of the menu rather than below it, so the map stays short however many you add.
 
 | `kind` | When | Frame label |
 |---|---|---|
