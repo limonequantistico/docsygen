@@ -1,0 +1,653 @@
+{
+  "project": "Larder",
+  "commit": "4f2c9e1",
+  "date": "2026-10-16",
+  "output": "architecture.excalidraw",
+  "views": [
+    {
+      "id": "context",
+      "kind": "context",
+      "title": "Context",
+      "question": "What does Larder talk to, outside itself?",
+      "bands": [
+        {
+          "rows": [
+            [
+              {
+                "id": "cook",
+                "name": "Home cook",
+                "job": "plans meals,\ntracks the pantry",
+                "shape": "ellipse",
+                "color": "ink"
+              },
+              {
+                "id": "larder",
+                "name": "Larder",
+                "job": "a web app and an API.\nPantry, recipes, shopping lists",
+                "path": "web/  ·  api/",
+                "color": "blue",
+                "big": true
+              },
+              {
+                "id": "stripe",
+                "name": "Stripe",
+                "job": "charges the Plus plan",
+                "path": "api/src/billing/",
+                "color": "grey",
+                "icon": "stripe"
+              }
+            ],
+            [
+              null,
+              {
+                "id": "mail",
+                "name": "Email service",
+                "job": "sends shopping lists",
+                "path": "api/src/mail/",
+                "color": "grey",
+                "icon": "resend"
+              },
+              {
+                "id": "pushdocs",
+                "name": "Push notifications",
+                "job": "expiry reminders.\nIn the docs, not in the code.",
+                "path": "docs/roadmap.md",
+                "color": "grey",
+                "dashed": true,
+                "pin": 2
+              }
+            ]
+          ]
+        }
+      ],
+      "arrows": [
+        {
+          "from": "cook",
+          "to": "larder",
+          "label": "uses in\nthe browser"
+        },
+        {
+          "from": "larder",
+          "to": "stripe",
+          "label": "payments"
+        },
+        {
+          "from": "larder",
+          "to": "mail",
+          "label": "send list"
+        },
+        {
+          "from": "larder",
+          "to": "pushdocs",
+          "label": "not connected",
+          "dashed": true
+        }
+      ]
+    },
+    {
+      "id": "containers",
+      "kind": "containers",
+      "title": "What runs",
+      "question": "Which separate programs and databases make up Larder, and how do they talk?",
+      "bands": [
+        {
+          "rows": [
+            [
+              {
+                "id": "web",
+                "name": "Web app",
+                "job": "React single-page app.\nEvery screen",
+                "path": "web/",
+                "color": "blue",
+                "icon": "react"
+              },
+              {
+                "id": "api",
+                "name": "API",
+                "job": "Node + Express.\nAll the rules",
+                "path": "api/",
+                "color": "blue",
+                "icon": "nodedotjs"
+              },
+              {
+                "id": "worker",
+                "name": "Worker",
+                "job": "nightly jobs: expiry\nchecks, list emails",
+                "path": "api/src/worker.ts",
+                "color": "blue"
+              }
+            ],
+            [
+              null,
+              {
+                "id": "db",
+                "name": "Database",
+                "job": "Postgres. The only\ncopy of your data",
+                "path": "api/prisma/schema.prisma",
+                "color": "green",
+                "icon": "postgresql",
+                "pin": 1
+              },
+              {
+                "id": "queue",
+                "name": "Job queue",
+                "job": "Redis list the\nworker reads",
+                "path": "api/src/queue.ts",
+                "color": "green",
+                "icon": "redis"
+              }
+            ]
+          ]
+        }
+      ],
+      "arrows": [
+        {
+          "from": "web",
+          "to": "api",
+          "label": "JSON over\nHTTPS"
+        },
+        {
+          "from": "api",
+          "to": "db",
+          "label": "reads / writes"
+        },
+        {
+          "from": "api",
+          "to": "queue",
+          "label": "enqueue"
+        },
+        {
+          "from": "worker",
+          "to": "queue",
+          "label": "dequeue"
+        }
+      ]
+    },
+    {
+      "id": "components",
+      "kind": "components",
+      "title": "Inside the API",
+      "question": "Which parts make up the API? Calls go downwards. Tags: size · how many files depend on it.",
+      "bands": [
+        {
+          "title": "ROUTES · one file per area, inside api/src/routes/",
+          "color": "green",
+          "boxes": [
+            {
+              "id": "r_pantry",
+              "name": "Pantry routes",
+              "job": "add, use up,\nthrow away items",
+              "path": "api/src/routes/pantry.ts",
+              "color": "ink",
+              "tag": {
+                "lines": 412,
+                "dependents": 1
+              }
+            },
+            {
+              "id": "r_recipes",
+              "name": "Recipe routes",
+              "job": "search, save,\ncook a recipe",
+              "path": "api/src/routes/recipes.ts",
+              "color": "ink",
+              "tag": {
+                "lines": 588,
+                "dependents": 1
+              }
+            },
+            {
+              "id": "r_lists",
+              "name": "List routes",
+              "job": "build and share\nshopping lists",
+              "path": "api/src/routes/lists.ts",
+              "color": "ink",
+              "tag": {
+                "lines": 301,
+                "dependents": 1
+              }
+            },
+            {
+              "id": "r_billing",
+              "name": "Billing routes",
+              "job": "upgrade, cancel,\nStripe webhooks",
+              "path": "api/src/routes/billing.ts",
+              "color": "ink",
+              "tag": {
+                "lines": 244,
+                "dependents": 1
+              }
+            }
+          ]
+        },
+        {
+          "title": "SERVICES · the rules",
+          "color": "violet",
+          "boxes": [
+            {
+              "id": "s_pantry",
+              "name": "PantryService",
+              "job": "stock levels,\nexpiry dates",
+              "path": "api/src/services/pantry.ts",
+              "color": "violet",
+              "tag": {
+                "lines": 920,
+                "dependents": 14
+              }
+            },
+            {
+              "id": "s_cook",
+              "name": "CookService",
+              "job": "cooking a recipe uses\nup pantry items",
+              "path": "api/src/services/cook.ts",
+              "color": "violet",
+              "tag": {
+                "lines": 2140,
+                "dependents": 6
+              },
+              "pin": 3
+            },
+            null,
+            {
+              "id": "s_auth",
+              "name": "Auth",
+              "job": "sessions,\nwho you are",
+              "path": "api/src/auth/",
+              "color": "violet",
+              "tag": {
+                "lines": 180,
+                "dependents": 31
+              }
+            }
+          ]
+        },
+        {
+          "title": "ADAPTERS · the only parts that talk to the outside",
+          "color": "orange",
+          "boxes": [
+            {
+              "id": "a_db",
+              "name": "Prisma client",
+              "job": "database access",
+              "path": "api/src/db.ts",
+              "color": "orange",
+              "icon": "prisma",
+              "tag": {
+                "lines": 40,
+                "dependents": 22
+              }
+            },
+            null,
+            {
+              "id": "a_mail",
+              "name": "Mailer",
+              "job": "email",
+              "path": "api/src/mail/",
+              "color": "orange",
+              "tag": {
+                "lines": 95,
+                "dependents": 3
+              }
+            },
+            {
+              "id": "a_stripe",
+              "name": "Stripe client",
+              "job": "payments",
+              "path": "api/src/billing/stripe.ts",
+              "color": "orange",
+              "icon": "stripe",
+              "tag": {
+                "lines": 160,
+                "dependents": 2
+              }
+            }
+          ]
+        }
+      ],
+      "arrows": [
+        {
+          "from": "r_pantry",
+          "to": "s_pantry",
+          "label": "calls"
+        },
+        {
+          "from": "r_recipes",
+          "to": "s_cook",
+          "label": "cook"
+        },
+        {
+          "from": "s_cook",
+          "to": "s_pantry",
+          "label": "use up items"
+        },
+        {
+          "from": "r_billing",
+          "to": "a_stripe",
+          "label": "charge"
+        },
+        {
+          "from": "s_pantry",
+          "to": "a_db",
+          "label": "save"
+        },
+        {
+          "from": "r_lists",
+          "to": "a_mail",
+          "label": "send"
+        }
+      ]
+    },
+    {
+      "id": "menu",
+      "kind": "menu",
+      "title": "Zoom menu"
+    },
+    {
+      "id": "zoom-cook",
+      "kind": "zoom",
+      "zooms": "s_cook",
+      "title": "Zoom: cooking a recipe",
+      "question": "What is CookService made of, and what does it call?",
+      "files": [
+        "api/src/services/cook.ts",
+        "api/src/services/cook/"
+      ],
+      "bands": [
+        {
+          "boxes": [
+            {
+              "id": "z_route",
+              "name": "Recipe routes",
+              "job": "POST /recipes/:id/cook",
+              "path": "api/src/routes/recipes.ts",
+              "color": "ink"
+            }
+          ]
+        },
+        {
+          "title": "ONE SERVICE, FOUR FILES · ~2,140 lines · api/src/services/cook/",
+          "color": "violet",
+          "rows": [
+            [
+              {
+                "id": "z_plan",
+                "name": "Portions",
+                "job": "scale the recipe\nto the servings",
+                "path": "cook/portions.ts · 310",
+                "color": "violet"
+              },
+              {
+                "id": "z_core",
+                "name": "CookService",
+                "job": "one entry point: cook().\nRuns the steps in order",
+                "path": "cook.ts · 480",
+                "color": "violet",
+                "pin": 3
+              },
+              {
+                "id": "z_match",
+                "name": "Ingredient matching",
+                "job": "recipe names →\npantry items",
+                "path": "cook/match.ts · 890",
+                "color": "violet"
+              }
+            ],
+            [
+              null,
+              {
+                "id": "z_deduct",
+                "name": "Deduct",
+                "job": "subtract what was used,\nflag what ran out",
+                "path": "cook/deduct.ts · 460",
+                "color": "violet"
+              },
+              null
+            ]
+          ]
+        },
+        {
+          "boxes": [
+            {
+              "id": "z_pantry",
+              "name": "PantryService",
+              "job": "stock levels",
+              "path": "api/src/services/pantry.ts",
+              "color": "violet"
+            },
+            {
+              "id": "z_list",
+              "name": "List routes",
+              "job": "auto-add what ran out",
+              "path": "api/src/routes/lists.ts",
+              "color": "ink"
+            }
+          ]
+        }
+      ],
+      "arrows": [
+        {
+          "from": "z_route",
+          "to": "z_core",
+          "label": "cook()"
+        },
+        {
+          "from": "z_core",
+          "to": "z_plan",
+          "label": "1 · scale"
+        },
+        {
+          "from": "z_core",
+          "to": "z_match",
+          "label": "2 · match"
+        },
+        {
+          "from": "z_core",
+          "to": "z_deduct",
+          "label": "3 · deduct"
+        },
+        {
+          "from": "z_deduct",
+          "to": "z_pantry",
+          "label": "update stock"
+        },
+        {
+          "from": "z_deduct",
+          "to": "z_list",
+          "label": "ran out"
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "kind": "data",
+      "title": "The data",
+      "question": "What is stored, and how do the records point at each other?  (all in api/prisma/schema.prisma)",
+      "bands": [
+        {
+          "title": "WHAT YOU OWN",
+          "color": "blue",
+          "boxes": [
+            {
+              "id": "d_user",
+              "name": "User",
+              "job": "account + plan",
+              "color": "blue"
+            },
+            {
+              "id": "d_pantry",
+              "name": "Pantry",
+              "job": "one per household",
+              "color": "blue"
+            },
+            {
+              "id": "d_item",
+              "name": "Item",
+              "job": "quantity + expiry date",
+              "color": "blue"
+            }
+          ]
+        },
+        {
+          "title": "WHAT YOU COOK AND BUY",
+          "color": "green",
+          "boxes": [
+            {
+              "id": "d_recipe",
+              "name": "Recipe",
+              "job": "steps + ingredients",
+              "color": "green"
+            },
+            {
+              "id": "d_list",
+              "name": "Shopping list",
+              "job": "items to buy",
+              "color": "green"
+            }
+          ]
+        }
+      ],
+      "arrows": [
+        {
+          "from": "d_user",
+          "to": "d_pantry",
+          "label": "1 → many"
+        },
+        {
+          "from": "d_pantry",
+          "to": "d_item",
+          "label": "1 → many"
+        },
+        {
+          "from": "d_user",
+          "to": "d_recipe",
+          "label": "saves"
+        },
+        {
+          "from": "d_pantry",
+          "to": "d_list",
+          "label": "1 → many"
+        }
+      ]
+    },
+    {
+      "id": "states",
+      "kind": "states",
+      "title": "The life of a pantry item",
+      "question": "Which states can an item be in?  States: api/prisma/schema.prisma · moves: api/src/services/pantry.ts",
+      "bands": [
+        {
+          "rows": [
+            [
+              {
+                "id": "st_new",
+                "name": "Added",
+                "job": "scanned or typed",
+                "shape": "ellipse",
+                "color": "ink"
+              },
+              {
+                "id": "st_fresh",
+                "name": "In stock",
+                "job": "counted in the pantry",
+                "color": "blue"
+              },
+              {
+                "id": "st_used",
+                "name": "Used up",
+                "job": "cooked or eaten",
+                "color": "green"
+              }
+            ],
+            [
+              null,
+              {
+                "id": "st_soon",
+                "name": "Expiring",
+                "job": "within 3 days:\nreminder sent",
+                "color": "orange"
+              },
+              {
+                "id": "st_waste",
+                "name": "Thrown away",
+                "job": "counts as waste",
+                "color": "grey",
+                "dashed": true
+              }
+            ]
+          ]
+        }
+      ],
+      "arrows": [
+        {
+          "from": "st_new",
+          "to": "st_fresh",
+          "label": "save"
+        },
+        {
+          "from": "st_fresh",
+          "to": "st_used",
+          "label": "cook",
+          "strong": true
+        },
+        {
+          "from": "st_fresh",
+          "to": "st_soon",
+          "label": "nightly check"
+        },
+        {
+          "from": "st_soon",
+          "to": "st_waste",
+          "label": "throw away"
+        }
+      ],
+      "notes": [
+        "Reminders depend on the nightly worker: if it stops, nothing moves to Expiring."
+      ]
+    }
+  ],
+  "traces": [
+    {
+      "label": "Cook a recipe",
+      "view": "zoom-cook"
+    },
+    {
+      "label": "Upgrade to Plus"
+    },
+    {
+      "label": "Nightly expiry check"
+    },
+    {
+      "label": "Share a shopping list"
+    }
+  ],
+  "cracks": [
+    {
+      "status": "confirmed",
+      "title": "One database, no backups configured",
+      "detail": "Every household's data lives in a single Postgres instance with no backup job in the repo.",
+      "evidence": "api/prisma/schema.prisma · deploy/compose.yml",
+      "views": [
+        "containers"
+      ]
+    },
+    {
+      "status": "confirmed",
+      "title": "The docs promise push reminders",
+      "detail": "docs/roadmap.md lists push notifications as shipped. The code only sends email.",
+      "evidence": "docs/roadmap.md:14",
+      "views": [
+        "context"
+      ]
+    },
+    {
+      "status": "to verify",
+      "title": "Cooking twice can deduct twice",
+      "detail": "cook() has no idempotency key, so a double tap on Cook may subtract the ingredients twice.",
+      "evidence": "api/src/services/cook.ts:61",
+      "views": [
+        "components",
+        "zoom-cook"
+      ]
+    }
+  ],
+  "renderedHash": "33c6eb06ebf65a24"
+}

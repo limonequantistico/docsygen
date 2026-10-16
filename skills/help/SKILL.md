@@ -95,6 +95,7 @@ Focused reviews of what's already built. Run one when that dimension matters —
 | `/env` | Environment variables, secrets hygiene, production config checklist. |
 | `/clean` | Audits modularity, structure, and separation of concerns; refactors on approval. |
 | `/onboard` | Refreshes README and onboarding so another dev can run and contribute. |
+| `/architecture` | Hand-drawn map of the codebase (C4 levels, data, states, risk tags, cracks) → `.docs/diagrams/`. Give it a GitHub link to map someone else's repo into Downloads. `zoom <part>` / `trace <action>` dig deeper. |
 
 Work is logged to `.docs/changelog.md`, following `.docs/changelog-spec.md`. Full reference and conventions: the [README](https://github.com/limonequantistico/docsygen).
 

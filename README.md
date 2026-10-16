@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 38          Dev Tools ║  [INFO] Version 1.19.0 (Build 512)
+║ 39          Dev Tools ║  [INFO] Version 1.20.0 (Build 512)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.19.0        ║  [OK] Config: /etc/docsygen/config.toml
+║         1.20.0        ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -49,7 +49,7 @@ docsygen >
 
 # Docsygen
 
-**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **38 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
+**Docsygen** is a **documentation-driven development workflow** that runs in both [Claude Code](https://claude.com/claude-code) and [Codex](https://developers.openai.com/codex). It's a set of **39 skills** (`SKILL.md` files) that guide a project from raw idea → shaped design → tracked work → shipped release, keeping docs honest along the way.
 
 It's **language-agnostic** — the skills and docs work the same whether the project is Swift, Android, web, or anything else. Docsygen ships no application code; it's a toolkit of skills plus a `.docs/` convention.
 
@@ -237,6 +237,9 @@ Focused reviews of what's already built. Run one when that dimension matters, no
 | `/env`     | Environment variables, secrets hygiene, production checklist.      |
 | `/clean`   | Audit modularity and separation of concerns; refactor on approval. |
 | `/onboard` | Refresh README / onboarding so another dev can run and contribute. |
+| `/architecture` | Hand-drawn Excalidraw map of the codebase → `.docs/diagrams/`, or of a GitHub repo by link → Downloads; `zoom` / `trace` on request. |
+
+**`/architecture` is a map you can learn.** It reads the code (through [CodeGraph](https://github.com/colbymchenry/codegraph) when the repo is indexed) and draws the system as an editable, hand-drawn Excalidraw file: the four C4 levels (context, what runs, components, and code zooms on request), plus a data view and state diagrams where they apply. Every box carries its real path; components carry a tag with their size and how many files depend on them, coloured by where to look first; and red pins mark *cracks*, places where the code is fragile or the docs promise something the code doesn't do, each with its evidence. It decides on its own whether to create or update, never overwrites a drawing you edited by hand without asking, and refuses repos where a map wouldn't help, like a pure Markdown vault. Give it a GitHub link instead and it maps that repo from a temporary clone it only reads, never runs, saves the map to Downloads, and asks afterwards whether to delete the clone. The agent writes only facts into `architecture.model.json`; a bundled renderer owns the layout and checks it (no cut text, no arrow crossing what it doesn't connect) before you see it.
 
 **The planning pipeline:** `/grill-me` resolves open decisions → `/to-prd` documents them → `/to-issues` slices them into backlog items → you build each one. All four sit in **Anytime** because the loop starts whenever a decision gets murky, not at a fixed point in the project. The trigger for the last two is continuity: run `/to-prd` when the reasoning must outlive the session, `/to-issues` when the work spans more than one sitting. For a feature you'll finish this afternoon, both are overhead.
 
@@ -293,7 +296,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 
 This repository **is** the source of truth, the plugin, and the marketplace — for both agents at once:
 
-- [`skills/`](skills/) — the 38 skills, one `SKILL.md` per directory. This is the single source both agents use, and this repo also dogfoods them directly. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the `skills` path in its manifest.
+- [`skills/`](skills/) — the 39 skills, one `SKILL.md` per directory. This is the single source both agents use, and this repo also dogfoods them directly. Claude Code auto-discovers it as the plugin's skills; Codex reads it via the `skills` path in its manifest.
 - `.claude-plugin/plugin.json` — Claude Code plugin manifest (name, version). Components in `skills/` are auto-discovered, so there's no path to maintain.
 - `.claude-plugin/marketplace.json` — makes the repo its own Claude Code marketplace.
 - `.codex-plugin/plugin.json` — Codex plugin manifest. Mirrors the Claude one, plus an `interface` block (display name, category, sample prompts) and an explicit `"skills": "./skills/"`.

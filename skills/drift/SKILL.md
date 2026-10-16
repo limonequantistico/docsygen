@@ -32,7 +32,9 @@ Drift is not always the doc's fault. For direction, stack, and undocumented work
 
 5. **Undocumented changes** — Significant code changes in recent commits that aren't reflected in any doc.
 
-6. **Changelog update** — Check commits against `.docs/changelog.md`. If there's meaningful work not in the changelog, propose adding it. Also mention if it looks like a good time to run `/version` to cut a release.
+6. **Architecture map** — If `.docs/diagrams/architecture.model.json` exists, run `render.py status` on it (the script ships with the `/architecture` skill; find it with `find ~/.claude/plugins ~/.codex -path '*/skills/architecture/render.py' 2>/dev/null`). If boxes or zooms sit on files changed since the map's commit, flag the map as stale and suggest `/architecture`. Don't redraw it here.
+
+7. **Changelog update** — Check commits against `.docs/changelog.md`. If there's meaningful work not in the changelog, propose adding it. Also mention if it looks like a good time to run `/version` to cut a release.
 
 **Output:**
 

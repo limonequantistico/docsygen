@@ -185,3 +185,13 @@
 ### 01:47
 
   - replaced the gitignored `private-backlog.md` with a gitignored `TODOS.md` for the herdr-todos panel; the Conductor setup script now symlinks `TODOS.md` into each local workspace
+
+## 2026-10-16
+
+### 16:39
+
+  - added `/architecture` skill — hand-drawn Excalidraw map of a codebase (C4 levels, data and state views, risk tags from CodeGraph, cracks with evidence) in `.docs/diagrams/`, with `zoom` / `trace` on request
+  - added `render.py` (model → laid-out, checked `.excalidraw`, plus `status` for create-vs-update and hand-edit detection), `share.mjs` (optional encrypted excalidraw.com link), `MODEL-FORMAT.md`, a made-up example, and `scripts/architecture_metrics.py` for the font widths
+  - `/drift` now flags a stale architecture map
+  - `/architecture <github link>` maps someone else's repo from a read-only temporary clone into `~/Downloads/`, then offers to delete what it created
+  - bumped docsygen to 1.20.0
