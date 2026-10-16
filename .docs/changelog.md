@@ -220,3 +220,14 @@
 
   - `/architecture` on an existing map now asks first: update it, open it in the file manager, or make a share link; opening skips the update (and the clone for GitHub maps)
   - bumped docsygen to 1.20.4
+
+### 17:49
+
+  - `/architecture` — created: hand-drawn map of docsygen itself in `.docs/diagrams/`
+
+### 18:00
+
+  - `/merge` and `/push` now find `/commit` and `/version` inside the plugin instead of a `skills/` path that only exists in the docsygen repo
+  - `scripts/validate.py` checks the README banner's skill count, and runs on the macOS system Python 3.9
+  - added `.docs/tech-stack.md`; `CLAUDE.md` no longer points at seed and design-system docs this repo doesn't have
+  - bumped docsygen to 1.20.5

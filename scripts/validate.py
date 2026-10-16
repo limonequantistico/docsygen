@@ -12,6 +12,8 @@ Checks the invariants that are maintained by hand and therefore drift:
 Run with no arguments from the repo root. Exits non-zero on any failure.
 """
 
+from __future__ import annotations
+
 import json
 import re
 import sys
@@ -146,6 +148,12 @@ def check_skill_count(count: int) -> None:
         for stated in set(re.findall(r"\*\*(\d+) skills\*\*", text) + re.findall(r"the (\d+) skills", text)):
             if int(stated) != count:
                 fail(f"{label} says {stated} skills but skills/ contains {count}")
+
+    # The ASCII banner's element tile carries the count too ("║ 39   Dev Tools ║"), in a
+    # shape neither pattern above matches.
+    for stated in re.findall(r"^║\s*(\d+)\s+Dev Tools\s*║", readme, re.M):
+        if int(stated) != count:
+            fail(f"README banner says {stated} Dev Tools but skills/ contains {count} — update the banner tile")
 
     if not CODEX_MANIFEST.is_file():
         return  # already reported by check_manifests

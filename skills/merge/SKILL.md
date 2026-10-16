@@ -12,6 +12,8 @@ The flow branches on where you are:
 
 **Custom instructions:** If the user included extra instructions when invoking this skill, treat them as overriding or extending the guidance below (e.g. a different base branch, or a message they dictate).
 
+**Where `/commit` and `/version` live:** this skill follows both, and their `SKILL.md` files sit in the plugin next to this skill's folder, not in the project: `<base directory>/../commit/SKILL.md` and `<base directory>/../version/SKILL.md`, where the base directory is the one this skill was loaded from (Claude Code prints it as "Base directory for this skill"). If it isn't shown, find them with `find ~/.claude/plugins ~/.codex -path '*/skills/version/SKILL.md' 2>/dev/null` and use the newest version. A `skills/` folder in the project being shipped is not this plugin.
+
 ### 1. Work out where you are
 
 Run these first — the answer decides which flow you take:
@@ -39,7 +41,7 @@ Anything else, just stage it. Don't narrate a clean file list, and don't turn th
 
 ### 2. Generate the commit message
 
-Read `skills/commit/SKILL.md` and follow its steps 1–3 — figuring out what changed, checking `.docs/commit-convention.md` (detecting or asking and persisting it if missing), and writing the message — exactly as `/commit` would. Stop before its step 4 (`Output`): that step is `/commit`-specific ("print it, don't touch git") and doesn't apply here. Keep the message you produced; use it for staging and committing below.
+Read `/commit`'s `SKILL.md` and follow its steps 1–3 — figuring out what changed, checking `.docs/commit-convention.md` (detecting or asking and persisting it if missing), and writing the message — exactly as `/commit` would. Stop before its step 4 (`Output`): that step is `/commit`-specific ("print it, don't touch git") and doesn't apply here. Keep the message you produced; use it for staging and committing below.
 
 The convention check is the one narrow exception to "ship without asking" in this skill — same category as the secrets check in Step 1. It only asks the user directly when `.docs/commit-convention.md` doesn't exist yet and recent history is genuinely ambiguous; once answered it's persisted to that file and never asks again.
 
@@ -57,7 +59,7 @@ If `CLAUDE.md` (or equivalent workspace rules) defines steps that must happen be
 
 Always — `/merge` lands work on the base branch in both flows, which is what a release is made of.
 
-If the project has a `.docs/` folder, read `skills/version/SKILL.md` and run it in **automatic mode**: it decides from the changelog and commits since the last version whether anything user-facing has landed, and if so writes `.docs/versions.json` and the changelog separator — no confirmation. Do this before committing, so the version files ship in the same commit. Don't pause here; a skipped version is the normal outcome. Carry its one-line result into the report.
+If the project has a `.docs/` folder, read `/version`'s `SKILL.md` and run it in **automatic mode**: it decides from the changelog and commits since the last version whether anything user-facing has landed, and if so writes `.docs/versions.json` and the changelog separator — no confirmation. Do this before committing, so the version files ship in the same commit. Don't pause here; a skipped version is the normal outcome. Carry its one-line result into the report.
 
 ### 6. Run the flow
 

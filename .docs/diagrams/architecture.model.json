@@ -1,0 +1,794 @@
+{
+  "project": "docsygen",
+  "commit": "6847ef6",
+  "date": "2026-10-16",
+  "output": "architecture.excalidraw",
+  "views": [
+    {
+      "id": "context",
+      "kind": "context",
+      "title": "Context",
+      "question": "Who uses docsygen, and what does it talk to outside itself?",
+      "bands": [
+        {
+          "rows": [
+            [
+              {
+                "id": "dev",
+                "name": "Developer",
+                "job": "types /commands\nin their own project",
+                "shape": "ellipse",
+                "color": "ink"
+              },
+              {
+                "id": "github",
+                "name": "GitHub",
+                "job": "hosts the repo, the\nmarketplace and CI",
+                "path": ".github/workflows/validate.yml",
+                "color": "grey",
+                "icon": "github"
+              },
+              {
+                "id": "author",
+                "name": "Maintainer",
+                "job": "edits skills,\nbumps the version",
+                "shape": "ellipse",
+                "color": "ink"
+              }
+            ],
+            [
+              {
+                "id": "claude",
+                "name": "Claude Code",
+                "job": "installs the plugin,\nruns the skills",
+                "path": ".claude-plugin/",
+                "color": "grey",
+                "icon": "claude"
+              },
+              {
+                "id": "docsygen",
+                "name": "docsygen",
+                "job": "39 skills + a few scripts.\nNo app code of its own",
+                "path": "skills/",
+                "color": "blue",
+                "big": true,
+                "pin": 4
+              },
+              {
+                "id": "codex",
+                "name": "Codex",
+                "job": "same skills folder,\nits own manifest",
+                "path": ".codex-plugin/",
+                "color": "grey",
+                "icon": "openai"
+              }
+            ],
+            [
+              {
+                "id": "images",
+                "name": "Image APIs",
+                "job": "OpenAI or Gemini,\nonly for /asset",
+                "path": "skills/asset/generate.py",
+                "color": "grey",
+                "icon": "googlegemini"
+              },
+              {
+                "id": "excalidraw",
+                "name": "Excalidraw",
+                "job": "encrypted share links\nfor /architecture",
+                "path": "skills/architecture/share.mjs",
+                "color": "grey",
+                "icon": "excalidraw"
+              },
+              {
+                "id": "codegraph",
+                "name": "CodeGraph · herdr",
+                "job": "optional local tools\nsome skills lean on",
+                "path": "skills/architecture/  ·  skills/herdr-review/",
+                "color": "grey",
+                "dashed": true
+              }
+            ]
+          ]
+        }
+      ],
+      "arrows": [
+        {
+          "from": "dev",
+          "to": "claude",
+          "label": "/commands"
+        },
+        {
+          "from": "author",
+          "to": "github",
+          "label": "push"
+        },
+        {
+          "from": "claude",
+          "to": "docsygen",
+          "label": "loads skills",
+          "strong": true
+        },
+        {
+          "from": "codex",
+          "to": "docsygen",
+          "label": "loads skills"
+        },
+        {
+          "from": "github",
+          "to": "docsygen",
+          "label": "hosts ·\nCI checks"
+        },
+        {
+          "from": "docsygen",
+          "to": "excalidraw",
+          "label": "share link\n(on a yes)"
+        },
+        {
+          "from": "docsygen",
+          "to": "images",
+          "label": "generate",
+          "dashed": true
+        },
+        {
+          "from": "docsygen",
+          "to": "codegraph",
+          "label": "if installed",
+          "dashed": true
+        }
+      ]
+    },
+    {
+      "id": "containers",
+      "kind": "containers",
+      "title": "What runs",
+      "question": "docsygen is mostly instructions the agent reads. What actually executes, and how do the parts talk?",
+      "bands": [
+        {
+          "rows": [
+            [
+              {
+                "id": "c_docs",
+                "name": "Your project's .docs/",
+                "job": "every file the skills\nread and write",
+                "path": ".docs/  (in the user's repo)",
+                "color": "green"
+              },
+              {
+                "id": "c_agent",
+                "name": "Agent session",
+                "job": "reads a SKILL.md and\nfollows it step by step",
+                "path": "skills/*/SKILL.md",
+                "color": "blue"
+              },
+              {
+                "id": "c_cache",
+                "name": "Plugin cache",
+                "job": "installed copy, keyed\nby version number",
+                "path": "~/.claude/plugins/cache/",
+                "color": "green"
+              },
+              {
+                "id": "c_ci",
+                "name": "GitHub Actions",
+                "job": "runs the validator on\nevery push and PR",
+                "path": ".github/workflows/validate.yml",
+                "color": "orange",
+                "icon": "githubactions",
+                "pin": 3
+              }
+            ],
+            [
+              {
+                "id": "c_render",
+                "name": "render.py",
+                "job": "draws and checks\nthe Excalidraw map",
+                "path": "skills/architecture/render.py",
+                "color": "yellow",
+                "icon": "python"
+              },
+              {
+                "id": "c_generate",
+                "name": "generate.py",
+                "job": "calls an image API\nwithout showing keys",
+                "path": "skills/asset/generate.py",
+                "color": "yellow",
+                "icon": "python"
+              },
+              {
+                "id": "c_share",
+                "name": "share.mjs",
+                "job": "encrypts and uploads\na diagram",
+                "path": "skills/architecture/share.mjs",
+                "color": "yellow",
+                "icon": "nodedotjs"
+              },
+              {
+                "id": "c_validate",
+                "name": "validate.py",
+                "job": "skills, manifests,\nversions, /help",
+                "path": "scripts/validate.py",
+                "color": "yellow",
+                "icon": "python"
+              }
+            ],
+            [
+              null,
+              {
+                "id": "c_keys",
+                "name": "Key file",
+                "job": "API keys, outside\nevery repo",
+                "path": "~/.config/docsygen/assets.env",
+                "color": "green"
+              },
+              {
+                "id": "c_exc",
+                "name": "Excalidraw backend",
+                "job": "stores the\nciphertext only",
+                "path": "json.excalidraw.com",
+                "color": "grey",
+                "icon": "excalidraw"
+              },
+              null
+            ]
+          ]
+        }
+      ],
+      "arrows": [
+        {
+          "from": "c_agent",
+          "to": "c_docs",
+          "label": "reads /\nwrites files",
+          "strong": true
+        },
+        {
+          "from": "c_agent",
+          "to": "c_cache",
+          "label": "loads\nSKILL.md"
+        },
+        {
+          "from": "c_agent",
+          "to": "c_render",
+          "label": "python3"
+        },
+        {
+          "from": "c_agent",
+          "to": "c_generate",
+          "label": "python3"
+        },
+        {
+          "from": "c_agent",
+          "to": "c_share",
+          "label": "node"
+        },
+        {
+          "from": "c_ci",
+          "to": "c_validate",
+          "label": "on push"
+        },
+        {
+          "from": "c_render",
+          "to": "c_docs",
+          "label": "writes\ndiagrams/"
+        },
+        {
+          "from": "c_generate",
+          "to": "c_keys",
+          "label": "reads keys"
+        },
+        {
+          "from": "c_share",
+          "to": "c_exc",
+          "label": "HTTPS POST"
+        }
+      ],
+      "notes": [
+        "scripts/architecture_metrics.py is dev-only: it regenerates the font widths render.py uses, and never runs in a user's project."
+      ]
+    },
+    {
+      "id": "components",
+      "kind": "components",
+      "title": "Inside the plugin",
+      "question": "How are the 39 skills grouped, and which ones hand off to which? Tags: lines of SKILL.md (+ scripts). No CodeGraph, so no dependent counts.",
+      "bands": [
+        {
+          "title": "PACKAGING · what agents and CI read",
+          "color": "orange",
+          "boxes": [
+            {
+              "id": "k_manifests",
+              "name": "4 manifests",
+              "job": "plugin + marketplace,\none pair per agent",
+              "path": ".claude-plugin/  ·  .codex-plugin/",
+              "color": "orange",
+              "tag": {
+                "lines": 90
+              }
+            },
+            {
+              "id": "k_validate",
+              "name": "validate.py",
+              "job": "fails CI when hand-kept\nfacts drift apart",
+              "path": "scripts/validate.py",
+              "color": "orange",
+              "pin": 1,
+              "tag": {
+                "lines": 213
+              }
+            },
+            {
+              "id": "k_help",
+              "name": "/help",
+              "job": "the command reference,\nevery skill listed",
+              "path": "skills/help/SKILL.md",
+              "color": "orange",
+              "tag": {
+                "lines": 121
+              }
+            }
+          ]
+        },
+        {
+          "title": "THINK · decide what to build",
+          "color": "violet",
+          "boxes": [
+            {
+              "id": "k_pipeline",
+              "name": "Planning pipeline",
+              "job": "grill-me, grill-with-docs,\ndomain-modeling, to-prd, to-issues",
+              "path": "skills/grill-me/ … skills/to-issues/",
+              "color": "violet",
+              "tag": {
+                "lines": 246
+              }
+            },
+            {
+              "id": "k_seed",
+              "name": "Seed + stack",
+              "job": "seed, seed-review, stack:\nidea → seed → tech-stack",
+              "path": "skills/seed/  ·  skills/stack/",
+              "color": "violet",
+              "tag": {
+                "lines": 163
+              }
+            },
+            {
+              "id": "k_init",
+              "name": "/init",
+              "job": "writes .docs/ and the\nCLAUDE.md rules",
+              "path": "skills/init/SKILL.md",
+              "color": "violet",
+              "pin": 5,
+              "tag": {
+                "lines": 233
+              }
+            }
+          ]
+        },
+        {
+          "title": "SHAPE & BUILD",
+          "color": "green",
+          "boxes": [
+            {
+              "id": "k_quality",
+              "name": "5 quality passes",
+              "job": "ux-review, a11y, logs,\nperformance, test",
+              "path": "skills/ux-review/ …",
+              "color": "green",
+              "tag": {
+                "lines": 322
+              }
+            },
+            {
+              "id": "k_build",
+              "name": "Build the UI",
+              "job": "scaffold, setup, showcase,\ntheming, tweaks",
+              "path": "skills/setup/ …",
+              "color": "green",
+              "tag": {
+                "lines": 411
+              }
+            },
+            {
+              "id": "k_design",
+              "name": "Design",
+              "job": "design-system,\nprototype, asset",
+              "path": "skills/design-system/ …",
+              "color": "green",
+              "tag": {
+                "lines": 355
+              }
+            }
+          ]
+        },
+        {
+          "title": "REVIEW & SHIP",
+          "color": "yellow",
+          "boxes": [
+            {
+              "id": "k_review",
+              "name": "Review + debug",
+              "job": "review, herdr-review, debug,\ndeep-audit, clean",
+              "path": "skills/review/ …",
+              "color": "yellow",
+              "tag": {
+                "lines": 705
+              }
+            },
+            {
+              "id": "k_generate",
+              "name": "generate.py",
+              "job": "the API route\nfor /asset",
+              "path": "skills/asset/generate.py",
+              "color": "yellow",
+              "tag": {
+                "lines": 308
+              }
+            },
+            {
+              "id": "k_ship",
+              "name": "Ship",
+              "job": "commit, push, merge:\nmessage → commit → main",
+              "path": "skills/merge/ …",
+              "color": "yellow",
+              "pin": 2,
+              "tag": {
+                "lines": 241
+              }
+            }
+          ]
+        },
+        {
+          "title": "KEEP IT HONEST",
+          "color": "blue",
+          "boxes": [
+            {
+              "id": "k_arch",
+              "name": "/architecture",
+              "job": "this map: skill +\nrender.py + share.mjs",
+              "path": "skills/architecture/",
+              "color": "blue",
+              "tag": {
+                "lines": 1397
+              }
+            },
+            {
+              "id": "k_upkeep",
+              "name": "Upkeep",
+              "job": "drift, tidy, deps,\nenv, onboard, resume",
+              "path": "skills/drift/ …",
+              "color": "blue",
+              "tag": {
+                "lines": 317
+              }
+            },
+            {
+              "id": "k_version",
+              "name": "/version",
+              "job": "cuts a release only when\nsomething user-facing landed",
+              "path": "skills/version/SKILL.md",
+              "color": "blue",
+              "tag": {
+                "lines": 125
+              }
+            }
+          ]
+        }
+      ],
+      "arrows": [
+        {
+          "from": "k_validate",
+          "to": "k_manifests",
+          "label": "versions\nagree"
+        },
+        {
+          "from": "k_validate",
+          "to": "k_help",
+          "label": "lists every\nskill"
+        },
+        {
+          "from": "k_seed",
+          "to": "k_build",
+          "label": "stack gates"
+        },
+        {
+          "from": "k_seed",
+          "to": "k_design",
+          "label": "seed + stack"
+        },
+        {
+          "from": "k_design",
+          "to": "k_generate",
+          "label": "/asset via API",
+          "dashed": true
+        },
+        {
+          "from": "k_ship",
+          "to": "k_version",
+          "label": "auto, on main",
+          "strong": true
+        },
+        {
+          "from": "k_arch",
+          "to": "k_upkeep",
+          "label": "offers /drift",
+          "both": true
+        }
+      ],
+      "notes": [
+        "Skills hand off by naming each other in plain text (`/drift`, `/version`). Nothing links them in code."
+      ]
+    },
+    {
+      "id": "menu",
+      "kind": "menu",
+      "title": "Zoom menu"
+    },
+    {
+      "id": "data",
+      "kind": "data",
+      "title": "What it writes",
+      "question": "docsygen stores nothing itself. These are the files it keeps in each project's .docs/, and how one feeds the next.",
+      "bands": [
+        {
+          "title": "WHAT YOU PLAN",
+          "color": "violet",
+          "boxes": [
+            {
+              "id": "d_idea",
+              "name": "idea.md",
+              "job": "raw notes",
+              "path": ".docs/idea.md",
+              "color": "violet"
+            },
+            {
+              "id": "d_seed",
+              "name": "seed.md",
+              "job": "what and for whom",
+              "path": ".docs/seed.md",
+              "color": "violet"
+            },
+            {
+              "id": "d_stack",
+              "name": "tech-stack.md",
+              "job": "tools + versions",
+              "path": ".docs/tech-stack.md",
+              "color": "violet"
+            },
+            {
+              "id": "d_prd",
+              "name": "prds/",
+              "job": "one per feature",
+              "path": ".docs/prds/",
+              "color": "violet"
+            }
+          ]
+        },
+        {
+          "title": "WHAT HAPPENED",
+          "color": "green",
+          "boxes": [
+            {
+              "id": "d_spec",
+              "name": "changelog-spec.md",
+              "job": "the format ~15\nskills follow",
+              "path": ".docs/changelog-spec.md",
+              "color": "green"
+            },
+            {
+              "id": "d_changelog",
+              "name": "changelog.md",
+              "job": "dated log of work",
+              "path": ".docs/changelog.md",
+              "color": "green"
+            },
+            {
+              "id": "d_graveyard",
+              "name": "graveyard.md",
+              "job": "buried items",
+              "path": ".docs/graveyard.md",
+              "color": "grey"
+            },
+            {
+              "id": "d_backlog",
+              "name": "backlog.md",
+              "job": "scratchpad queue",
+              "path": ".docs/backlog.md",
+              "color": "green"
+            }
+          ]
+        },
+        {
+          "boxes": [
+            null,
+            {
+              "id": "d_versions",
+              "name": "versions.json",
+              "job": "release history",
+              "path": ".docs/versions.json",
+              "color": "blue"
+            },
+            null,
+            null
+          ]
+        }
+      ],
+      "arrows": [
+        {
+          "from": "d_idea",
+          "to": "d_seed",
+          "label": "/seed"
+        },
+        {
+          "from": "d_seed",
+          "to": "d_stack",
+          "label": "/stack"
+        },
+        {
+          "from": "d_prd",
+          "to": "d_backlog",
+          "label": "/to-issues"
+        },
+        {
+          "from": "d_spec",
+          "to": "d_changelog",
+          "label": "format"
+        },
+        {
+          "from": "d_backlog",
+          "to": "d_graveyard",
+          "label": "/tidy"
+        },
+        {
+          "from": "d_changelog",
+          "to": "d_versions",
+          "label": "/version"
+        }
+      ],
+      "notes": [
+        "Also, when their skill runs: design-system.md, preview.md, logging.md, adr/, CONTEXT.md, diagrams/, audits/."
+      ]
+    },
+    {
+      "id": "states",
+      "kind": "states",
+      "title": "The life of a backlog item",
+      "question": "Where can a backlog item end up?  Moves: skills/tidy/SKILL.md · skills/to-issues/SKILL.md",
+      "bands": [
+        {
+          "rows": [
+            [
+              {
+                "id": "st_new",
+                "name": "Jotted down",
+                "job": "one line in backlog.md",
+                "shape": "ellipse",
+                "color": "ink"
+              },
+              {
+                "id": "st_open",
+                "name": "In the backlog",
+                "job": "read on every task",
+                "color": "blue"
+              },
+              {
+                "id": "st_done",
+                "name": "Done",
+                "job": "archived to changelog.md",
+                "color": "green"
+              }
+            ],
+            [
+              null,
+              {
+                "id": "st_buried",
+                "name": "Buried",
+                "job": "60+ days untouched:\ngraveyard.md",
+                "color": "grey",
+                "dashed": true
+              },
+              {
+                "id": "st_issue",
+                "name": "GitHub issue",
+                "job": "definitely happening;\nleaves the backlog",
+                "color": "orange"
+              }
+            ]
+          ]
+        }
+      ],
+      "arrows": [
+        {
+          "from": "st_new",
+          "to": "st_open",
+          "label": "save"
+        },
+        {
+          "from": "st_open",
+          "to": "st_done",
+          "label": "/tidy",
+          "strong": true
+        },
+        {
+          "from": "st_open",
+          "to": "st_buried",
+          "label": "/tidy"
+        },
+        {
+          "from": "st_open",
+          "to": "st_issue",
+          "label": "/to-issues"
+        }
+      ],
+      "notes": [
+        "Editing an item resets its age. When a buried idea reappears in the backlog, /tidy points it out."
+      ]
+    }
+  ],
+  "traces": [
+    {
+      "label": "Ship a change with /merge"
+    },
+    {
+      "label": "Release docsygen itself (bump 4 spots → CI)"
+    },
+    {
+      "label": "First run in a project (/init)"
+    },
+    {
+      "label": "Plan → backlog (grill → PRD → issues)"
+    },
+    {
+      "label": "Map a repo (/architecture)"
+    }
+  ],
+  "cracks": [
+    {
+      "status": "fixed",
+      "title": "The banner's skill count isn't checked",
+      "detail": "validate.py now also checks the banner's \"N Dev Tools\" tile against skills/.",
+      "evidence": "scripts/validate.py:146 · README.md:11",
+      "views": [
+        "components"
+      ]
+    },
+    {
+      "status": "fixed",
+      "title": "/merge and /push read the version skill by a repo path",
+      "detail": "Both now locate /commit and /version next to their own folder in the plugin, with a find fallback.",
+      "evidence": "skills/merge/SKILL.md:60 · skills/push/SKILL.md:49",
+      "views": [
+        "components"
+      ]
+    },
+    {
+      "status": "by design",
+      "title": "A skill change without a version bump never ships",
+      "detail": "Both agents cache by version. CI checks the four version spots agree, not that a change to skills/ came with a bump.",
+      "evidence": "scripts/validate.py:110 · .github/workflows/validate.yml",
+      "views": [
+        "containers"
+      ]
+    },
+    {
+      "status": "fixed",
+      "title": "This repo's own rules point at docs it doesn't have",
+      "detail": "Added .docs/tech-stack.md; CLAUDE.md now points at README.md for context and drops the design-system rule.",
+      "evidence": "CLAUDE.md:5-7 · .docs/",
+      "views": [
+        "context"
+      ]
+    },
+    {
+      "status": "by design",
+      "title": "Skill-to-skill links are plain text",
+      "detail": "Skills name each other as /name, and only /help's listing is checked. Renames are caught by a list of old names kept by hand in /init.",
+      "evidence": "skills/init/SKILL.md:219 · scripts/validate.py:150",
+      "views": [
+        "components"
+      ]
+    }
+  ],
+  "renderedHash": "04ead34557ec74df"
+}
