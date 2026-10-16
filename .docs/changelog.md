@@ -231,3 +231,8 @@
   - `scripts/validate.py` checks the README banner's skill count, and runs on the macOS system Python 3.9
   - added `.docs/tech-stack.md`; `CLAUDE.md` no longer points at seed and design-system docs this repo doesn't have
   - bumped docsygen to 1.20.5
+
+### 18:16
+
+  - `/architecture` drafts the first map of a project in Downloads and moves it into `.docs/diagrams/` only once the user approves it (or changes or discards it)
+  - bumped docsygen to 1.20.6
