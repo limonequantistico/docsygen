@@ -25,6 +25,7 @@ It is built for **someone steering an AI that writes most of the code**. They do
 **A GitHub link given** (`https://github.com/<owner>/<repo>`, optionally with `/tree/<branch>`): map that repo instead. Nothing is written to the current project.
 
 - **`MAP` is `~/Downloads/<owner>-<repo>-architecture/`.** The model and the drawing go there, never into the cloned repo.
+- **If `MAP` already holds a model, do Step 2 first.** The user may only want to open it, which needs no clone.
 - **Clone into a fresh temporary folder:**
 
   ```
@@ -55,14 +56,19 @@ A map earns its place when there is **code with more than one moving part**. Cou
 Run `python3 <base>/render.py status MAP/architecture.model.json`. For a GitHub map, add `--repo <clone>` once you have the clone. Without it, `status` only asks the remote whether it moved, which is enough to say "current" without downloading anything.
 
 - **`model: none`**: you're creating. Go to Step 3.
-- **A model exists**: you're updating. Unless the user asked to start over, don't rebuild from scratch: the model holds checked facts, and the user may know it by heart.
+- **A model exists and the user just ran `/architecture`** (no zoom, trace, "start over" or other specific ask): they may only want to look at it. Ask in one `AskUserQuestion`, with what `status` found in the question (e.g. "12 files changed since the map was drawn"):
+  - **Update it** (Recommended when anything changed): carry on below. Leave this option out when `status` says nothing changed.
+  - **Open it in the file manager**: run the reveal from Step 7, then stop.
+  - **Make a share link**: run `share.mjs` as in Step 7, then stop.
+
+  The open options touch nothing: no render, no changelog entry. For a GitHub map, ask before cloning, since opening doesn't need the clone.
+- **Updating**: unless the user asked to start over, don't rebuild from scratch: the model holds checked facts, and the user may know it by heart.
   - **"EDITED BY HAND"**: the user changed the drawing after the last render. Ask in one `AskUserQuestion`:
     - *Overwrite with a fresh render.* Their edits are lost.
     - *Keep theirs; save the new render as `architecture-<YYYY-MM-DD>.excalidraw`.*
     - *Stop, so they can look first.*
 
     Never overwrite without that answer.
-  - **"changed since: nothing"** and no hand edits: say the map is current and stop, unless the user asked for something specific.
   - Otherwise, update only what moved:
     - Re-check each box, arrow and tag on a changed file. A changed file that **no box covers** can mean a new part: decide whether it belongs on the map.
     - Re-check **every crack**, whichever files changed. A crack that's gone gets status `fixed` for this render; mention it in the summary and drop it from the model on the next update.

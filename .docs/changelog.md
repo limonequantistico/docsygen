@@ -215,3 +215,8 @@
 
   - `/architecture` crack numbers and their pins on the diagram now take the status color (red confirmed, orange to verify, blue by design, green fixed) instead of always red
   - bumped docsygen to 1.20.3
+
+### 17:33
+
+  - `/architecture` on an existing map now asks first: update it, open it in the file manager, or make a share link; opening skips the update (and the clone for GitHub maps)
+  - bumped docsygen to 1.20.4
