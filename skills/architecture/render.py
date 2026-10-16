@@ -128,10 +128,10 @@ class Scene:
         self.text(x + 11, cy - size * 1.25 / 2, label, size, sc, HAND, group, kind="tag")
         return w
 
-    def pin(self, n, x, y):
+    def pin(self, n, x, y, color=STATUS["confirmed"][0]):
         g = self.rid()
-        self.add("ellipse", x - 16, y - 16, 32, 32, strokeColor=STATUS["confirmed"][0],
-                 backgroundColor=STATUS["confirmed"][0], groupIds=[g], customData={"kind": "pin"})
+        self.add("ellipse", x - 16, y - 16, 32, 32, strokeColor=color,
+                 backgroundColor=color, groupIds=[g], customData={"kind": "pin"})
         self.text(x - measure(str(n), 20) / 2 - 2, y - 12, str(n), 20, "#ffffff", HAND, g, kind="pin")
 
     def icon(self, slug, x, y, size, group):
@@ -715,7 +715,7 @@ def layout_menu(sc: Scene, model: dict, view: dict, ox: float, oy: float, number
     sc.text(ox + 40, y + 42, f"Pick any box in the components view and ask: \"zoom into {example}\". You get a new frame.\n"
                              "The tag under each box tells you where to look first:", 19, MUTED)
     cx = ox + 40
-    for lbl, rk in [("high: big, many files depend on it, or has a red pin", "high"), ("medium", "medium"),
+    for lbl, rk in [("high: big, many files depend on it, or has a pin", "high"), ("medium", "medium"),
                     ("low", "low"), ("already zoomed", "done")]:
         g = sc.rid()
         cx += sc.pill(cx, y + 140, lbl, RISK[rk], 17, g) + 16
@@ -757,13 +757,12 @@ def layout_cracks(sc: Scene, cracks: list, ox: float, oy: float, number: str, vi
         evidence = c.get("evidence", "")
         h = 70 + lines_of(detail) * 24 + (22 if evidence else 0)
         g = sc.rid()
-        sc.add("rectangle", ox + 40, y, W - 80, h, strokeColor=MUTED, backgroundColor="#ffffff",
-               roundness={"type": 3}, groupIds=[g])
-        sc.add("ellipse", ox + 64, y + 30, 44, 44, strokeColor=STATUS["confirmed"][0],
-               backgroundColor=STATUS["confirmed"][0], groupIds=[g])
-        sc.text(ox + 86 - measure(str(i), 24) / 2 - 2, y + 37, str(i), 24, "#ffffff", HAND, g)
         status = c.get("status", "confirmed")
         sc_, sb = STATUS.get(status, STATUS["confirmed"])
+        sc.add("rectangle", ox + 40, y, W - 80, h, strokeColor=MUTED, backgroundColor="#ffffff",
+               roundness={"type": 3}, groupIds=[g])
+        sc.add("ellipse", ox + 64, y + 30, 44, 44, strokeColor=sc_, backgroundColor=sc_, groupIds=[g])
+        sc.text(ox + 86 - measure(str(i), 24) / 2 - 2, y + 37, str(i), 24, "#ffffff", HAND, g)
         chip = status.upper()
         cw = max(150, measure(chip, 18) + 30)
         sc.add("rectangle", ox + 135, y + 32, cw, 40, strokeColor=sc_, backgroundColor=sb, roundness={"type": 3},
@@ -810,7 +809,7 @@ def render(model: dict, use_icons: bool = True) -> tuple[dict, Scene]:
     sc.text(0, -340, f"{project}, from far to close", 56)
     commit = model.get("commit", "?")
     sc.text(0, -260, "Views 1-4 are the four C4 levels, each zooming into the one before (the zoom menu lists what can be drawn on request).\n"
-                     "Later views are extra diagrams: the data, and the states things move through. Red pins = places it can crack.\n"
+                     "Later views are extra diagrams: the data, and the states things move through. Numbered pins = places it can crack: red confirmed, orange to verify, blue by design, green fixed.\n"
                      f"Paths start at the project root; ending in / means a folder. Drawn from commit {commit} on {model.get('date', '?')}.",
             22, MUTED)
     pins: dict = {}
@@ -841,11 +840,14 @@ def render(model: dict, use_icons: bool = True) -> tuple[dict, Scene]:
         y += h + FRAME_GAP
     if model.get("cracks"):
         layout_cracks(sc, model["cracks"], 0, y, cracks_number, numbers)
+    cracks = model.get("cracks", [])
     for num, spots in pins.items():
+        crack = cracks[num - 1] if isinstance(num, int) and 0 < num <= len(cracks) else {}
+        color = STATUS.get(crack.get("status", "confirmed"), STATUS["confirmed"])[0]
         for x, py in spots:
             frame_backup = sc.frame
             sc.frame = None
-            sc.pin(num, x, py)
+            sc.pin(num, x, py, color)
             sc.frame = frame_backup
     # pins belong to the frame they sit in
     frames = [e for e in sc.els if e["type"] == "frame"]

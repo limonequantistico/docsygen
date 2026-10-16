@@ -210,3 +210,8 @@
   - `/architecture` hand-over now asks how to open the map: show it in Finder/the file manager to drag onto excalidraw.com (icons kept, no upload), make a share link, or both
   - fixed `/architecture` frames being named after their last band instead of their view title
   - bumped docsygen to 1.20.2
+
+### 17:24
+
+  - `/architecture` crack numbers and their pins on the diagram now take the status color (red confirmed, orange to verify, blue by design, green fixed) instead of always red
+  - bumped docsygen to 1.20.3
