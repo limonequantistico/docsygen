@@ -59,6 +59,7 @@ Interrogate what you're holding in your head — a plan, a design, a bug you can
 | `/to-issues` | Slices a plan or PRD into vertical slices → `.docs/backlog.md` or GitHub Issues (it asks). |
 | `/resume` | Fresh situational assessment after time away: where you are, what's next, what's off. |
 | `/debug` | Diagnoses one bug you can point at — competing hypotheses, instrumentation, a reproduction, a root-cause fix, then cleanup. |
+| `/herdr-guru` | Opens a read-only expert on the project in a herdr pane: ask it anything, including about the working agent's conversation, which it reads live, while that agent keeps its context. `/herdr-guru here` makes this session the guru. |
 
 ### Ship
 

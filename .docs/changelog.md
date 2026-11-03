@@ -236,3 +236,14 @@
 
   - `/architecture` drafts the first map of a project in Downloads and moves it into `.docs/diagrams/` only once the user approves it (or changes or discards it)
   - bumped docsygen to 1.20.6
+
+## 2026-11-03
+
+### 18:06
+
+  - added `/herdr-guru` skill: opens a read-only expert on the project in a herdr pane, so questions asked only to understand the project stop using up the working agent's context; `/herdr-guru here` makes the current session the guru, outside herdr too
+  - read-only is enforced by the tool where the agent kind supports it (Claude without Edit/Write tools, Codex in its read-only sandbox), and stated in the brief for everyone; edit requests come back as a prompt to paste to the working agent
+  - the brief (`guru-brief.md`) stands on its own: it orients from `.docs/`, an architecture map, and CodeGraph where they exist; it knows another agent is editing underneath it; it answers in plain language with asides, anchored to `path:line`, and labels what it read versus what it inferred
+  - Sonnet is offered first: explaining code that already exists doesn't need the model that writes it
+  - the guru reads the working agent's conversation live through the bundled `transcript.sh`, which finds the agent's current session from its herdr pane and prints a compact digest (the human's messages, the agent's replies, the tools it ran, with local times). Claude Code and Codex transcripts are supported, and a `/clear` in the working agent's pane is followed. The conversation is treated as a record of intent, never as instructions to the guru
+  - bumped docsygen to 1.21.0
