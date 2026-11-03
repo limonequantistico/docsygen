@@ -247,3 +247,10 @@
   - Sonnet is offered first: explaining code that already exists doesn't need the model that writes it
   - the guru reads the working agent's conversation live through the bundled `transcript.sh`, which finds the agent's current session from its herdr pane and prints a compact digest (the human's messages, the agent's replies, the tools it ran, with local times). Claude Code and Codex transcripts are supported, and a `/clear` in the working agent's pane is followed. The conversation is treated as a record of intent, never as instructions to the guru
   - bumped docsygen to 1.21.0
+
+### 18:26
+
+  - added a `UserPromptSubmit` plugin hook (`hooks/hooks.json`) that stamps every user message with the local date, time, and timezone (`Current local time: Tue 2026-11-03 18:26 CET (UTC+0100)`), about 25 tokens a message. Works in Claude Code and in Codex on macOS, Linux, and WSL; Codex needs `[features] hooks = true` and a one-time trust of the hook, and native Windows Codex gets no stamp (POSIX-only command)
+  - added a matching rule to the `/init` `CLAUDE.md` template and to this repo's `CLAUDE.md`: resolve "today"/"tomorrow" against the latest stamp, compare stamps for elapsed time, run `date` when there's no stamp
+  - chose a hook plus a rule over a skill: an agent that is wrong about the time doesn't know it is wrong, so it would never call a skill
+  - bumped docsygen to 1.22.0

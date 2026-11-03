@@ -8,14 +8,14 @@
  The Comprehensive Documentation Toolset
 
 ╔═══════════════════════╗  [INIT] Starting Docsygen CLI...
-║ 40          Dev Tools ║  [INFO] Version 1.21.0 (Build 512)
+║ 40          Dev Tools ║  [INFO] Version 1.22.0 (Build 512)
 ║                       ║
 ║                       ║  [INFO] Element ID: [dOc]
 ║         d O c         ║  [INFO] Group: Dev Tools
 ║                       ║  [INFO] Registered to: DEVTOOLS GLOBAL
 ║                       ║
 ║       Docsygen        ║  [OK] Plugins: auto-gen, type-inference
-║         1.21.0        ║  [OK] Config: /etc/docsygen/config.toml
+║         1.22.0        ║  [OK] Config: /etc/docsygen/config.toml
 ╚═══════════════════════╝  [READY] System is operational.
  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
@@ -291,6 +291,7 @@ After `/init` (and as commands run), a project's docs live under `.docs/`:
 - **Before committing:** Run `/review` for a read-only pass; reach for a quality pass (`/ux-review`, `/a11y`, `/performance`) or `/test` / `/env` when those dimensions matter. For a second opinion inside [herdr](https://herdr.dev), `/herdr-review` runs the whole loop for you — it spawns a reviewer agent in a sibling pane, triages its findings, and applies the ones that hold up. Outside herdr, do it by hand: have another agent run `/review`, then paste its findings back into `/review` on the original agent.
 - **Measured over inferred:** The UI quality passes open the real running app when they can reach it and label every finding accordingly. A finding read off the source is a hypothesis, and it says so.
 - **Propose, don't install:** Skills that need new access — a browser, a simulator, a dependency — present the options and let you grant them. Nothing reaches for a new resource on its own.
+- **Clock on every message:** a plugin hook ([`hooks/hooks.json`](hooks/hooks.json)) attaches `Current local time: Tue 2026-11-03 18:26 CET (UTC+0100)` to each message you send — about 25 tokens, once per message, not per tool call. With the matching `CLAUDE.md` rule, the agent resolves "today" and "tomorrow" against your clock and timezone, and can tell a two-hour session from a day passing. Nothing to invoke. It works in Claude Code and in Codex on macOS, Linux, and WSL. Codex runs it only with `[features] hooks = true` and asks you to trust the hook once. On native Windows, Codex gets no stamp: the command is POSIX-only. Without a stamp, the rule falls back to running `date`.
 - **Truth over docs:** If docs and code disagree about what *exists*, the code wins — run `/drift` to reconcile. What the docs say is *intended* is a different matter: `/drift` confirms before removing a plan the code hasn't caught up to yet.
 
 ## Developing Docsygen itself
@@ -301,6 +302,7 @@ This repository **is** the source of truth, the plugin, and the marketplace — 
 - `.claude-plugin/plugin.json` — Claude Code plugin manifest (name, version). Components in `skills/` are auto-discovered, so there's no path to maintain.
 - `.claude-plugin/marketplace.json` — makes the repo its own Claude Code marketplace.
 - `.codex-plugin/plugin.json` — Codex plugin manifest. Mirrors the Claude one, plus an `interface` block (display name, category, sample prompts) and an explicit `"skills": "./skills/"`.
+- [`hooks/hooks.json`](hooks/hooks.json) — plugin hooks, picked up automatically by both agents from the plugin root. Currently one: the per-message local-time stamp.
 - `.agents/plugins/marketplace.json` — makes the repo its own Codex marketplace. The single plugin entry uses `"path": "."`, so the repo root *is* the plugin root.
 
 To work on it:

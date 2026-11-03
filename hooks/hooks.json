@@ -1,0 +1,16 @@
+{
+  "description": "Stamps each user message with the local date, time, and timezone so the agent can resolve 'today'/'tomorrow' and tell how much time has passed.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"Current local time: %s\"}}' \"$(date '+%a %Y-%m-%d %H:%M %Z (UTC%z)')\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
