@@ -254,3 +254,10 @@
   - added a matching rule to the `/init` `CLAUDE.md` template and to this repo's `CLAUDE.md`: resolve "today"/"tomorrow" against the latest stamp, compare stamps for elapsed time, run `date` when there's no stamp
   - chose a hook plus a rule over a skill: an agent that is wrong about the time doesn't know it is wrong, so it would never call a skill
   - bumped docsygen to 1.22.0
+
+## 2026-11-04
+
+### 16:12
+
+  - added Pi as a third reviewer kind in `/herdr-review`, offered after Claude Opus and Codex; it starts with `--tools read,grep,find,ls,bash` because Pi has no approval prompts, so dropping `edit`/`write` is the only tool-level guard
+  - bumped docsygen to 1.22.1

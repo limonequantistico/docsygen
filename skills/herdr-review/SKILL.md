@@ -27,7 +27,7 @@ Parse what the user passed alongside the command:
 - `--kind <kind>` — skip the question and use this kind.
 - Anything else is extra instruction for the review itself; pass it through in the brief.
 
-If no `--kind` was given, ask with AskUserQuestion. Offer **Claude Opus** first and **Codex** second; the built-in *Other* option covers anything else. Use `multiSelect` when more than one reviewer was requested. Validate any free-text kind against the `kinds:` line printed by `herdr agent`.
+If no `--kind` was given, ask with AskUserQuestion. Offer **Claude Opus** first, **Codex** second, and **Pi** third; the built-in *Other* option covers anything else. Use `multiSelect` when more than one reviewer was requested. Validate any free-text kind against the `kinds:` line printed by `herdr agent`.
 
 A reviewer of a *different* kind than yours catches more than a copy of you does — say so if the user asks which to pick.
 
@@ -49,9 +49,12 @@ Pick a unique name matching `[a-z][a-z0-9_-]{0,31}` — `reviewer`, or `reviewer
 ```bash
 herdr agent start reviewer --kind claude --pane <pane-id> --timeout 120000 -- --model opus
 herdr agent start reviewer --kind codex --pane <pane-id> --timeout 120000
+herdr agent start reviewer --kind pi --pane <pane-id> --timeout 120000 -- --tools read,grep,find,ls,bash
 ```
 
-Native agent arguments go after `--`; that's how the Opus model gets selected.
+Native agent arguments go after `--`; that's how the Opus model gets selected. Pi runs on whatever model the user has configured as its default; pass `--model <provider/id>` after `--` only if the user named one.
+
+Pi has no approval prompts, so its tools are the only guard: `--tools` drops `edit` and `write`. It keeps `bash`, because the reviewer needs `git diff` and Step 5's file fallback. Read-only is still a promise the brief asks for, not something the tool enforces.
 
 If the command returns `agent_not_ready`, run `herdr agent wait <name> --timeout 120000` and check `herdr agent get <name>`. If it's still `blocked`, show the user what it's asking and stop — **never answer an approval dialog on the user's behalf.**
 
@@ -79,7 +82,7 @@ herdr agent prompt reviewer "$(cat <brief-path>)" --wait --timeout 900000
 herdr agent read reviewer --source recent-unwrapped --lines 400
 ```
 
-Both Claude Code and Codex run on the terminal's **alternate screen**, and rows that scroll off there never reach herdr's scrollback — so a long review can come back truncated, and a bigger `--lines` won't always recover it. Check that the capture contains both the `REVIEW · Mode A` header and the `===HERDR-REVIEW-END===` sentinel:
+Claude Code, Codex, and Pi can all run on the terminal's **alternate screen**, and rows that scroll off there never reach herdr's scrollback — so a long review can come back truncated, and a bigger `--lines` won't always recover it. Check that the capture contains both the `REVIEW · Mode A` header and the `===HERDR-REVIEW-END===` sentinel:
 
 1. Sentinel missing → read once more with `--lines 1000`.
 2. Still missing → ask the reviewer to write its complete review as Markdown to a temp path and reply with only that path, wait, then read that file.
