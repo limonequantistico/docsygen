@@ -261,3 +261,10 @@
 
   - added Pi as a third reviewer kind in `/herdr-review`, offered after Claude Opus and Codex; it starts with `--tools read,grep,find,ls,bash` because Pi has no approval prompts, so dropping `edit`/`write` is the only tool-level guard
   - bumped docsygen to 1.22.1
+
+## 2026-11-26
+
+### 23:58
+
+  - added Antigravity (`agy`, Google) as a fourth reviewer kind in `/herdr-review` and a fourth guru option in `/herdr-guru`; it starts in `--mode plan` as its closest read-only guard, and `/herdr-review` notes that herdr can report it idle while background tasks still run
+  - bumped docsygen to 1.22.2

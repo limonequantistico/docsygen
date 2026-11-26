@@ -43,6 +43,7 @@ Unless `--kind` was given, ask with AskUserQuestion, with these options in this 
 1. **Claude Sonnet (Recommended)**: cheap, and very good at explaining code that already exists. It saves the expensive model's quota for the agent doing the building.
 2. **Claude Opus**: for a large or subtle codebase, or deep design discussions.
 3. **Codex**: a different model family is a genuinely different second perspective.
+4. **Antigravity** (`agy`, Google): another model family, for the same reason.
 
 The built-in *Other* option covers any other kind. Check a free-text kind against the `kinds:` line that `herdr agent` prints.
 
@@ -64,6 +65,8 @@ Name the agent `guru`, or `guru-2` and so on if the name is taken. Start it with
 herdr agent start guru --kind claude --pane <pane-id> --timeout 120000 -- --model sonnet --disallowedTools Edit Write NotebookEdit
 # Codex: the read-only sandbox enforces it at the OS level
 herdr agent start guru --kind codex --pane <pane-id> --timeout 120000 -- --sandbox read-only
+# Antigravity: plan mode keeps it from editing
+herdr agent start guru --kind agy --pane <pane-id> --timeout 120000 -- --mode plan
 ```
 
 Use `--model opus` for Opus. For other kinds, pass their native read-only flag after `--` if they have one. If they don't, the brief alone carries the rule. Say so in Step 6.
